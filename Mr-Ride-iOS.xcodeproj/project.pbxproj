@@ -1,0 +1,419 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3F8A50EA1CF2E5B7002D6C21 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A50E91CF2E5B7002D6C21 /* NavigationController.swift */; };
+		3F8A50ED1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A50EB1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift */; };
+		3F8A50EE1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A50EC1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift */; };
+		3F8A50FB1CF2EC5D002D6C21 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A50F01CF2EC5D002D6C21 /* LICENSE.txt */; };
+		3F8A50FC1CF2EC5D002D6C21 /* RobotoMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A50F11CF2EC5D002D6C21 /* RobotoMono-Bold.ttf */; };
+		3F8A50FD1CF2EC5D002D6C21 /* RobotoMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A50F21CF2EC5D002D6C21 /* RobotoMono-BoldItalic.ttf */; };
+		3F8A50FE1CF2EC5D002D6C21 /* RobotoMono-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A50F31CF2EC5D002D6C21 /* RobotoMono-Italic.ttf */; };
+		3F8A50FF1CF2EC5D002D6C21 /* RobotoMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A50F41CF2EC5D002D6C21 /* RobotoMono-Light.ttf */; };
+		3F8A51001CF2EC5D002D6C21 /* RobotoMono-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A50F51CF2EC5D002D6C21 /* RobotoMono-LightItalic.ttf */; };
+		3F8A51011CF2EC5D002D6C21 /* RobotoMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A50F61CF2EC5D002D6C21 /* RobotoMono-Medium.ttf */; };
+		3F8A51021CF2EC5D002D6C21 /* RobotoMono-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A50F71CF2EC5D002D6C21 /* RobotoMono-MediumItalic.ttf */; };
+		3F8A51031CF2EC5D002D6C21 /* RobotoMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A50F81CF2EC5D002D6C21 /* RobotoMono-Regular.ttf */; };
+		3F8A51041CF2EC5D002D6C21 /* RobotoMono-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A50F91CF2EC5D002D6C21 /* RobotoMono-Thin.ttf */; };
+		3F8A51051CF2EC5D002D6C21 /* RobotoMono-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A50FA1CF2EC5D002D6C21 /* RobotoMono-ThinItalic.ttf */; };
+		3F8A51081CF2F990002D6C21 /* NewRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A51071CF2F990002D6C21 /* NewRecordViewController.swift */; };
+		3F8A510B1CF2FA79002D6C21 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A510A1CF2FA79002D6C21 /* HomeViewController.swift */; };
+		3F908A021CF2A777008091E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F908A011CF2A777008091E5 /* AppDelegate.swift */; };
+		3F908A071CF2A777008091E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F908A051CF2A777008091E5 /* Main.storyboard */; };
+		3F908A0A1CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F908A081CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodeld */; };
+		3F908A0C1CF2A777008091E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F908A0B1CF2A777008091E5 /* Assets.xcassets */; };
+		3F908A0F1CF2A777008091E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F908A0D1CF2A777008091E5 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3F8A50E91CF2E5B7002D6C21 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		3F8A50EB1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+MRAdditions.swift"; sourceTree = "<group>"; };
+		3F8A50EC1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+MRAdditions.swift"; sourceTree = "<group>"; };
+		3F8A50F01CF2EC5D002D6C21 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		3F8A50F11CF2EC5D002D6C21 /* RobotoMono-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Bold.ttf"; sourceTree = "<group>"; };
+		3F8A50F21CF2EC5D002D6C21 /* RobotoMono-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-BoldItalic.ttf"; sourceTree = "<group>"; };
+		3F8A50F31CF2EC5D002D6C21 /* RobotoMono-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Italic.ttf"; sourceTree = "<group>"; };
+		3F8A50F41CF2EC5D002D6C21 /* RobotoMono-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Light.ttf"; sourceTree = "<group>"; };
+		3F8A50F51CF2EC5D002D6C21 /* RobotoMono-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-LightItalic.ttf"; sourceTree = "<group>"; };
+		3F8A50F61CF2EC5D002D6C21 /* RobotoMono-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Medium.ttf"; sourceTree = "<group>"; };
+		3F8A50F71CF2EC5D002D6C21 /* RobotoMono-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-MediumItalic.ttf"; sourceTree = "<group>"; };
+		3F8A50F81CF2EC5D002D6C21 /* RobotoMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Regular.ttf"; sourceTree = "<group>"; };
+		3F8A50F91CF2EC5D002D6C21 /* RobotoMono-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-Thin.ttf"; sourceTree = "<group>"; };
+		3F8A50FA1CF2EC5D002D6C21 /* RobotoMono-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-ThinItalic.ttf"; sourceTree = "<group>"; };
+		3F8A51071CF2F990002D6C21 /* NewRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRecordViewController.swift; sourceTree = "<group>"; };
+		3F8A510A1CF2FA79002D6C21 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		3F9089FE1CF2A776008091E5 /* Mr-Ride-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F908A011CF2A777008091E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3F908A061CF2A777008091E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3F908A091CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mr_Ride_iOS.xcdatamodel; sourceTree = "<group>"; };
+		3F908A0B1CF2A777008091E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F908A0E1CF2A777008091E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3F908A101CF2A777008091E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3F9089FB1CF2A776008091E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3F8A50EF1CF2EC14002D6C21 /* Custom Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3F8A50EB1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift */,
+				3F8A50EC1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift */,
+				3F8A50F01CF2EC5D002D6C21 /* LICENSE.txt */,
+				3F8A50F11CF2EC5D002D6C21 /* RobotoMono-Bold.ttf */,
+				3F8A50F21CF2EC5D002D6C21 /* RobotoMono-BoldItalic.ttf */,
+				3F8A50F31CF2EC5D002D6C21 /* RobotoMono-Italic.ttf */,
+				3F8A50F41CF2EC5D002D6C21 /* RobotoMono-Light.ttf */,
+				3F8A50F51CF2EC5D002D6C21 /* RobotoMono-LightItalic.ttf */,
+				3F8A50F61CF2EC5D002D6C21 /* RobotoMono-Medium.ttf */,
+				3F8A50F71CF2EC5D002D6C21 /* RobotoMono-MediumItalic.ttf */,
+				3F8A50F81CF2EC5D002D6C21 /* RobotoMono-Regular.ttf */,
+				3F8A50F91CF2EC5D002D6C21 /* RobotoMono-Thin.ttf */,
+				3F8A50FA1CF2EC5D002D6C21 /* RobotoMono-ThinItalic.ttf */,
+			);
+			name = "Custom Fonts";
+			sourceTree = "<group>";
+		};
+		3F8A51061CF2F8CD002D6C21 /* New Record */ = {
+			isa = PBXGroup;
+			children = (
+				3F8A51071CF2F990002D6C21 /* NewRecordViewController.swift */,
+			);
+			name = "New Record";
+			sourceTree = "<group>";
+		};
+		3F8A51091CF2FA5D002D6C21 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				3F8A510A1CF2FA79002D6C21 /* HomeViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		3F9089F51CF2A776008091E5 = {
+			isa = PBXGroup;
+			children = (
+				3F908A001CF2A777008091E5 /* Mr-Ride-iOS */,
+				3F9089FF1CF2A776008091E5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3F9089FF1CF2A776008091E5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F9089FE1CF2A776008091E5 /* Mr-Ride-iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3F908A001CF2A777008091E5 /* Mr-Ride-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3F908A051CF2A777008091E5 /* Main.storyboard */,
+				3F908A0D1CF2A777008091E5 /* LaunchScreen.storyboard */,
+				3F8A51091CF2FA5D002D6C21 /* Home */,
+				3F8A51061CF2F8CD002D6C21 /* New Record */,
+				3F908A181CF2AE7E008091E5 /* Navigation */,
+				3F8A50EF1CF2EC14002D6C21 /* Custom Fonts */,
+				3F908A171CF2AD03008091E5 /* Others */,
+			);
+			path = "Mr-Ride-iOS";
+			sourceTree = "<group>";
+		};
+		3F908A171CF2AD03008091E5 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				3F908A011CF2A777008091E5 /* AppDelegate.swift */,
+				3F908A0B1CF2A777008091E5 /* Assets.xcassets */,
+				3F908A101CF2A777008091E5 /* Info.plist */,
+				3F908A081CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodeld */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		3F908A181CF2AE7E008091E5 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				3F8A50E91CF2E5B7002D6C21 /* NavigationController.swift */,
+			);
+			name = Navigation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3F9089FD1CF2A776008091E5 /* Mr-Ride-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F908A131CF2A777008091E5 /* Build configuration list for PBXNativeTarget "Mr-Ride-iOS" */;
+			buildPhases = (
+				3F9089FA1CF2A776008091E5 /* Sources */,
+				3F9089FB1CF2A776008091E5 /* Frameworks */,
+				3F9089FC1CF2A776008091E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mr-Ride-iOS";
+			productName = "Mr-Ride-iOS";
+			productReference = 3F9089FE1CF2A776008091E5 /* Mr-Ride-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3F9089F61CF2A776008091E5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "AppWorks School Jing";
+				TargetAttributes = {
+					3F9089FD1CF2A776008091E5 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = JQ9756CZ8R;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 3F9089F91CF2A776008091E5 /* Build configuration list for PBXProject "Mr-Ride-iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3F9089F51CF2A776008091E5;
+			productRefGroup = 3F9089FF1CF2A776008091E5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3F9089FD1CF2A776008091E5 /* Mr-Ride-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3F9089FC1CF2A776008091E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F8A50FE1CF2EC5D002D6C21 /* RobotoMono-Italic.ttf in Resources */,
+				3F8A51021CF2EC5D002D6C21 /* RobotoMono-MediumItalic.ttf in Resources */,
+				3F8A50FB1CF2EC5D002D6C21 /* LICENSE.txt in Resources */,
+				3F8A50FD1CF2EC5D002D6C21 /* RobotoMono-BoldItalic.ttf in Resources */,
+				3F8A50FF1CF2EC5D002D6C21 /* RobotoMono-Light.ttf in Resources */,
+				3F8A50FC1CF2EC5D002D6C21 /* RobotoMono-Bold.ttf in Resources */,
+				3F8A51001CF2EC5D002D6C21 /* RobotoMono-LightItalic.ttf in Resources */,
+				3F908A0F1CF2A777008091E5 /* LaunchScreen.storyboard in Resources */,
+				3F908A0C1CF2A777008091E5 /* Assets.xcassets in Resources */,
+				3F908A071CF2A777008091E5 /* Main.storyboard in Resources */,
+				3F8A51011CF2EC5D002D6C21 /* RobotoMono-Medium.ttf in Resources */,
+				3F8A51031CF2EC5D002D6C21 /* RobotoMono-Regular.ttf in Resources */,
+				3F8A51041CF2EC5D002D6C21 /* RobotoMono-Thin.ttf in Resources */,
+				3F8A51051CF2EC5D002D6C21 /* RobotoMono-ThinItalic.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3F9089FA1CF2A776008091E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F8A51081CF2F990002D6C21 /* NewRecordViewController.swift in Sources */,
+				3F908A021CF2A777008091E5 /* AppDelegate.swift in Sources */,
+				3F8A50EA1CF2E5B7002D6C21 /* NavigationController.swift in Sources */,
+				3F8A50ED1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift in Sources */,
+				3F908A0A1CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodeld in Sources */,
+				3F8A510B1CF2FA79002D6C21 /* HomeViewController.swift in Sources */,
+				3F8A50EE1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3F908A051CF2A777008091E5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F908A061CF2A777008091E5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3F908A0D1CF2A777008091E5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F908A0E1CF2A777008091E5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3F908A111CF2A777008091E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3F908A121CF2A777008091E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3F908A141CF2A777008091E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Mr-Ride-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-Jing.Mr-Ride-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3F908A151CF2A777008091E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Mr-Ride-iOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-Jing.Mr-Ride-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3F9089F91CF2A776008091E5 /* Build configuration list for PBXProject "Mr-Ride-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F908A111CF2A777008091E5 /* Debug */,
+				3F908A121CF2A777008091E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F908A131CF2A777008091E5 /* Build configuration list for PBXNativeTarget "Mr-Ride-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F908A141CF2A777008091E5 /* Debug */,
+				3F908A151CF2A777008091E5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3F908A081CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3F908A091CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodel */,
+			);
+			currentVersion = 3F908A091CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodel */;
+			path = Mr_Ride_iOS.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3F9089F61CF2A776008091E5 /* Project object */;
+}
