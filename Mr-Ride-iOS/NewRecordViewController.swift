@@ -21,7 +21,8 @@ class NewRecordViewController: UIViewController {
     @IBOutlet weak var calories: UILabel!
     @IBOutlet weak var nowCalories: UILabel!
     @IBOutlet weak var nowTime: UILabel!
-    
+    @IBOutlet weak var buttonBorder: UIView!
+    @IBOutlet weak var rideButton: UIButton!
     
     // locationManager
     
@@ -45,6 +46,7 @@ class NewRecordViewController: UIViewController {
         super.viewDidLoad()
         setBackground()
         setLabels()
+        setButton()
     }
     
     
@@ -60,7 +62,6 @@ class NewRecordViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -72,16 +73,19 @@ class NewRecordViewController: UIViewController {
         let distanceQuantity = HKQuantity(unit: HKUnit.meterUnit(), doubleValue: distance)
         nowDistance.text = distanceQuantity.description
         
-//        let paceUnit = HKUnit.hourUnit().unitDividedByUnit(HKUnit.kilometerUnit())
+        let paceUnit = HKUnit.hourUnit().unitDividedByUnit(HKUnit.meterUnit())
+        let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: seconds / distance)
+        nowSpeed.text = paceQuantity.description
         
-        
-        
-        
+    }
+    
+    func startLocationUpdates() {
+        locationManager.startUpdatingLocation()
     }
    
 }
 
-// set navigation & background & label
+// set navigation & background & label & button
 
 extension NewRecordViewController {
     
@@ -129,6 +133,21 @@ extension NewRecordViewController {
         self.nowCalories.font = UIFont.mrTextStyle9Font()
         self.nowCalories.textColor = UIColor.whiteColor()
         self.nowCalories.shadowColor = UIColor.mrBlack15Color()
+        
+        self.nowTime.font = UIFont.mrTextStyle14Font()
+        self.nowTime.textColor = UIColor.mrWhiteColor().colorWithAlphaComponent(0.8)
+        
+    }
+    
+    func setButton() {
+        
+        self.buttonBorder.layer.borderColor = UIColor.whiteColor().CGColor
+        self.buttonBorder.backgroundColor = UIColor.clearColor()
+        self.buttonBorder.layer.borderWidth = 4
+        self.buttonBorder.layer.shadowColor = UIColor.mrBlack20Color().CGColor
+        self.buttonBorder.layer.cornerRadius = self.buttonBorder.frame.size.width / 2
+        
+        self.rideButton.layer.cornerRadius = self.rideButton.frame.width / 2
         
     }
     
