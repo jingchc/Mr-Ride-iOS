@@ -108,7 +108,7 @@
                     <connections>
                         <outlet property="averageSpeed" destination="jRx-MP-tID" id="xrr-DQ-PIx"/>
                         <outlet property="calories" destination="EUL-fL-pPl" id="Tmu-f6-A0P"/>
-                        <outlet property="distance" destination="Ljw-EA-97K" id="knf-H8-PiB"/>
+                        <outlet property="distanceLabel" destination="Ljw-EA-97K" id="9lQ-9r-Syi"/>
                         <outlet property="nowCalories" destination="9zA-Tb-Krb" id="k6H-gp-k8L"/>
                         <outlet property="nowDistance" destination="SeG-Tk-LEZ" id="0ZS-8Z-Mzq"/>
                         <outlet property="nowSpeed" destination="gYr-gw-6sS" id="SQ8-wh-nna"/>
