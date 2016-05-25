@@ -64,33 +64,43 @@ class NewRecordViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    // set start & pause animation
     
+    // set start & pause & continue animation
     
-    var lanuchBool: Bool = false {
-        
-        didSet {
-            if lanuchBool == true {
-                UIView.animateWithDuration(0.6, animations: {
-                    self.rideButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
-                    self.rideButton.layer.cornerRadius = 4
-                })
-            } else {
-                UIView.animateWithDuration(0.6, animations: {
-                    self.rideButton.transform = CGAffineTransformMakeScale(1, 1)
-                    self.rideButton.layer.cornerRadius = self.rideButton.frame.width / 2
-                })
-            }
-        }
-    }
+    var currentAnimation = 0
     
     @IBAction func rideButtonPressed(sender: UIButton) {
-        self.lanuchBool = !self.lanuchBool
+        
+        guard let rideButtonFunction = RideButtonFunction(rawValue: currentAnimation) else { return }
+        switch rideButtonFunction {
+        case .Start:
+            UIView.animateWithDuration(0.6, animations: {
+                self.rideButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
+                self.rideButton.layer.cornerRadius = 4
+            })
+            self.currentAnimation = self.currentAnimation + 1
+
+
+        case .Pause:
+            UIView.animateWithDuration(0.6, animations: {
+                self.rideButton.transform = CGAffineTransformMakeScale(1, 1)
+                self.rideButton.layer.cornerRadius = self.rideButton.frame.width / 2
+            })
+            self.currentAnimation = self.currentAnimation + 1
+          
+        case .Continue:
+            UIView.animateWithDuration(0.6, animations: {
+                self.rideButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
+                self.rideButton.layer.cornerRadius = 4
+            })
+            self.currentAnimation = self.currentAnimation - 1
+            
+        }
+        
     }
     
     
-    
-    func eachSecond(timer: NSTimer) {
+    @objc func eachSecond(timer: NSTimer) {
         
         seconds += 1
         let secondsQuantity = HKQuantity(unit: HKUnit.secondUnit(), doubleValue: seconds)
@@ -182,10 +192,14 @@ extension NewRecordViewController {
 
 extension NewRecordViewController: CLLocationManagerDelegate {
     
-    
-    
 }
 
+// button function change enum
 
+enum RideButtonFunction: Int {
+    case Start = 0
+    case Pause
+    case Continue
+}
 
 
