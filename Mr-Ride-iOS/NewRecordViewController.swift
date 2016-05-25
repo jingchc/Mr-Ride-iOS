@@ -65,6 +65,24 @@ class NewRecordViewController: UIViewController {
     }
     
     
+    @IBAction func rideButtonPressed(sender: UIButton) {
+        
+        UIView.animateWithDuration(0.6, animations: {
+            
+//            let newScale = CGSize(width: self.rideButton.frame.width / 2, height: self.rideButton.frame.height / 2)
+//            self.rideButton.bounds.size = newScale
+            
+            self.rideButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
+            
+            self.rideButton.layer.cornerRadius = 4
+        })
+        
+
+        
+    }
+    
+    
+    
     func eachSecond(timer: NSTimer) {
         
         seconds += 1

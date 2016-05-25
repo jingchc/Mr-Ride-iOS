@@ -85,6 +85,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wB9-11-0tU">
                                         <rect key="frame" x="10" y="10" width="60" height="60"/>
                                         <color key="backgroundColor" red="0.90196078431372551" green="0.047058823529411764" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="rideButtonPressed:" destination="qeB-gR-2Fd" eventType="touchUpInside" id="j9N-u1-qAH"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.93725490199999995" blue="0.83921568629999999" alpha="1" colorSpace="calibratedRGB"/>
