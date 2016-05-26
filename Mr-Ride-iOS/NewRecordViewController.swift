@@ -26,11 +26,7 @@ class NewRecordViewController: UIViewController {
     
     // locationManager
     
-//    var timeFormat = NSDateFormatter().dateFormat
-//    var seconds = 0.01
     var distance = 0.0
-    var time: NSTimeInterval = 0.00
-    var startTime = NSDate.timeIntervalSinceReferenceDate()
     
     lazy var locationManager: CLLocationManager = {
         var _locationManager = CLLocationManager()
@@ -43,8 +39,6 @@ class NewRecordViewController: UIViewController {
 
     lazy var locations = [CLLocation]()
     lazy var timer = NSTimer()
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +66,12 @@ class NewRecordViewController: UIViewController {
     // set start & pause & continue animation
     
     var currentAnimation = 0
+    var time: NSTimeInterval = 0.00
+    var startTime = NSDate.timeIntervalSinceReferenceDate()
+    var pausedTime: NSTimeInterval = 0.00
+    var continuedTime: NSTimeInterval = 0.00
+    var totalPausedTime: NSTimeInterval = 0.00
+    
     
     @IBAction func rideButtonPressed(sender: UIButton) {
         
@@ -85,6 +85,7 @@ class NewRecordViewController: UIViewController {
             self.currentAnimation = self.currentAnimation + 1
             
             // timer start
+            self.startTime = NSDate.timeIntervalSinceReferenceDate()
             timer = NSTimer.scheduledTimerWithTimeInterval(0.02,
                 target: self,
                 selector: #selector(NewRecordViewController.eachMillisecond(_:)),
@@ -94,32 +95,41 @@ class NewRecordViewController: UIViewController {
             // location update
             startLocationUpdates()
 
-
         case .Pause:
             UIView.animateWithDuration(0.6, animations: {
                 self.rideButton.transform = CGAffineTransformMakeScale(1, 1)
                 self.rideButton.layer.cornerRadius = self.rideButton.frame.width / 2
             })
-            self.currentAnimation = self.currentAnimation + 1
+            self.currentAnimation = RideButtonFunction.Continue.rawValue
             
-            
+            // timer pause
+            timer.invalidate()
+            self.pausedTime = NSDate.timeIntervalSinceReferenceDate()
           
         case .Continue:
             UIView.animateWithDuration(0.6, animations: {
                 self.rideButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
                 self.rideButton.layer.cornerRadius = 4
             })
-            self.currentAnimation = self.currentAnimation - 1
+            self.currentAnimation = RideButtonFunction.Pause.rawValue
+
             
+            self.continuedTime = NSDate.timeIntervalSinceReferenceDate()
+            self.totalPausedTime += self.continuedTime - self.pausedTime
+         
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.02,
+                target: self,
+                selector: #selector(NewRecordViewController.eachMillisecond(_:)),
+                userInfo: nil,
+                repeats: true)
         }
-        
     }
     
-    
+   
     @objc func eachMillisecond(timer: NSTimer) {
-        
-        self.time = NSDate.timeIntervalSinceReferenceDate() - startTime
+        self.time = NSDate.timeIntervalSinceReferenceDate() - self.startTime - self.totalPausedTime
         self.nowTime.text = String(getTimeFormat(self.time))
+        
 //        print(self.startTime)
 //        print(self.time)
         
@@ -146,7 +156,7 @@ class NewRecordViewController: UIViewController {
         let time = NSInteger(trackDuration)
         let milliseconds = Int((trackDuration % 1) * 100)
         let seconds = time % 60
-        let minutes = seconds % 60
+        let minutes = (time / 60) % 60
         let hours = time / 3600
         
         return NSString(format: "%0.2d:%0.2d:%0.2d.%0.2d", hours, minutes,seconds,milliseconds)
