@@ -26,8 +26,11 @@ class NewRecordViewController: UIViewController {
     
     // locationManager
     
-    var seconds = 0.0
+//    var timeFormat = NSDateFormatter().dateFormat
+//    var seconds = 0.01
     var distance = 0.0
+    var time: NSTimeInterval = 0.00
+    var startTime = NSDate.timeIntervalSinceReferenceDate()
     
     lazy var locationManager: CLLocationManager = {
         var _locationManager = CLLocationManager()
@@ -40,6 +43,7 @@ class NewRecordViewController: UIViewController {
 
     lazy var locations = [CLLocation]()
     lazy var timer = NSTimer()
+    
     
 
     override func viewDidLoad() {
@@ -79,6 +83,16 @@ class NewRecordViewController: UIViewController {
                 self.rideButton.layer.cornerRadius = 4
             })
             self.currentAnimation = self.currentAnimation + 1
+            
+            // timer start
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.02,
+                target: self,
+                selector: #selector(NewRecordViewController.eachMillisecond(_:)),
+                userInfo: nil,
+                repeats: true)
+            
+            // location update
+            startLocationUpdates()
 
 
         case .Pause:
@@ -87,6 +101,8 @@ class NewRecordViewController: UIViewController {
                 self.rideButton.layer.cornerRadius = self.rideButton.frame.width / 2
             })
             self.currentAnimation = self.currentAnimation + 1
+            
+            
           
         case .Continue:
             UIView.animateWithDuration(0.6, animations: {
@@ -100,22 +116,41 @@ class NewRecordViewController: UIViewController {
     }
     
     
-    @objc func eachSecond(timer: NSTimer) {
+    @objc func eachMillisecond(timer: NSTimer) {
         
-        seconds += 1
-        let secondsQuantity = HKQuantity(unit: HKUnit.secondUnit(), doubleValue: seconds)
-        nowTime.text = secondsQuantity.description
-        let distanceQuantity = HKQuantity(unit: HKUnit.meterUnit(), doubleValue: distance)
-        nowDistance.text = distanceQuantity.description
+        self.time = NSDate.timeIntervalSinceReferenceDate() - startTime
+        self.nowTime.text = String(getTimeFormat(self.time))
+//        print(self.startTime)
+//        print(self.time)
         
-        let paceUnit = HKUnit.hourUnit().unitDividedByUnit(HKUnit.meterUnit())
-        let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: seconds / distance)
-        nowSpeed.text = paceQuantity.description
+//        seconds += 0.01
+//        let secondsQuantity = HKQuantity(unit: HKUnit.secondUnit(), doubleValue: seconds)
+//        nowTime.text = secondsQuantity.description
+//        let distanceQuantity = HKQuantity(unit: HKUnit.meterUnit(), doubleValue: distance)
+//        nowDistance.text = distanceQuantity.description
+//        
+//        let paceUnit = HKUnit.hourUnit().unitDividedByUnit(HKUnit.meterUnit())
+//        let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: seconds / distance)
+//        nowSpeed.text = paceQuantity.description
         
     }
     
     func startLocationUpdates() {
         locationManager.startUpdatingLocation()
+    }
+    
+    // time format
+    
+    func getTimeFormat(trackDuration: NSTimeInterval) -> NSString {
+        
+        let time = NSInteger(trackDuration)
+        let milliseconds = Int((trackDuration % 1) * 100)
+        let seconds = time % 60
+        let minutes = seconds % 60
+        let hours = time / 3600
+        
+        return NSString(format: "%0.2d:%0.2d:%0.2d.%0.2d", hours, minutes,seconds,milliseconds)
+        
     }
    
 }
@@ -171,6 +206,7 @@ extension NewRecordViewController {
         
         self.nowTime.font = UIFont.mrTextStyle14Font()
         self.nowTime.textColor = UIColor.mrWhiteColor().colorWithAlphaComponent(0.8)
+        self.nowTime.text = "00:00:00.00"
         
     }
     
@@ -181,7 +217,6 @@ extension NewRecordViewController {
         self.buttonBorder.layer.borderWidth = 4
         self.buttonBorder.layer.shadowColor = UIColor.mrBlack20Color().CGColor
         self.buttonBorder.layer.cornerRadius = self.buttonBorder.frame.size.width / 2
-        
         self.rideButton.layer.cornerRadius = self.rideButton.frame.width / 2
         
     }
