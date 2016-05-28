@@ -24,6 +24,8 @@ class NewRecordViewController: UIViewController {
     @IBOutlet weak var buttonBorder: UIView!
     @IBOutlet weak var rideButton: UIButton!
     
+    let gradient = CAGradientLayer()
+    
     // locationManager
     
     var distance = 0.0
@@ -130,19 +132,6 @@ class NewRecordViewController: UIViewController {
         self.time = NSDate.timeIntervalSinceReferenceDate() - self.startTime - self.totalPausedTime
         self.nowTime.text = String(getTimeFormat(self.time))
         
-//        print(self.startTime)
-//        print(self.time)
-        
-//        seconds += 0.01
-//        let secondsQuantity = HKQuantity(unit: HKUnit.secondUnit(), doubleValue: seconds)
-//        nowTime.text = secondsQuantity.description
-//        let distanceQuantity = HKQuantity(unit: HKUnit.meterUnit(), doubleValue: distance)
-//        nowDistance.text = distanceQuantity.description
-//        
-//        let paceUnit = HKUnit.hourUnit().unitDividedByUnit(HKUnit.meterUnit())
-//        let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: seconds / distance)
-//        nowSpeed.text = paceQuantity.description
-        
     }
     
     func startLocationUpdates() {
@@ -152,7 +141,6 @@ class NewRecordViewController: UIViewController {
     // time format
     
     func getTimeFormat(trackDuration: NSTimeInterval) -> NSString {
-        
         let time = NSInteger(trackDuration)
         let milliseconds = Int((trackDuration % 1) * 100)
         let seconds = time % 60
@@ -173,12 +161,30 @@ extension NewRecordViewController {
     
     // background
     
+    
+    override func viewDidLayoutSubviews() {
+        gradient.removeFromSuperlayer()
+        
+        let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.60)
+        let color2 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.40)
+        gradient.frame = self.view.frame
+        gradient.colors = [color1.CGColor, color2.CGColor]
+        self.view.layer.insertSublayer(gradient, atIndex: 0)
+        
+        // check how many layers in this view
+        print("layers: ")
+        if let sublaysers = self.view.layer.sublayers {
+            sublaysers.forEach({ (layer) in
+                if layer is CAGradientLayer { print("CAGradientLayer") }
+            })
+        }
+    }
+    
     func setBackground() {
         
         self.view.backgroundColor = UIColor.mrLightblueColor()
         let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.60)
         let color2 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.40)
-        let gradient = CAGradientLayer()
         gradient.frame = self.view.frame
         gradient.colors = [color1.CGColor, color2.CGColor]
         self.view.layer.insertSublayer(gradient, atIndex: 0)
