@@ -171,13 +171,6 @@ extension NewRecordViewController {
         gradient.colors = [color1.CGColor, color2.CGColor]
         self.view.layer.insertSublayer(gradient, atIndex: 0)
         
-        // check how many layers in this view
-        print("layers: ")
-        if let sublaysers = self.view.layer.sublayers {
-            sublaysers.forEach({ (layer) in
-                if layer is CAGradientLayer { print("CAGradientLayer") }
-            })
-        }
     }
     
     func setBackground() {
