@@ -57,14 +57,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="mYW-eV-QZY">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.58823529409999997" green="0.50980392159999999" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0fk-5X-yNk" customClass="SideBarTableViewCell" customModule="Mr_Ride_iOS">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" id="0fk-5X-yNk" customClass="SideBarTableViewCell" customModule="Mr_Ride_iOS">
+                                <rect key="frame" x="0.0" y="108" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0fk-5X-yNk" id="8JF-1I-stK">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gRG-gR-Ogv">
+                                            <rect key="frame" x="28" y="18" width="8" height="8"/>
+                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="8" id="ago-Dy-YjA"/>
+                                                <constraint firstAttribute="width" constant="8" id="iaU-P0-7Ff"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dH-Xj-PiY">
+                                            <rect key="frame" x="56" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="gRG-gR-Ogv" firstAttribute="centerY" secondItem="8JF-1I-stK" secondAttribute="centerY" id="FWL-T2-Tdt"/>
+                                        <constraint firstItem="4dH-Xj-PiY" firstAttribute="leading" secondItem="gRG-gR-Ogv" secondAttribute="trailing" constant="20" id="a07-pC-rRc"/>
+                                        <constraint firstItem="gRG-gR-Ogv" firstAttribute="leading" secondItem="8JF-1I-stK" secondAttribute="leadingMargin" constant="20" id="eLI-Zp-ahz"/>
+                                        <constraint firstItem="4dH-Xj-PiY" firstAttribute="centerY" secondItem="8JF-1I-stK" secondAttribute="centerY" id="gYF-eg-qEB"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dot" destination="gRG-gR-Ogv" id="YeR-se-7sD"/>
+                                    <outlet property="pageName" destination="4dH-Xj-PiY" id="ZYJ-sQ-eTR"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -76,7 +107,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rho-S1-9Xu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="927" y="-358"/>
+            <point key="canvasLocation" x="971" y="-358"/>
         </scene>
         <!--History Table View Controller-->
         <scene sceneID="Dub-Eg-2K3">
