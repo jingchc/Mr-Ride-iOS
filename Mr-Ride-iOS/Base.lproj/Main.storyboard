@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jOm-dh-Jry">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -24,12 +24,35 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1190" y="-358"/>
+            <point key="canvasLocation" x="2002" y="-358"/>
+        </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="bWk-ai-e9v">
+            <objects>
+                <viewController id="jOm-dh-Jry" customClass="SWRevealViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cWs-8Y-u5c"/>
+                        <viewControllerLayoutGuide type="bottom" id="vWV-QK-4Jg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DOr-nk-0Yi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <segue destination="CTV-K0-aEl" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="Dna-GY-YdL"/>
+                        <segue destination="F7E-1F-u0v" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="VvK-94-Xga"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O0L-6g-ddG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="473" y="-358"/>
         </scene>
         <!--Side Bar Table View Controller-->
         <scene sceneID="hrz-1e-em5">
             <objects>
-                <tableViewController id="CTV-K0-aEl" customClass="SideBarTableViewController" customModule="Mr_Ride_iOS" sceneMemberID="viewController">
+                <tableViewController id="CTV-K0-aEl" customClass="SideBarTableViewController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="inQ-jA-j1o">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -53,7 +76,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rho-S1-9Xu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="103" y="545"/>
+            <point key="canvasLocation" x="927" y="-358"/>
         </scene>
         <!--History Table View Controller-->
         <scene sceneID="Dub-Eg-2K3">
@@ -83,7 +106,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDu-Dg-dOw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1190" y="487"/>
+            <point key="canvasLocation" x="2002" y="469"/>
         </scene>
         <!--New Record View Controller-->
         <scene sceneID="B6l-YL-edc">
@@ -177,28 +200,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdn-MS-g8q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1749" y="-358"/>
+            <point key="canvasLocation" x="2561" y="-358"/>
         </scene>
-        <!--Home Navigation Controller-->
-        <scene sceneID="upH-AW-kI4">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ub5-IY-ZQ3" customClass="HomeNavigationController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cSb-EY-WBA">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aQX-va-zcx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="661" y="-358"/>
-        </scene>
-        <!--Navigation Controller-->
+        <!--History Navigation Controller-->
         <scene sceneID="M4j-j1-EDm">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pCM-Dl-iMa" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pCM-Dl-iMa" customClass="HistoryNavigationController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="J9d-Tc-ugM">
@@ -212,7 +219,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzm-M8-CtU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="661" y="487"/>
+            <point key="canvasLocation" x="1466" y="469"/>
+        </scene>
+        <!--Home Navigation Controller-->
+        <scene sceneID="8ZH-Wp-lqZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="F7E-1F-u0v" customClass="HomeNavigationController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6Bv-un-a9M">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="oUF-bS-bXS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rNb-EZ-hqu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1466" y="-358"/>
         </scene>
     </scenes>
 </document>
