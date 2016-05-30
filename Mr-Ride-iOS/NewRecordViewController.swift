@@ -88,7 +88,7 @@ class NewRecordViewController: UIViewController {
             
             // timer start
             self.startTime = NSDate.timeIntervalSinceReferenceDate()
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.02,
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.01,
                 target: self,
                 selector: #selector(NewRecordViewController.eachMillisecond(_:)),
                 userInfo: nil,
@@ -119,7 +119,7 @@ class NewRecordViewController: UIViewController {
             self.continuedTime = NSDate.timeIntervalSinceReferenceDate()
             self.totalPausedTime += self.continuedTime - self.pausedTime
          
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.02,
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.01,
                 target: self,
                 selector: #selector(NewRecordViewController.eachMillisecond(_:)),
                 userInfo: nil,
@@ -213,7 +213,8 @@ extension NewRecordViewController {
         self.nowCalories.textColor = UIColor.whiteColor()
         self.nowCalories.shadowColor = UIColor.mrBlack15Color()
         
-        self.nowTime.font = UIFont.mrTextStyle14Font()
+//        self.nowTime.font = UIFont.mrTextStyle14Font()
+        self.nowTime.font = UIFont(name: "RobotoMono-Regular", size: 30)
         self.nowTime.textColor = UIColor.mrWhiteColor().colorWithAlphaComponent(0.8)
         self.nowTime.text = "00:00:00.00"
         
