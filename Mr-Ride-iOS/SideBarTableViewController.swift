@@ -11,6 +11,7 @@ import UIKit
 class SideBarTableViewController: UITableViewController {
     
     let pageName = ["Home", "History"]
+// var selectedIndexPath: NSIndexPath?
     
     enum ToController: Int {
         case Home
@@ -26,6 +27,8 @@ class SideBarTableViewController: UITableViewController {
     
     override func viewDidAppear(animated: Bool) {
         print("viewDidAppear")
+        // init white or black
+        
     }
 
     
@@ -55,6 +58,8 @@ class SideBarTableViewController: UITableViewController {
         cell.pageName.shadowColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.25)
         cell.pageName.text = pageName[indexPath.row]
         
+    // if selectedIndexPath = indexPath { cell.style = .Black or .White  }
+        
         cell.selectionStyle = .None
         
         return cell
@@ -63,6 +68,17 @@ class SideBarTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        //selectedIndexPath = indexPath
+        // tableView.reloadData()
+        let cells = tableView.visibleCells.count
+        print(cells)
+//        for cell in cells {
+//            if cell is SideBarTableViewCell {
+//                cell.
+//                
+//            }
+//                    }
+
         (tableView.cellForRowAtIndexPath(indexPath) as! SideBarTableViewCell).pageName.textColor = UIColor.mrWhiteColor()
         (tableView.cellForRowAtIndexPath(indexPath) as! SideBarTableViewCell).dot.backgroundColor = UIColor.mrWhiteColor()
         
@@ -78,9 +94,10 @@ class SideBarTableViewController: UITableViewController {
             SWRevealViewControllerSeguePushController.init(identifier: "HistoryNavigationController", source: self, destination: destination).perform()
         }
         
-        
-        
     }
+    
+
+
     /*
      // Override to support conditional editing of the table view.
      override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

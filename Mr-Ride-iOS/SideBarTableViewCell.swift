@@ -18,22 +18,26 @@ class SideBarTableViewCell: UITableViewCell {
         
     }
 
-//    override func setSelected(selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//        print("selected")
-//        print(self.pageName.text)
-//        
-//        
-////        self.dot.backgroundColor = UIColor.mrWhiteColor()
-////        self.backgroundColor = UIColor.mrDarkSlateBlueColor()
-////        self.layer.backgroundColor = UIColor.mrDarkSlateBlueColor().CGColor
-////        self.pageName.textColor = UIColor.mrWhite50Color()
-////        self.dot.backgroundColor = UIColor.mrWhiteColor()
-//        
-//
-//        // Configure the view for the selected state
-//    }
-//    
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        print("selected")
+        print(self.pageName.text)
+        
+        if selected {
+            // selected
+        } else {
+            // un selected
+        }
+//        self.dot.backgroundColor = UIColor.mrWhiteColor()
+//        self.backgroundColor = UIColor.mrDarkSlateBlueColor()
+//        self.layer.backgroundColor = UIColor.mrDarkSlateBlueColor().CGColor
+//        self.pageName.textColor = UIColor.mrWhite50Color()
+//        self.dot.backgroundColor = UIColor.mrWhiteColor()
+        
+
+        // Configure the view for the selected state
+    }
+
     
 
 
