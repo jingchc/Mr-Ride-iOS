@@ -84,7 +84,8 @@ class NewRecordViewController: UIViewController {
                 self.rideButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
                 self.rideButton.layer.cornerRadius = 4
             })
-            self.currentAnimation = self.currentAnimation + 1
+            self.currentAnimation = RideButtonFunction.Pause.rawValue
+            
             
             // timer start
             self.startTime = NSDate.timeIntervalSinceReferenceDate()
