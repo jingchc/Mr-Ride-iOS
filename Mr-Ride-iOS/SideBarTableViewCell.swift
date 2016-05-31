@@ -15,31 +15,26 @@ class SideBarTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        set()
         
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-//        self.dot.backgroundColor = UIColor.mrWhiteColor()
-        self.layer.backgroundColor = UIColor.mrDarkSlateBlueColor().CGColor
-        self.pageName.textColor = UIColor.mrWhite50Color()
-        
-
-        // Configure the view for the selected state
-    }
+//    override func setSelected(selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//        print("selected")
+//        print(self.pageName.text)
+//        
+//        
+////        self.dot.backgroundColor = UIColor.mrWhiteColor()
+////        self.backgroundColor = UIColor.mrDarkSlateBlueColor()
+////        self.layer.backgroundColor = UIColor.mrDarkSlateBlueColor().CGColor
+////        self.pageName.textColor = UIColor.mrWhite50Color()
+////        self.dot.backgroundColor = UIColor.mrWhiteColor()
+//        
+//
+//        // Configure the view for the selected state
+//    }
+//    
     
-    func set() {
-        
-        self.layer.backgroundColor = UIColor.mrDarkSlateBlueColor().CGColor
-        
-        self.dot.layer.cornerRadius = self.dot.frame.size.width / 2
-        self.dot.backgroundColor = UIColor.mrDarkSlateBlueColor()
-        self.dot.layer.shadowColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.25).CGColor
-        self.pageName.font = UIFont.mrTextStyle7Font()
-        self.pageName.textColor = UIColor.mrWhite50Color()
-        self.pageName.shadowColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.25)
-    }
+
 
 }

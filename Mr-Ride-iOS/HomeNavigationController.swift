@@ -12,11 +12,11 @@ class HomeNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        set()
+        setUp()
 
     }
 
-    func set(){
+    private func setUp(){
         self.navigationBar.barTintColor = UIColor.mrLightblueColor()
         self.navigationBar.tintColor = UIColor.mrWhiteColor()
         self.navigationBar.barStyle = UIBarStyle.Black
