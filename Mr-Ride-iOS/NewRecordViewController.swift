@@ -218,10 +218,17 @@ extension NewRecordViewController {
         self.nowTime.textColor = UIColor.mrWhiteColor().colorWithAlphaComponent(0.8)
         self.nowTime.text = "00:00:00.00"
         
-        // navigation title
+        // navigation left button
+        let leftItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+        self.navigationItem.leftBarButtonItem = leftItem
         
-        var getTodayDate = NSDateFormatter()
+        // navigation right button
+        let rightItem = UIBarButtonItem(title: "Finish", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+        self.navigationItem.rightBarButtonItem = rightItem
 
+        
+        // navigation title
+        var getTodayDate = NSDateFormatter()
         var todayDate: NSDate {
             get{
                 getTodayDate.dateFormat = "yyyy / MM / dd"

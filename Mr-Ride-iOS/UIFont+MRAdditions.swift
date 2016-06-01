@@ -73,4 +73,10 @@ extension UIFont {
         return UIFont.systemFontOfSize(30.0, weight: UIFontWeightMedium)
     }
     
+    // no 17
+    
+    class func asiTextStyle18Font() -> UIFont {
+        return UIFont.systemFontOfSize(17.0, weight: UIFontWeightRegular)
+    }
+    
 }

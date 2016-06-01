@@ -35,9 +35,6 @@ class HistoryTableViewController: UITableViewController {
         self.navigationItem.leftBarButtonItem?.tintColor = UIColor.mrWhiteColor()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: templateMenuIcon, style: .Plain, target: nil, action: nil)
         
-        // navigation tittle
-        self.navigationItem.title = "History"
-        
         // side bar
         if self.revealViewController() != nil {
             self.navigationItem.leftBarButtonItem?.target = self.revealViewController()

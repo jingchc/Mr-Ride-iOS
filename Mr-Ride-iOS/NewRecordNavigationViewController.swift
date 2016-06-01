@@ -16,22 +16,18 @@ class NewRecordNavigationViewController: UINavigationController {
     }
     
     private func setUp(){
+        
+        // title
         self.navigationBar.barTintColor = UIColor.mrLightblueColor()
         self.navigationBar.tintColor = UIColor.mrWhiteColor()
         self.navigationBar.barStyle = UIBarStyle.Black
         self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.mrWhiteColor(), NSFontAttributeName: UIFont.mrTextStyle13Font()]
         
-    }
-    
-//    private var displayValue: Double {
-//        get {
-//            return Double(display.text!)!
-//        }
-//        set {
-//            display.text = String(newValue)
-//        }
-//    }
-
-
+//        // left button & right text
+//        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.mrWhiteColor(), NSFontAttributeName: UIFont.asiTextStyle18Font()], forState: .Normal)
+//        
+//        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.mrWhiteColor(), NSFontAttributeName: UIFont.mrTextStyle13Font()], forState: .Normal)
+        
+     }
 
 }
