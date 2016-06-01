@@ -29,6 +29,9 @@ class HomeViewController: UIViewController {
     
     
     @IBAction private func rideButtonTapped(sender: UIButton) {
+        
+        
+        
     }
     
     
@@ -81,6 +84,7 @@ class HomeViewController: UIViewController {
         
         self.totalDistanceData.font = UIFont.mrTextStyle14Font()
         self.totalDistanceData.textColor = UIColor.mrWhiteColor()
+        self.totalDistanceData.shadowOffset.height = 2
         self.totalDistanceData.shadowColor = UIColor.mrBlack25Color()
         self.totalDistanceData.text = "???? km"
         
@@ -94,13 +98,18 @@ class HomeViewController: UIViewController {
         self.averageSpeedData.shadowColor = UIColor.mrBlack15Color()
         self.averageSpeedData.text = "???? km / h"
         
+        // button
         
-
-        
-        
+        self.rideButton.titleLabel?.font = UIFont.asiTextStyle16Font()
+        self.rideButton.tintColor = UIColor.mrLightblueColor()
+        self.rideButton.titleLabel?.shadowOffset.height = 1
+        self.rideButton.setTitleShadowColor(UIColor.mrBlack25Color(), forState: .Normal)
+        self.rideButton.layer.backgroundColor = UIColor.mrWhiteColor().CGColor
+        self.rideButton.layer.cornerRadius = 30
+        self.rideButton.layer.shadowOffset.height = 2
+        self.rideButton.layer.shadowColor = UIColor.mrBlack25Color().CGColor
+        self.rideButton.layer.shadowOpacity = 2
         
     }
-    
-    
 
 }
