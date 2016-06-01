@@ -11,13 +11,13 @@ import UIKit
 class SideBarTableViewController: UITableViewController {
     
     let pageName = ["Home", "History"]
-// var selectedIndexPath: NSIndexPath?
+    var selectedIndexPath: NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     
     enum ToController: Int {
         case Home
         case History
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.mrDarkSlateBlueColor()
@@ -25,10 +25,16 @@ class SideBarTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        tableView.selectRowAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .None)
+    }
+    
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         print("viewDidAppear")
-        // init white or black
-        
+        tableView.cellForRowAtIndexPath(selectedIndexPath)?.selected = true
+        tableView.selectRowAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .None)
+
     }
 
     
@@ -47,6 +53,7 @@ class SideBarTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        print("cellForRowAtIndexPath")
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! SideBarTableViewCell
         
         cell.backgroundColor = UIColor.mrDarkSlateBlueColor()
@@ -67,20 +74,12 @@ class SideBarTableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        //selectedIndexPath = indexPath
+        print("didSelect")
+        self.selectedIndexPath = indexPath
         // tableView.reloadData()
-        let cells = tableView.visibleCells.count
-        print(cells)
-//        for cell in cells {
-//            if cell is SideBarTableViewCell {
-//                cell.
-//                
-//            }
-//                    }
 
-        (tableView.cellForRowAtIndexPath(indexPath) as! SideBarTableViewCell).pageName.textColor = UIColor.mrWhiteColor()
-        (tableView.cellForRowAtIndexPath(indexPath) as! SideBarTableViewCell).dot.backgroundColor = UIColor.mrWhiteColor()
+//        (tableView.cellForRowAtIndexPath(indexPath) as! SideBarTableViewCell).pageName.textColor = UIColor.mrWhiteColor()
+//        (tableView.cellForRowAtIndexPath(indexPath) as! SideBarTableViewCell).dot.backgroundColor = UIColor.mrWhiteColor()
         
         guard let toController = ToController(rawValue: indexPath.row) else { return }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
