@@ -247,7 +247,7 @@
         <!--New Record View Controller-->
         <scene sceneID="B6l-YL-edc">
             <objects>
-                <viewController id="qeB-gR-2Fd" customClass="NewRecordViewController" customModule="Mr_Ride_iOS" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewRecordViewController" id="qeB-gR-2Fd" customClass="NewRecordViewController" customModule="Mr_Ride_iOS" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ivC-DE-oKQ"/>
                         <viewControllerLayoutGuide type="bottom" id="Klc-fq-inw"/>
@@ -363,7 +363,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdn-MS-g8q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2561" y="-358"/>
+            <point key="canvasLocation" x="1907" y="-308"/>
         </scene>
         <!--History Navigation Controller-->
         <scene sceneID="M4j-j1-EDm">

@@ -29,8 +29,9 @@ class HomeViewController: UIViewController {
     
     
     @IBAction private func rideButtonTapped(sender: UIButton) {
-        
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let newRecordViewController = storyboard.instantiateViewControllerWithIdentifier("NewRecordViewController") as! NewRecordViewController
+        self.presentViewController(newRecordViewController, animated: true, completion: nil)
         
     }
     
