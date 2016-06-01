@@ -25,19 +25,6 @@ class SideBarTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        tableView.selectRowAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .None)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        print("viewDidAppear")
-        tableView.cellForRowAtIndexPath(selectedIndexPath)?.selected = true
-        tableView.selectRowAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .None)
-
-    }
-
-    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
@@ -53,20 +40,18 @@ class SideBarTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print("cellForRowAtIndexPath")
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! SideBarTableViewCell
         
         cell.backgroundColor = UIColor.mrDarkSlateBlueColor()
-        cell.dot.layer.cornerRadius = cell.dot.frame.size.width / 2
         cell.dot.backgroundColor = UIColor.mrDarkSlateBlueColor()
+        cell.dot.layer.cornerRadius = cell.dot.frame.size.width / 2
         cell.dot.layer.shadowColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.25).CGColor
         cell.pageName.font = UIFont.mrTextStyle7Font()
         cell.pageName.textColor = UIColor.mrWhite50Color()
         cell.pageName.shadowColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.25)
         cell.pageName.text = pageName[indexPath.row]
         
-    // if selectedIndexPath = indexPath { cell.style = .Black or .White  }
-        
+        tableView.selectRowAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .None)
         cell.selectionStyle = .None
         
         return cell
@@ -74,16 +59,11 @@ class SideBarTableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("didSelect")
         self.selectedIndexPath = indexPath
-        // tableView.reloadData()
-
-//        (tableView.cellForRowAtIndexPath(indexPath) as! SideBarTableViewCell).pageName.textColor = UIColor.mrWhiteColor()
-//        (tableView.cellForRowAtIndexPath(indexPath) as! SideBarTableViewCell).dot.backgroundColor = UIColor.mrWhiteColor()
-        
-        guard let toController = ToController(rawValue: indexPath.row) else { return }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
+
+        guard let toController = ToController(rawValue: indexPath.row) else { return }
+
         switch toController {
         case .Home:
             let destination = storyboard.instantiateViewControllerWithIdentifier("HomeNavigationController") as! HomeNavigationController
@@ -92,7 +72,6 @@ class SideBarTableViewController: UITableViewController {
             let destination = storyboard.instantiateViewControllerWithIdentifier("HistoryNavigationController") as! HistoryNavigationController
             SWRevealViewControllerSeguePushController.init(identifier: "HistoryNavigationController", source: self, destination: destination).perform()
         }
-        
     }
     
 

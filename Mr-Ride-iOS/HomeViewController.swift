@@ -9,12 +9,29 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    
+    // labels
+    
+    
+    @IBOutlet weak var totalDistance: UILabel!
+    @IBOutlet weak var totalDistanceData: UILabel!
+    @IBOutlet weak var totalCount: UILabel!
+    @IBOutlet weak var totalConutData: UILabel!
+    @IBOutlet weak var averageSpeed: UILabel!
+    @IBOutlet weak var averageSpeedData: UILabel!
+    @IBOutlet weak var rideButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
         
     }
+    
+    
+    @IBAction private func rideButtonTapped(sender: UIButton) {
+    }
+    
+    
     
     private func setUp() {
         // backgroud
@@ -42,6 +59,46 @@ class HomeViewController: UIViewController {
             self.navigationItem.leftBarButtonItem?.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        
+        // label - tittle
+        
+        self.totalDistance.font = UIFont.mrTextStyle12Font()
+        self.totalDistance.textColor = UIColor.mrWhiteColor()
+        self.totalDistance.shadowColor = UIColor.mrBlack15Color()
+        self.totalDistance.text = "Total Distance"
+
+        self.totalCount.font = UIFont.mrTextStyle12Font()
+        self.totalCount.textColor = UIColor.mrWhiteColor()
+        self.totalCount.shadowColor = UIColor.mrBlack15Color()
+        self.totalCount.text = "Total Count"
+        
+        self.averageSpeed.font = UIFont.mrTextStyle12Font()
+        self.averageSpeed.textColor = UIColor.mrWhiteColor()
+        self.averageSpeed.shadowColor = UIColor.mrBlack15Color()
+        self.averageSpeed.text = "Average Speed"
+        
+        // label - data
+        
+        self.totalDistanceData.font = UIFont.mrTextStyle14Font()
+        self.totalDistanceData.textColor = UIColor.mrWhiteColor()
+        self.totalDistanceData.shadowColor = UIColor.mrBlack25Color()
+        self.totalDistanceData.text = "???? km"
+        
+        self.totalConutData.font = UIFont.asiTextStyle15Font()
+        self.totalConutData.textColor = UIColor.mrWhiteColor()
+        self.totalConutData.shadowColor = UIColor.mrBlack15Color()
+        self.totalConutData.text = "???? times"
+        
+        self.averageSpeedData.font = UIFont.asiTextStyle15Font()
+        self.averageSpeedData.textColor = UIColor.mrWhiteColor()
+        self.averageSpeedData.shadowColor = UIColor.mrBlack15Color()
+        self.averageSpeedData.text = "???? km / h"
+        
+        
+
+        
+        
+        
     }
     
     

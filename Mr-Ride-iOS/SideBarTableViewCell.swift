@@ -20,7 +20,6 @@ class SideBarTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: false)
-        print("setSelected")
         
         if selected {
             self.pageName.textColor = UIColor.mrWhiteColor()
@@ -29,19 +28,7 @@ class SideBarTableViewCell: UITableViewCell {
             self.pageName.textColor = UIColor.mrWhite50Color()
             self.dot.backgroundColor = UIColor.mrDarkSlateBlueColor()
         }
-        
-        
-//        self.dot.backgroundColor = UIColor.mrWhiteColor()
-//        self.backgroundColor = UIColor.mrDarkSlateBlueColor()
-//        self.layer.backgroundColor = UIColor.mrDarkSlateBlueColor().CGColor
-//        self.pageName.textColor = UIColor.mrWhite50Color()
-//        self.dot.backgroundColor = UIColor.mrWhiteColor()
-        
-
-        // Configure the view for the selected state
     }
-
-    
 
 
 }
