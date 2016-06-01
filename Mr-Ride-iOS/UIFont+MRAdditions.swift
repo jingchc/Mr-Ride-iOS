@@ -11,14 +11,14 @@ extension UIFont {
 	class func mrTextStyleFont() -> UIFont? {
 		return UIFont(name: "Helvetica-Bold", size: 80.0)
 	}
-
+    
     class func mrTextStyle2Font() -> UIFont? {
         return UIFont(name: "PingFangTC-Medium", size: 20.0)
     }
     
-	class func mrTextStyle3Font() -> UIFont {
-		return UIFont.systemFontOfSize(24.0, weight: UIFontWeightBold)
-	}
+    class func mrTextStyle3Font() -> UIFont {
+        return UIFont.systemFontOfSize(24.0, weight: UIFontWeightBold)
+    }
 
     class func mrTextStyle4Font() -> UIFont {
         return UIFont.systemFontOfSize(10.0, weight: UIFontWeightRegular)
@@ -31,7 +31,7 @@ extension UIFont {
     class func mrTextStyle6Font() -> UIFont? {
         return UIFont(name: "Helvetica", size: 20.0)
     }
-    
+
     class func mrTextStyle7Font() -> UIFont {
         return UIFont.systemFontOfSize(24.0, weight: UIFontWeightMedium)
     }
@@ -43,6 +43,7 @@ extension UIFont {
     class func mrTextStyle9Font() -> UIFont {
         return UIFont.systemFontOfSize(30.0, weight: UIFontWeightRegular)
     }
+
 
     class func mrTextStyle10Font() -> UIFont {
         return UIFont.systemFontOfSize(20.0, weight: UIFontWeightMedium)
@@ -61,7 +62,15 @@ extension UIFont {
     }
     
     class func mrTextStyle14Font() -> UIFont {
-        return UIFont.systemFontOfSize(30.0, weight: UIFontWeightLight)
+        return UIFont.systemFontOfSize(80.0, weight: UIFontWeightBold)
     }
-
+    
+    class func asiTextStyle15Font() -> UIFont {
+        return UIFont.systemFontOfSize(30.0, weight: UIFontWeightRegular)
+    }
+    
+    class func asiTextStyle16Font() -> UIFont {
+        return UIFont.systemFontOfSize(30.0, weight: UIFontWeightMedium)
+    }
+    
 }
