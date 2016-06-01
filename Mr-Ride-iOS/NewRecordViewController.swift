@@ -130,7 +130,7 @@ class NewRecordViewController: UIViewController {
     
    
     @objc func eachMillisecond(timer: NSTimer) {
-        self.time = NSDate.timeIntervalSinceReferenceDate() - self.startTime - self.totalPausedTime
+        self.time = NSDate.timeIntervalSinceReferenceDate() - self.startTime - self.totalPausedTime        
         self.nowTime.text = String(getTimeFormat(self.time))
         
     }
