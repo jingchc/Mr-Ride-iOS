@@ -214,11 +214,25 @@ extension NewRecordViewController {
         self.nowCalories.textColor = UIColor.whiteColor()
         self.nowCalories.shadowColor = UIColor.mrBlack15Color()
         
-//        self.nowTime.font = UIFont.mrTextStyle14Font()
         self.nowTime.font = UIFont(name: "RobotoMono-Regular", size: 30)
         self.nowTime.textColor = UIColor.mrWhiteColor().colorWithAlphaComponent(0.8)
         self.nowTime.text = "00:00:00.00"
         
+        // navigation title
+        
+        var getTodayDate = NSDateFormatter()
+
+        var todayDate: NSDate {
+            get{
+                getTodayDate.dateFormat = "yyyy / MM / dd"
+                return getTodayDate.dateFromString(self.navigationItem.title!)!
+            }
+            set {
+                getTodayDate.dateFormat = "yyyy / MM / dd"
+                self.navigationItem.title = getTodayDate.stringFromDate(newValue)
+            }
+        }
+        todayDate = NSDate()
     }
     
     func setButton() {
