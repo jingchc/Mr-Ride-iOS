@@ -67,7 +67,7 @@ class NewRecordViewController: UIViewController {
     
     // set start & pause & continue animation
     
-    var currentAnimation = 0
+    var currentAnimation = RideButtonFunction.Start
     var time: NSTimeInterval = 0.00
     var startTime = NSDate.timeIntervalSinceReferenceDate()
     var pausedTime: NSTimeInterval = 0.00
@@ -76,15 +76,13 @@ class NewRecordViewController: UIViewController {
     
     
     @IBAction func rideButtonPressed(sender: UIButton) {
-        
-        guard let rideButtonFunction = RideButtonFunction(rawValue: currentAnimation) else { return }
-        switch rideButtonFunction {
+        switch currentAnimation {
         case .Start:
             UIView.animateWithDuration(0.6, animations: {
                 self.rideButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
                 self.rideButton.layer.cornerRadius = 4
             })
-            self.currentAnimation = RideButtonFunction.Pause.rawValue
+            self.currentAnimation = .Pause
             
             
             // timer start
@@ -103,7 +101,7 @@ class NewRecordViewController: UIViewController {
                 self.rideButton.transform = CGAffineTransformMakeScale(1, 1)
                 self.rideButton.layer.cornerRadius = self.rideButton.frame.width / 2
             })
-            self.currentAnimation = RideButtonFunction.Continue.rawValue
+            self.currentAnimation = .Continue
             
             // timer pause
             timer.invalidate()
@@ -114,7 +112,7 @@ class NewRecordViewController: UIViewController {
                 self.rideButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
                 self.rideButton.layer.cornerRadius = 4
             })
-            self.currentAnimation = RideButtonFunction.Pause.rawValue
+            self.currentAnimation = .Pause
 
             
             self.continuedTime = NSDate.timeIntervalSinceReferenceDate()
@@ -157,11 +155,6 @@ class NewRecordViewController: UIViewController {
 // set navigation & background & label & button
 
 extension NewRecordViewController {
-    
-    // title = totay date
-    
-    // background
-    
     
     override func viewDidLayoutSubviews() {
         gradient.removeFromSuperlayer()
@@ -219,11 +212,11 @@ extension NewRecordViewController {
         self.nowTime.text = "00:00:00.00"
         
         // navigation left button
-        let leftItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+        let leftItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target:self, action: #selector(self.cancel))
         self.navigationItem.leftBarButtonItem = leftItem
         
         // navigation right button
-        let rightItem = UIBarButtonItem(title: "Finish", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+        let rightItem = UIBarButtonItem(title: "Finish", style: UIBarButtonItemStyle.Done, target: nil, action: nil)
         self.navigationItem.rightBarButtonItem = rightItem
 
         
@@ -242,7 +235,7 @@ extension NewRecordViewController {
         todayDate = NSDate()
     }
     
-    func setButton() {
+    private func setButton() {
         
         self.buttonBorder.layer.borderColor = UIColor.whiteColor().CGColor
         self.buttonBorder.backgroundColor = UIColor.clearColor()
@@ -250,7 +243,10 @@ extension NewRecordViewController {
         self.buttonBorder.layer.shadowColor = UIColor.mrBlack20Color().CGColor
         self.buttonBorder.layer.cornerRadius = self.buttonBorder.frame.size.width / 2
         self.rideButton.layer.cornerRadius = self.rideButton.frame.width / 2
-        
+    }
+    
+    @objc func cancel() {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
 }
@@ -263,8 +259,8 @@ extension NewRecordViewController: CLLocationManagerDelegate {
 
 // button function change enum
 
-enum RideButtonFunction: Int {
-    case Start = 0
+enum RideButtonFunction {
+    case Start
     case Pause
     case Continue
 }

@@ -21,8 +21,11 @@ class SideBarTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.mrDarkSlateBlueColor()
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.selectRowAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .None)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -50,8 +53,6 @@ class SideBarTableViewController: UITableViewController {
         cell.pageName.textColor = UIColor.mrWhite50Color()
         cell.pageName.shadowColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.25)
         cell.pageName.text = pageName[indexPath.row]
-        
-        tableView.selectRowAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .None)
         cell.selectionStyle = .None
         
         return cell
