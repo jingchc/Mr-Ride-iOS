@@ -23,24 +23,9 @@ class NewRecordViewController: UIViewController {
     @IBOutlet weak var nowTime: UILabel!
     @IBOutlet weak var buttonBorder: UIView!
     @IBOutlet weak var rideButton: UIButton!
-    
     let gradient = CAGradientLayer()
     
-    // locationManager
-    
-    var distance = 0.0
-    
-    lazy var locationManager: CLLocationManager = {
-        var _locationManager = CLLocationManager()
-        _locationManager.delegate = self
-        _locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        _locationManager.activityType = .Fitness
-        _locationManager.distanceFilter = 10.0
-        return _locationManager
-    }()
-
-    lazy var locations = [CLLocation]()
-    lazy var timer = NSTimer()
+    // life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +33,6 @@ class NewRecordViewController: UIViewController {
         setLabels()
         setButton()
     }
-    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -64,9 +48,27 @@ class NewRecordViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    // locationManager
+    
+    var distance = 0.0
+    lazy var totalDistance = 0.0
+    lazy var locations = [CLLocation]()
+    lazy var totalLocations = [CLLocation]()
+
+    
+    lazy var locationManager: CLLocationManager = {
+        var _locationManager = CLLocationManager()
+        _locationManager.delegate = self
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        _locationManager.activityType = .Fitness
+        _locationManager.distanceFilter = 0.1
+        return _locationManager
+    }()
+
     
     // set start & pause & continue animation
     
+    lazy var timer = NSTimer()
     var currentAnimation = RideButtonFunction.Start
     var time: NSTimeInterval = 0.00
     var startTime = NSDate.timeIntervalSinceReferenceDate()
@@ -75,7 +77,7 @@ class NewRecordViewController: UIViewController {
     var totalPausedTime: NSTimeInterval = 0.00
     
     
-    @IBAction func rideButtonPressed(sender: UIButton) {
+    @IBAction private func rideButtonPressed(sender: UIButton) {
         switch currentAnimation {
         case .Start:
             UIView.animateWithDuration(0.6, animations: {
@@ -94,6 +96,8 @@ class NewRecordViewController: UIViewController {
                 repeats: true)
             
             // location update
+            distance = 0.0
+            locations.removeAll()
             startLocationUpdates()
 
         case .Pause:
@@ -106,15 +110,25 @@ class NewRecordViewController: UIViewController {
             // timer pause
             timer.invalidate()
             self.pausedTime = NSDate.timeIntervalSinceReferenceDate()
-          
+            
+            // location update pause
+            self.locationManager.stopUpdatingLocation()
+            self.totalDistance += self.distance
+            for location in self.locations {
+                self.totalLocations.append(location)
+            }
+            
+            // current speed = 0
+            self.nowSpeed.text = "0 km / h"
+            
         case .Continue:
             UIView.animateWithDuration(0.6, animations: {
                 self.rideButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
                 self.rideButton.layer.cornerRadius = 4
             })
             self.currentAnimation = .Pause
-
             
+            // timer continue
             self.continuedTime = NSDate.timeIntervalSinceReferenceDate()
             self.totalPausedTime += self.continuedTime - self.pausedTime
          
@@ -123,23 +137,23 @@ class NewRecordViewController: UIViewController {
                 selector: #selector(NewRecordViewController.eachMillisecond(_:)),
                 userInfo: nil,
                 repeats: true)
+            
+            // distance continue
+            distance = 0.0
+            startLocationUpdates()
         }
     }
     
-   
-    @objc func eachMillisecond(timer: NSTimer) {
+    @objc private func eachMillisecond(timer: NSTimer) {
         self.time = NSDate.timeIntervalSinceReferenceDate() - self.startTime - self.totalPausedTime        
         self.nowTime.text = String(getTimeFormat(self.time))
-        
-    }
-    
-    func startLocationUpdates() {
-        locationManager.startUpdatingLocation()
+        self.nowDistance.text = getDistanceFormat(self.distance)
+        self.nowSpeed.text = self.currentSpeed()
     }
     
     // time format
     
-    func getTimeFormat(trackDuration: NSTimeInterval) -> NSString {
+    private func getTimeFormat(trackDuration: NSTimeInterval) -> NSString {
         let time = NSInteger(trackDuration)
         let milliseconds = Int((trackDuration % 1) * 100)
         let seconds = time % 60
@@ -147,16 +161,58 @@ class NewRecordViewController: UIViewController {
         let hours = time / 3600
         
         return NSString(format: "%0.2d:%0.2d:%0.2d.%0.2d", hours, minutes,seconds,milliseconds)
-        
     }
-   
+    
+    // distance format
+    
+    private func getDistanceFormat(distance:Double) -> String {
+        
+        let nowDistance = Int(self.totalDistance) + Int(distance)
+        return "\(nowDistance) m"
+    }
+    
+    // current speed
+    
+    private func currentSpeed() -> String {
+        let nowDistance = self.totalDistance + self.distance
+        let s = self.time
+        let speed = (nowDistance / s) * 3.6
+        
+        return "\(Int(speed)) km / h"
+    }
+}
+
+// MARK: - CLLocationManagerDelegate
+
+extension NewRecordViewController: CLLocationManagerDelegate {
+    
+    private func startLocationUpdates() {
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        for location in locations {
+            if location.horizontalAccuracy < 20 {
+                if self.locations.count > 0 {
+                    print(distance)
+                    if location.distanceFromLocation(self.locations.last!) > 10 {
+                        distance = 0.0
+                        self.locations.removeAll()
+                    } else {
+                        distance += location.distanceFromLocation(self.locations.last!)
+                    }
+                }
+                self.locations.append(location)
+            }
+        }
+    } 
 }
 
 // set navigation & background & label & button
 
 extension NewRecordViewController {
     
-    override func viewDidLayoutSubviews() {
+   override func viewDidLayoutSubviews() {
         gradient.removeFromSuperlayer()
         
         let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.60)
@@ -167,7 +223,7 @@ extension NewRecordViewController {
         
     }
     
-    func setBackground() {
+    private func setBackground() {
         
         self.view.backgroundColor = UIColor.mrLightblueColor()
         let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.60)
@@ -178,7 +234,7 @@ extension NewRecordViewController {
         
     }
     
-    func setLabels() {
+    private func setLabels() {
         
         self.distanceLabel.font = UIFont.mrTextStyle12Font()
         self.distanceLabel.textColor = UIColor.whiteColor()
@@ -188,7 +244,7 @@ extension NewRecordViewController {
         self.averageSpeed.font = UIFont.mrTextStyle12Font()
         self.averageSpeed.textColor = UIColor.whiteColor()
         self.averageSpeed.shadowColor = UIColor.mrBlack20Color()
-        self.averageSpeed.text = "Average Speed"
+        self.averageSpeed.text = "Current Speed"
         
         self.calories.font = UIFont.mrTextStyle12Font()
         self.calories.textColor = UIColor.whiteColor()
@@ -198,10 +254,12 @@ extension NewRecordViewController {
         self.nowDistance.font = UIFont.mrTextStyle9Font()
         self.nowDistance.textColor = UIColor.whiteColor()
         self.nowDistance.shadowColor = UIColor.mrBlack15Color()
+        self.nowDistance.text = "0 m"
         
         self.nowSpeed.font = UIFont.mrTextStyle9Font()
         self.nowSpeed.textColor = UIColor.whiteColor()
         self.nowSpeed.shadowColor = UIColor.mrBlack15Color()
+        self.nowSpeed.text = "0 km / h"
         
         self.nowCalories.font = UIFont.mrTextStyle9Font()
         self.nowCalories.textColor = UIColor.whiteColor()
@@ -221,14 +279,13 @@ extension NewRecordViewController {
 
         
         // navigation title
-        var getTodayDate = NSDateFormatter()
+        let getTodayDate = NSDateFormatter()
+        getTodayDate.dateFormat = "yyyy / MM / dd"
         var todayDate: NSDate {
             get{
-                getTodayDate.dateFormat = "yyyy / MM / dd"
                 return getTodayDate.dateFromString(self.navigationItem.title!)!
             }
             set {
-                getTodayDate.dateFormat = "yyyy / MM / dd"
                 self.navigationItem.title = getTodayDate.stringFromDate(newValue)
             }
         }
@@ -236,7 +293,6 @@ extension NewRecordViewController {
     }
     
     private func setButton() {
-        
         self.buttonBorder.layer.borderColor = UIColor.whiteColor().CGColor
         self.buttonBorder.backgroundColor = UIColor.clearColor()
         self.buttonBorder.layer.borderWidth = 4
@@ -245,16 +301,11 @@ extension NewRecordViewController {
         self.rideButton.layer.cornerRadius = self.rideButton.frame.width / 2
     }
     
+    // back to home page
+    
     @objc func cancel() {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-}
-
-// MARK: - CLLocationManagerDelegate
-
-extension NewRecordViewController: CLLocationManagerDelegate {
-    
 }
 
 // button function change enum
