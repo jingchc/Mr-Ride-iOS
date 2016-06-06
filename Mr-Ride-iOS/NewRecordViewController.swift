@@ -9,11 +9,13 @@
 import UIKit
 import CoreLocation
 import HealthKit
+import MapKit
 
 class NewRecordViewController: UIViewController {
     
     // items
     
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var nowDistance: UILabel!
     @IBOutlet weak var averageSpeed: UILabel!
@@ -32,11 +34,11 @@ class NewRecordViewController: UIViewController {
         setBackground()
         setLabels()
         setButton()
+        setMapView()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        locationManager.requestAlwaysAuthorization()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -64,6 +66,17 @@ class NewRecordViewController: UIViewController {
         _locationManager.distanceFilter = 0.1
         return _locationManager
     }()
+    
+    // check location authorization
+    
+    private func checkLocationAuthority(status: CLAuthorizationStatus) {
+        switch status {
+        case .NotDetermined: locationManager.requestWhenInUseAuthorization()
+        case .Denied: locationManager.requestWhenInUseAuthorization()
+        case .Restricted: print("This area can't update locations")
+        case .AuthorizedAlways, .AuthorizedWhenInUse: break
+        }
+    }
 
     
     // set start & pause & continue animation
@@ -118,7 +131,10 @@ class NewRecordViewController: UIViewController {
                 self.totalLocations.append(location)
             }
             
-            // current speed = 0
+            // add fixed polyline
+            self.totalLoadMap()
+            
+            // current speed
             self.nowSpeed.text = "0 km / h"
             
         case .Continue:
@@ -148,7 +164,7 @@ class NewRecordViewController: UIViewController {
         self.time = NSDate.timeIntervalSinceReferenceDate() - self.startTime - self.totalPausedTime        
         self.nowTime.text = String(getTimeFormat(self.time))
         self.nowDistance.text = getDistanceFormat(self.distance)
-        self.nowSpeed.text = self.currentSpeed()
+        self.nowSpeed.text = "\(String(Int((self.locations.last?.speed)! * 3.6))) km / h"
     }
     
     // time format
@@ -172,17 +188,16 @@ class NewRecordViewController: UIViewController {
     }
     
     // current speed
-    
-    private func currentSpeed() -> String {
-        let nowDistance = self.totalDistance + self.distance
-        let s = self.time
-        let speed = (nowDistance / s) * 3.6
-        
-        return "\(Int(speed)) km / h"
-    }
+//    
+//    private func currentSpeed() -> String {
+//        let nowDistance = self.totalDistance + self.distance
+//        let s = self.time
+//        let speed = (nowDistance / s) * 3.6
+//        return "\(Int(speed)) km / h"
+//    }
 }
 
-// MARK: - CLLocationManagerDelegate
+// MARK: - CLLocationManagerl
 
 extension NewRecordViewController: CLLocationManagerDelegate {
     
@@ -190,11 +205,15 @@ extension NewRecordViewController: CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
     }
     
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) { checkLocationAuthority(status) }
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        // get distance & locations
+        
         for location in locations {
             if location.horizontalAccuracy < 20 {
                 if self.locations.count > 0 {
-                    print(distance)
                     if location.distanceFromLocation(self.locations.last!) > 10 {
                         distance = 0.0
                         self.locations.removeAll()
@@ -205,8 +224,77 @@ extension NewRecordViewController: CLLocationManagerDelegate {
                 self.locations.append(location)
             }
         }
-    } 
+        
+        self.showUserLocation()
+        self.loadMap()
+    }
+    
+    // show current location on the map
+    private func showUserLocation() {
+        let currentLocation = self.locations.last
+        let center = CLLocationCoordinate2D(latitude: (currentLocation?.coordinate.latitude)!, longitude: (currentLocation?.coordinate.longitude)!)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpanMake(0.001, 0.001))
+        self.mapView.setRegion(region, animated: true)
+    }
+    
+    // poly line
+    
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+
+        let polyline = overlay as! MKPolyline
+        let renderer = MKPolylineRenderer(polyline: polyline)
+        renderer.strokeColor = UIColor.mrBubblegumColor()
+        renderer.lineWidth = 10
+        return renderer
+    }
+    
+    // temperate polyline
+    
+    private func polyLine() -> MKPolyline {
+
+        var coords =  [CLLocationCoordinate2D]()
+        for locaion in self.locations {
+            coords.append(CLLocationCoordinate2D(latitude: locaion.coordinate.latitude, longitude: locaion.coordinate.longitude))
+        }
+        return MKPolyline(coordinates: &coords, count: self.locations.count)
+    }
+    
+    private func loadMap() {
+        if self.locations.count > 0 {
+            mapView.removeOverlays(self.mapView.overlaysInLevel(.AboveRoads))
+            mapView.insertOverlay(polyLine(), atIndex: 1, level: .AboveRoads)
+        }
+    }
+    
+     // total polyline
+    
+    private func totalPolyLine() -> MKPolyline {
+        
+        var coords =  [CLLocationCoordinate2D]()
+        for locaion in self.totalLocations {
+            coords.append(CLLocationCoordinate2D(latitude: locaion.coordinate.latitude, longitude: locaion.coordinate.longitude))
+        }
+        return MKPolyline(coordinates: &coords, count: self.totalLocations.count)
+    }
+    
+    private func totalLoadMap() {
+        if self.totalLocations.count > 0 {
+            self.mapView.removeOverlays(self.mapView.overlays)
+            mapView.addOverlay(totalPolyLine())
+        }
+    }
+    
+    func mapView(mapView: MKMapView, didFailToLocateUserWithError error: NSError) {
+        print("didFailToLocateUserWithError: \(error.localizedDescription)")
+    }
+    
 }
+
+// MARK: - MKMapViewDelegate
+extension NewRecordViewController: MKMapViewDelegate {
+    
+}
+
 
 // set navigation & background & label & button
 
@@ -214,7 +302,6 @@ extension NewRecordViewController {
     
    override func viewDidLayoutSubviews() {
         gradient.removeFromSuperlayer()
-        
         let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.60)
         let color2 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.40)
         gradient.frame = self.view.frame
@@ -264,6 +351,7 @@ extension NewRecordViewController {
         self.nowCalories.font = UIFont.mrTextStyle9Font()
         self.nowCalories.textColor = UIColor.whiteColor()
         self.nowCalories.shadowColor = UIColor.mrBlack15Color()
+        self.nowCalories.text = "?? kcal"
         
         self.nowTime.font = UIFont(name: "RobotoMono-Regular", size: 30)
         self.nowTime.textColor = UIColor.mrWhiteColor().colorWithAlphaComponent(0.8)
@@ -299,6 +387,14 @@ extension NewRecordViewController {
         self.buttonBorder.layer.shadowColor = UIColor.mrBlack20Color().CGColor
         self.buttonBorder.layer.cornerRadius = self.buttonBorder.frame.size.width / 2
         self.rideButton.layer.cornerRadius = self.rideButton.frame.width / 2
+    }
+    
+    // set mapView
+    
+    private func setMapView() {
+        self.mapView.layer.cornerRadius = 10
+        self.mapView.showsUserLocation = true
+        self.mapView.delegate = self
     }
     
     // back to home page

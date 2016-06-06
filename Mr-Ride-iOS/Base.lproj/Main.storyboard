@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jOm-dh-Jry">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jOm-dh-Jry">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -321,18 +321,26 @@
                                     <constraint firstAttribute="trailing" secondItem="wB9-11-0tU" secondAttribute="trailing" constant="10" id="vJm-bR-b3h"/>
                                 </constraints>
                             </view>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ukl-xz-XPI">
+                                <rect key="frame" x="35" y="406" width="344" height="310"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ukl-xz-XPI" firstAttribute="top" secondItem="fZC-G8-VEw" secondAttribute="bottom" constant="40" id="7iK-fR-fKL"/>
+                            <constraint firstItem="Klc-fq-inw" firstAttribute="top" secondItem="ukl-xz-XPI" secondAttribute="bottom" constant="20" id="8b6-T3-DRQ"/>
+                            <constraint firstItem="ukl-xz-XPI" firstAttribute="leading" secondItem="9uX-PB-QBj" secondAttribute="leadingMargin" constant="15" id="BXk-dt-Z1e"/>
                             <constraint firstItem="Ljw-EA-97K" firstAttribute="top" secondItem="ivC-DE-oKQ" secondAttribute="bottom" constant="20" id="C9N-UR-ZlK"/>
                             <constraint firstItem="jRx-MP-tID" firstAttribute="leading" secondItem="9uX-PB-QBj" secondAttribute="leadingMargin" constant="38" id="IEh-ie-ws8"/>
                             <constraint firstItem="SeG-Tk-LEZ" firstAttribute="leading" secondItem="9uX-PB-QBj" secondAttribute="leadingMargin" constant="38" id="IM6-Zg-xfi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ukl-xz-XPI" secondAttribute="trailing" constant="15" id="Ndu-c7-qSN"/>
                             <constraint firstItem="gYr-gw-6sS" firstAttribute="leading" secondItem="9uX-PB-QBj" secondAttribute="leadingMargin" constant="38" id="RfP-Du-OlO"/>
                             <constraint firstItem="9zA-Tb-Krb" firstAttribute="top" secondItem="EUL-fL-pPl" secondAttribute="bottom" id="U6T-NS-L64"/>
                             <constraint firstItem="EUL-fL-pPl" firstAttribute="leading" secondItem="9uX-PB-QBj" secondAttribute="leadingMargin" constant="38" id="USR-CP-eOU"/>
                             <constraint firstItem="fZC-G8-VEw" firstAttribute="centerX" secondItem="9uX-PB-QBj" secondAttribute="centerX" id="W6U-pF-hpV"/>
                             <constraint firstItem="9zA-Tb-Krb" firstAttribute="leading" secondItem="9uX-PB-QBj" secondAttribute="leadingMargin" constant="38" id="bpS-dN-2D3"/>
                             <constraint firstAttribute="leadingMargin" secondItem="SeG-Tk-LEZ" secondAttribute="leading" constant="38" id="hQ0-0d-zk8"/>
+                            <constraint firstItem="ukl-xz-XPI" firstAttribute="centerX" secondItem="9uX-PB-QBj" secondAttribute="centerX" id="ikw-wV-0x5"/>
                             <constraint firstItem="SeG-Tk-LEZ" firstAttribute="top" secondItem="Ljw-EA-97K" secondAttribute="bottom" id="jGn-qv-Klx"/>
                             <constraint firstItem="Ljw-EA-97K" firstAttribute="leading" secondItem="9uX-PB-QBj" secondAttribute="leadingMargin" constant="38" id="kpB-2Z-bV2"/>
                             <constraint firstItem="fZC-G8-VEw" firstAttribute="top" secondItem="BXK-67-3Q6" secondAttribute="bottom" constant="10" id="l7B-RU-Bqs"/>
@@ -345,6 +353,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="hQ0-0d-zk8"/>
+                                <exclude reference="ikw-wV-0x5"/>
                             </mask>
                         </variation>
                     </view>
@@ -355,6 +364,7 @@
                         <outlet property="buttonBorder" destination="fZC-G8-VEw" id="aVE-k9-JiU"/>
                         <outlet property="calories" destination="EUL-fL-pPl" id="Tmu-f6-A0P"/>
                         <outlet property="distanceLabel" destination="Ljw-EA-97K" id="9lQ-9r-Syi"/>
+                        <outlet property="mapView" destination="ukl-xz-XPI" id="3ii-1S-VEb"/>
                         <outlet property="nowCalories" destination="9zA-Tb-Krb" id="k6H-gp-k8L"/>
                         <outlet property="nowDistance" destination="SeG-Tk-LEZ" id="0ZS-8Z-Mzq"/>
                         <outlet property="nowSpeed" destination="gYr-gw-6sS" id="SQ8-wh-nna"/>

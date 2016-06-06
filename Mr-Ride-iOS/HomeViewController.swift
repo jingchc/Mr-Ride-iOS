@@ -92,12 +92,12 @@ class HomeViewController: UIViewController {
         self.totalConutData.font = UIFont.asiTextStyle15Font()
         self.totalConutData.textColor = UIColor.mrWhiteColor()
         self.totalConutData.shadowColor = UIColor.mrBlack15Color()
-        self.totalConutData.text = "???? times"
+        self.totalConutData.text = "?? times"
         
         self.averageSpeedData.font = UIFont.asiTextStyle15Font()
         self.averageSpeedData.textColor = UIColor.mrWhiteColor()
         self.averageSpeedData.shadowColor = UIColor.mrBlack15Color()
-        self.averageSpeedData.text = "???? km / h"
+        self.averageSpeedData.text = "?? km / h"
         
         // button
         
