@@ -272,16 +272,22 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fpE-3S-Mhs">
-                                <rect key="frame" x="95" y="564" width="224" height="60"/>
+                                <rect key="frame" x="80" y="564" width="254" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="B4K-5D-30P"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="logInFB:" destination="h7y-Ww-1kZ" eventType="touchUpInside" id="UON-ju-h96"/>
                                 </connections>
                             </button>
+                            <imageView multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-facebook" translatesAutoresizingMaskIntoConstraints="NO" id="50c-at-nOU">
+                                <rect key="frame" x="130" y="584" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="DP3-5v-Bvo"/>
+                                    <constraint firstAttribute="width" constant="20" id="H2q-tU-RCc"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -294,12 +300,26 @@
                             <constraint firstItem="Vws-2F-Zv7" firstAttribute="top" secondItem="TfA-zu-C4G" secondAttribute="bottom" id="K4J-zd-7XF"/>
                             <constraint firstItem="Vws-2F-Zv7" firstAttribute="top" secondItem="fpE-3S-Mhs" secondAttribute="bottom" constant="112" id="Tbl-tm-sia"/>
                             <constraint firstItem="TfA-zu-C4G" firstAttribute="leading" secondItem="mq2-BB-F57" secondAttribute="leadingMargin" constant="-20" id="VPw-Hm-bgf"/>
+                            <constraint firstItem="50c-at-nOU" firstAttribute="centerY" secondItem="mq2-BB-F57" secondAttribute="centerY" id="a1Y-yq-upF"/>
+                            <constraint firstItem="50c-at-nOU" firstAttribute="leading" secondItem="fpE-3S-Mhs" secondAttribute="leading" constant="50" id="dky-ku-4nm"/>
                             <constraint firstItem="sZa-sR-8Au" firstAttribute="centerX" secondItem="mq2-BB-F57" secondAttribute="centerX" id="f5H-eD-7Sg"/>
                             <constraint firstItem="dZW-TR-Yu1" firstAttribute="leading" secondItem="mq2-BB-F57" secondAttribute="leadingMargin" constant="20" id="fak-FO-0pY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="fpE-3S-Mhs" secondAttribute="trailing" constant="75" id="gOk-av-sHb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fpE-3S-Mhs" secondAttribute="trailing" constant="60" id="gOk-av-sHb"/>
+                            <constraint firstItem="50c-at-nOU" firstAttribute="centerY" secondItem="fpE-3S-Mhs" secondAttribute="centerY" id="gda-KZ-8Dp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dZW-TR-Yu1" secondAttribute="trailing" constant="20" id="jT6-Ol-WZ0"/>
-                            <constraint firstItem="fpE-3S-Mhs" firstAttribute="leading" secondItem="mq2-BB-F57" secondAttribute="leadingMargin" constant="75" id="qvW-m8-sSm"/>
+                            <constraint firstItem="50c-at-nOU" firstAttribute="leading" secondItem="mq2-BB-F57" secondAttribute="leading" constant="132" id="k3m-Sv-K1f"/>
+                            <constraint firstItem="fpE-3S-Mhs" firstAttribute="leading" secondItem="mq2-BB-F57" secondAttribute="leadingMargin" constant="60" id="qvW-m8-sSm"/>
+                            <constraint firstItem="50c-at-nOU" firstAttribute="leading" secondItem="fpE-3S-Mhs" secondAttribute="leading" constant="50" id="vov-hr-9ua"/>
+                            <constraint firstItem="50c-at-nOU" firstAttribute="leading" secondItem="fpE-3S-Mhs" secondAttribute="leading" constant="50" id="wN0-us-2Wu"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="a1Y-yq-upF"/>
+                                <exclude reference="k3m-Sv-K1f"/>
+                                <exclude reference="vov-hr-9ua"/>
+                                <exclude reference="wN0-us-2Wu"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
@@ -625,5 +645,6 @@
     </scenes>
     <resources>
         <image name="image-history-background" width="1536" height="1021"/>
+        <image name="logo-facebook" width="20" height="20"/>
     </resources>
 </document>

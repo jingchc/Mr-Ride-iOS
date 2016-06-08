@@ -112,7 +112,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         // logIn Button appearence
         self.logInButton.layer.cornerRadius = 30
-        self.logInButton.setTitle("Log In", forState: .Normal)
+        self.logInButton.setTitle("     Log In", forState: .Normal)
         self.logInButton.setTitleShadowColor(UIColor.mrBlack25Color(), forState: .Normal)
         self.logInButton.setTitleColor(UIColor.mrLightblueColor(), forState: .Normal)
         self.logInButton.titleLabel?.font = UIFont.asiTextStyle16Font()
