@@ -164,7 +164,13 @@ class NewRecordViewController: UIViewController {
         self.time = NSDate.timeIntervalSinceReferenceDate() - self.startTime - self.totalPausedTime        
         self.nowTime.text = String(getTimeFormat(self.time))
         self.nowDistance.text = getDistanceFormat(self.distance)
-        self.nowSpeed.text = "\(String(Int((self.locations.last?.speed)! * 3.6))) km / h"
+        
+        var currentSpeed: String? {
+            if locations.last != nil {
+                return "\(String(Int((self.locations.last?.speed)! * 3.6))) km / h"
+            } else { return "0 km / h" }
+        }
+        self.nowSpeed.text = currentSpeed
     }
     
     // time format
@@ -182,19 +188,10 @@ class NewRecordViewController: UIViewController {
     // distance format
     
     private func getDistanceFormat(distance:Double) -> String {
-        
         let nowDistance = Int(self.totalDistance) + Int(distance)
         return "\(nowDistance) m"
     }
     
-    // current speed
-//    
-//    private func currentSpeed() -> String {
-//        let nowDistance = self.totalDistance + self.distance
-//        let s = self.time
-//        let speed = (nowDistance / s) * 3.6
-//        return "\(Int(speed)) km / h"
-//    }
 }
 
 // MARK: - CLLocationManagerl
@@ -240,7 +237,6 @@ extension NewRecordViewController: CLLocationManagerDelegate {
     // poly line
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-
         let polyline = overlay as! MKPolyline
         let renderer = MKPolylineRenderer(polyline: polyline)
         renderer.strokeColor = UIColor.mrBubblegumColor()
@@ -251,7 +247,6 @@ extension NewRecordViewController: CLLocationManagerDelegate {
     // temperate polyline
     
     private func polyLine() -> MKPolyline {
-
         var coords =  [CLLocationCoordinate2D]()
         for locaion in self.locations {
             coords.append(CLLocationCoordinate2D(latitude: locaion.coordinate.latitude, longitude: locaion.coordinate.longitude))
