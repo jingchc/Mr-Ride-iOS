@@ -207,7 +207,7 @@ extension NewRecordViewController: CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         // get distance & locations
-        
+                
         for location in locations {
             if location.horizontalAccuracy < 20 {
                 if self.locations.count > 0 {
@@ -242,7 +242,7 @@ extension NewRecordViewController: CLLocationManagerDelegate {
         renderer.strokeColor = UIColor.mrBubblegumColor()
         renderer.lineWidth = 10
         return renderer
-    }
+        }
     
     // temperate polyline
     
