@@ -33,28 +33,38 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func logInFB(sender: UIButton) {
         
-        // check input has value and correct type
-        guard let userHeight = userHeight.text else {
+        // check height& weight: value, correct type, save to userdefault
+        if userHeight.text != nil {
+            guard let userHeight = getDoubleType(userHeight.text!) else { return }
+            NSUserDefaults.standardUserDefaults().setDouble(userHeight, forKey: UserInfoManager.NSUserDefaultKey.Height)
+            
+        }else {
             print("no height data")
             // todo: alarm
             return
         }
         
-        guard let userWeight = userWeight.text else {
+        if userWeight.text != nil {
+            guard let userWeight = getDoubleType(userWeight.text!) else { return }
+            NSUserDefaults.standardUserDefaults().setDouble(userWeight, forKey: UserInfoManager.NSUserDefaultKey.Weight)
+        }else {
             print("no weight data")
             // todo: alarm - can't be empty
             return
         }
-        getDoubleType(userHeight)
-        getDoubleType(userWeight)
+                
+        // log in facebook
         
-        // save to coredata
-        
-        print(getDoubleType(userHeight))
-        print(getDoubleType(userWeight))
-        
-        // todo: log in facebook
-        
+        UserInfoManager.sharedManager.LogInWithFacebook(
+            fromViewController: self,
+            success: { user in
+                print("ya")
+                
+            },
+            failure: { error in
+                print("oh..no!!")
+            }
+        )
     }
     
     private func getDoubleType(text: String) -> Double? {
