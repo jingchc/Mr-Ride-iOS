@@ -7,20 +7,27 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class SideBarTableViewController: UITableViewController {
     
-    let pageName = ["Home", "History"]
+    let pageName = ["Home", "History", "Map"]
     var selectedIndexPath: NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
+//    let buttonView:UIView = UIView( frame: CGRect(x: 0, y: 0, width: 150, height: 30) )
+    let logOutButton: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 30))
+
     
     enum ToController: Int {
         case Home
         case History
+        case Map
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.mrDarkSlateBlueColor()
+        addLogOutButton()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -30,6 +37,12 @@ class SideBarTableViewController: UITableViewController {
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
+    }
+    
+    override func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        reLocationLogOutButton()
+        
     }
     
     // MARK: - Table view data source
@@ -72,44 +85,48 @@ class SideBarTableViewController: UITableViewController {
         case .History:
             let destination = storyboard.instantiateViewControllerWithIdentifier("HistoryNavigationController") as! HistoryNavigationController
             SWRevealViewControllerSeguePushController.init(identifier: "HistoryNavigationController", source: self, destination: destination).perform()
+        case .Map:
+            print("mapViewController")
+            
         }
     }
     
+    
+    private func addLogOutButton() {
+        self.logOutButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        self.logOutButton.layer.cornerRadius = 4
+        self.logOutButton.setTitle("Log Out", forState: .Normal)
+        self.logOutButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        self.logOutButton.titleLabel?.font = UIFont.textStyle23Font()
+        self.logOutButton.addTarget(self, action: #selector(goToLogInPage), forControlEvents: .TouchUpInside)
+        
+        self.view.addSubview(logOutButton)
 
+    }
+    
+    private func reLocationLogOutButton() {
+        
+        let revealViewController = self.revealViewController()
+        
+        self.logOutButton.frame.origin.y = tableView.contentOffset.y + tableView.frame.size.height - self.logOutButton.frame.size.height - 50
+        self.logOutButton.frame.origin.x = tableView.contentOffset.x + ((self.view.frame.width - revealViewController.rearViewRevealOverdraw - self.logOutButton.frame.width) / 2)
+        
+        self.view.bringSubviewToFront(logOutButton)
+    }
+    
+     @objc private func goToLogInPage() {
+        
+        if let logInViewController = self.storyboard?.instantiateViewControllerWithIdentifier("LogInViewController") as? LogInViewController {
+            
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.window?.rootViewController = logInViewController
+            self.presentViewController(logInViewController, animated: true, completion: nil)
+        }
+        
+        UserInfoManager.sharedManager.logOut()
 
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
+    }
     
-    /*
-     // Override to support editing the table view.
-     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-     if editingStyle == .Delete {
-     // Delete the row from the data source
-     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-     } else if editingStyle == .Insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
     
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
     
 }
