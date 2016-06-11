@@ -343,7 +343,7 @@
         <!--Reveal View Controller-->
         <scene sceneID="bWk-ai-e9v">
             <objects>
-                <viewController id="jOm-dh-Jry" customClass="SWRevealViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SWRevealViewController" id="jOm-dh-Jry" customClass="SWRevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cWs-8Y-u5c"/>
                         <viewControllerLayoutGuide type="bottom" id="vWV-QK-4Jg"/>

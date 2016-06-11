@@ -58,11 +58,17 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         UserInfoManager.sharedManager.LogInWithFacebook(
             fromViewController: self,
             success: { user in
-                print("ya")
+                
+                if let swRevealViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SWRevealViewController") as? SWRevealViewController {
+                    
+                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    appDelegate.window?.rootViewController = swRevealViewController
+                    self.presentViewController(swRevealViewController, animated: true, completion: nil)
+                }
                 
             },
             failure: { error in
-                print("oh..no!!")
+                // todo: alert
             }
         )
     }
