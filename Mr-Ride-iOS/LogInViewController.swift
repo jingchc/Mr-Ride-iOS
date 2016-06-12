@@ -31,6 +31,25 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         setUp()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        checkHaveLogInOrNot()
+    }
+    
+    // check have logged in or not
+    
+    private func checkHaveLogInOrNot() {
+        
+        if UserInfoManager.sharedManager.isLoggedIn {
+        
+            let swRevealViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.window?.rootViewController = swRevealViewController
+            
+            self.presentViewController(swRevealViewController, animated: true, completion: nil)
+        }
+                
+    }
+    
     @IBAction func logInFB(sender: UIButton) {
         
         // check height& weight: value, correct type, save to userdefault
