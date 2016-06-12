@@ -29,8 +29,8 @@ class SideBarTableViewController: UITableViewController {
         self.view.backgroundColor = UIColor.mrDarkSlateBlueColor()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         addLogOutButton()
         tableView.selectRowAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .None)
     }
