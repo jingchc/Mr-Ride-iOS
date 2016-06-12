@@ -27,6 +27,10 @@ class HomeViewController: UIViewController {
         
     }
     
+    deinit {
+        print("HomeViewController deinit")
+    }
+    
     
     @IBAction private func rideButtonTapped(sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

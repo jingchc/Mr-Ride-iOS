@@ -46,8 +46,9 @@ class NewRecordViewController: UIViewController {
         timer.invalidate()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    deinit {
+        print("NewRecordViewController deinit")
     }
     
     // locationManager
@@ -357,7 +358,7 @@ extension NewRecordViewController {
         self.navigationItem.leftBarButtonItem = leftItem
         
         // navigation right button
-        let rightItem = UIBarButtonItem(title: "Finish", style: UIBarButtonItemStyle.Done, target: nil, action: nil)
+        let rightItem = UIBarButtonItem(title: "Finish", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.finish))
         self.navigationItem.rightBarButtonItem = rightItem
 
         
@@ -397,6 +398,14 @@ extension NewRecordViewController {
     @objc func cancel() {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    // finish to statistic page
+    @objc func finish() {
+        
+        let statictisViewController = self.storyboard?.instantiateViewControllerWithIdentifier("StatictisViewController") as! StatictisViewController
+        self.navigationController?.pushViewController(statictisViewController, animated: true)
+    }
+
 }
 
 // button function change enum

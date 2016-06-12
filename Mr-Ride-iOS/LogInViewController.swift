@@ -45,7 +45,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             let swRevealViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.window?.rootViewController = swRevealViewController
-
             self.presentViewController(swRevealViewController, animated: true, completion: nil)
         }
                 

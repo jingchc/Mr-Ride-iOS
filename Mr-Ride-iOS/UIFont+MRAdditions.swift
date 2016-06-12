@@ -79,7 +79,11 @@ extension UIFont {
         return UIFont.systemFontOfSize(17.0, weight: UIFontWeightRegular)
     }
     
-    // 19 20
+    // 19
+    
+    class func textStyle20Font() -> UIFont {
+        return UIFont.systemFontOfSize(12.0, weight: UIFontWeightRegular)
+    }
     
     class func textStyle21Font() -> UIFont {
         return UIFont.systemFontOfSize(60.0, weight: UIFontWeightBold)
