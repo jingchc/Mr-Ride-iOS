@@ -179,17 +179,18 @@ extension UserInfoManager {
 
 // MARK: - Save data to userdefault
 
+struct NSUserDefaultKey {
+    static let Id = "NSUserDefaultKey.Id"
+    static let Name = "NSUserDefaultKey.Name"
+    static let Email = "NSUserDefaultKey.Email"
+    static let ProfileImageURL = "NSUserDefaultKey.ProfileImageURL"
+    static let FacebookURL = "NSUserDefaultKey.FacebookURL"
+    static let Height = "NSUserDefaultKey.Height"
+    static let Weight = "NSUserDefaultKey.Weight"
+}
+
 extension UserInfoManager {
     
-    struct NSUserDefaultKey {
-        static let Id = "NSUserDefaultKey.Id"
-        static let Name = "NSUserDefaultKey.Name"
-        static let Email = "NSUserDefaultKey.Email"
-        static let ProfileImageURL = "NSUserDefaultKey.ProfileImageURL"
-        static let FacebookURL = "NSUserDefaultKey.FacebookURL"
-        static let Height = "NSUserDefaultKey.Height"
-        static let Weight = "NSUserDefaultKey.Weight"
-    }
     
     private func setUser() {
         
@@ -221,7 +222,7 @@ extension UserInfoManager {
             
         }
         
-        NSUserDefaults.standardUserDefaults().synchronize()
+//        NSUserDefaults.standardUserDefaults().synchronize()
         
     }
 }

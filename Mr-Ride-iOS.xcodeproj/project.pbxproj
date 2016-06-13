@@ -36,6 +36,7 @@
 		3FC185801D058A0F0005C291 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC1857F1D058A0F0005C291 /* LogInViewController.swift */; };
 		3FC3FCF31D0BABB2002FC0E1 /* FBLogInPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC3FCF21D0BABB2002FC0E1 /* FBLogInPermission.swift */; };
 		3FD7FE311D0D92CD00CD42E8 /* StatictisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7FE301D0D92CD00CD42E8 /* StatictisViewController.swift */; };
+		3FD7FE331D0E5C4200CD42E8 /* CalorieCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7FE321D0E5C4200CD42E8 /* CalorieCalculator.swift */; };
 		3FFD61D41CFBE5750054CBA5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFD61D31CFBE5750054CBA5 /* SWRevealViewController.m */; };
 		3FFD61D61CFBFAF10054CBA5 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFD61D51CFBFAF10054CBA5 /* SideBarTableViewController.swift */; };
 		3FFD61D91CFC04E60054CBA5 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFD61D81CFC04E60054CBA5 /* HistoryTableViewController.swift */; };
@@ -78,6 +79,7 @@
 		3FC1857F1D058A0F0005C291 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		3FC3FCF21D0BABB2002FC0E1 /* FBLogInPermission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLogInPermission.swift; sourceTree = "<group>"; };
 		3FD7FE301D0D92CD00CD42E8 /* StatictisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatictisViewController.swift; sourceTree = "<group>"; };
+		3FD7FE321D0E5C4200CD42E8 /* CalorieCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalorieCalculator.swift; sourceTree = "<group>"; };
 		3FFD61D11CFBE5740054CBA5 /* Mr-Ride-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mr-Ride-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		3FFD61D21CFBE5750054CBA5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		3FFD61D31CFBE5750054CBA5 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				3F8A51071CF2F990002D6C21 /* NewRecordViewController.swift */,
+				3FD7FE321D0E5C4200CD42E8 /* CalorieCalculator.swift */,
 			);
 			name = "New Record";
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F9F7B961CFEBFDF005CDADB /* NewRecordNavigationViewController.swift in Sources */,
+				3FD7FE331D0E5C4200CD42E8 /* CalorieCalculator.swift in Sources */,
 				3F8A51081CF2F990002D6C21 /* NewRecordViewController.swift in Sources */,
 				3FFD61D61CFBFAF10054CBA5 /* SideBarTableViewController.swift in Sources */,
 				3F908A021CF2A777008091E5 /* AppDelegate.swift in Sources */,

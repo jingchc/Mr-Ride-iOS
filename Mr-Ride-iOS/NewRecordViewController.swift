@@ -26,6 +26,7 @@ class NewRecordViewController: UIViewController {
     @IBOutlet weak var buttonBorder: UIView!
     @IBOutlet weak var rideButton: UIButton!
     let gradient = CAGradientLayer()
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     // life cycle
 
@@ -54,6 +55,7 @@ class NewRecordViewController: UIViewController {
     // locationManager
     
     var distance = 0.0
+    lazy var currentDistance = 0.0
     lazy var totalDistance = 0.0
     lazy var locations = [CLLocation]()
     lazy var totalLocations = [CLLocation]()
@@ -90,6 +92,15 @@ class NewRecordViewController: UIViewController {
     var continuedTime: NSTimeInterval = 0.00
     var totalPausedTime: NSTimeInterval = 0.00
     
+    // current speed & calorie
+    let calorieCalculator = CalorieCalculator()
+    var currentSpeed: Double = 0.0
+    var calorie: Double = 0.0
+}
+
+// MARK: - StartButton
+
+extension NewRecordViewController {
     
     @IBAction private func rideButtonPressed(sender: UIButton) {
         switch currentAnimation {
@@ -127,7 +138,7 @@ class NewRecordViewController: UIViewController {
             
             // location update pause
             self.locationManager.stopUpdatingLocation()
-            self.totalDistance += self.distance
+            self.currentDistance += self.distance
             for location in self.locations {
                 self.totalLocations.append(location)
             }
@@ -160,16 +171,27 @@ class NewRecordViewController: UIViewController {
             startLocationUpdates()
         }
     }
+}
+
+// MARK: - EachMillisecond
+
+extension NewRecordViewController {
     
     @objc private func eachMillisecond(timer: NSTimer) {
+        
         self.time = NSDate.timeIntervalSinceReferenceDate() - self.startTime - self.totalPausedTime        
         self.nowTime.text = String(getTimeFormat(self.time))
+        
         self.nowDistance.text = getDistanceFormat(self.distance)
         
         var currentSpeed: String? {
             if locations.last != nil {
-                return "\(String(Int((self.locations.last?.speed)! * 3.6))) km / h"
-            } else { return "0 km / h" }
+                self.currentSpeed = (self.locations.last?.speed)! * 3.6
+                return "\(String(Int(self.currentSpeed))) km / h"
+            } else {
+                self.currentSpeed = 0.0
+                return "0 km / h"
+            }
         }
         self.nowSpeed.text = currentSpeed
     }
@@ -189,11 +211,25 @@ class NewRecordViewController: UIViewController {
     // distance format
     
     private func getDistanceFormat(distance:Double) -> String {
-        let nowDistance = Int(self.totalDistance) + Int(distance)
-        return "\(nowDistance) m"
+        self.totalDistance = self.currentDistance + distance
+        return "\(Int(self.totalDistance)) m"
     }
     
+    // calorie
+    
+    private func getCalorieBurnedData() -> String {
+        
+        let exercise = CalorieCalculator.Exercise.Bike
+        let speed = self.totalDistance / self.time * 3.6
+        let weight = Double(defaults.stringForKey(NSUserDefaultKey.Weight)!)!
+        let time = self.time / 3600
+        let calorieBurned = self.calorieCalculator.kcalBurned(exercise, speed: speed, weight: weight, time: time)
+        self.calorie = calorieBurned
+        let _calorieBurned = NSString(format:"%.1f", calorieBurned)
+        return _calorieBurned as String
+    }
 }
+
 
 // MARK: - CLLocationManagerl
 
@@ -225,6 +261,7 @@ extension NewRecordViewController: CLLocationManagerDelegate {
         
         self.showUserLocation()
         self.loadMap()
+        self.nowCalories.text = "\(self.getCalorieBurnedData()) kcal"
     }
     
     // show current location on the map
@@ -292,7 +329,7 @@ extension NewRecordViewController: MKMapViewDelegate {
 }
 
 
-// set navigation & background & label & button
+// MARK: - SetUp
 
 extension NewRecordViewController {
     
@@ -347,7 +384,7 @@ extension NewRecordViewController {
         self.nowCalories.font = UIFont.mrTextStyle9Font()
         self.nowCalories.textColor = UIColor.whiteColor()
         self.nowCalories.shadowColor = UIColor.mrBlack15Color()
-        self.nowCalories.text = "?? kcal"
+        self.nowCalories.text = "0.0 kcal"
         
         self.nowTime.font = UIFont(name: "RobotoMono-Regular", size: 30)
         self.nowTime.textColor = UIColor.mrWhiteColor().colorWithAlphaComponent(0.8)
@@ -393,20 +430,32 @@ extension NewRecordViewController {
         self.mapView.delegate = self
     }
     
-    // back to home page
+}
+
+
+// MARK: - Navigation Item
+
+extension NewRecordViewController {
+    
     
     @objc func cancel() {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // finish to statistic page
     @objc func finish() {
         
-        let statictisViewController = self.storyboard?.instantiateViewControllerWithIdentifier("StatictisViewController") as! StatictisViewController
-        self.navigationController?.pushViewController(statictisViewController, animated: true)
+        // get averagespeed
+        getAverageSpeed()
+        
+        // save data to coredata & (update  history page and chart)
+        saveThisRide()
+        
+        // trans data to statistic page
+        pushToStatisticPage()
     }
 
 }
+
 
 // button function change enum
 
@@ -414,6 +463,61 @@ enum RideButtonFunction {
     case Start
     case Pause
     case Continue
+}
+
+// MARK: - MethodsForFinish
+
+extension NewRecordViewController {
+    
+    
+    struct RideInfo {
+        let ID: String
+        let Date: NSDate
+        let SpendTime: NSTimeInterval
+        let Distance: Double
+        let AverageSeppd: Double
+        let Calorie: Double
+        let Routes: [CLLocation]
+    }
+    
+    private func saveThisRide() {
+        
+        let rideInfo = RideInfo.init(
+                        ID: NSUUID.init().UUIDString,
+                        Date: NSDate(),
+                        SpendTime: self.time,
+                        Distance: self.totalDistance,
+                        AverageSeppd: self.currentSpeed ,
+                        Calorie: self.calorie,
+                        Routes: self.totalLocations)
+        
+        print(rideInfo.ID)
+        print(rideInfo.Date)
+        print(rideInfo.SpendTime)
+        print(rideInfo.Distance)
+        print(rideInfo.AverageSeppd)
+        print(rideInfo.Calorie)
+        print(rideInfo.Routes)
+        
+    }
+    
+    // ????
+    private func getAverageSpeed() {
+        self.currentSpeed = self.totalDistance / self.time * 3.6
+    }
+    
+    
+    
+    
+    
+    private func pushToStatisticPage() {
+        let statictisViewController = self.storyboard?.instantiateViewControllerWithIdentifier("StatictisViewController") as! StatictisViewController
+        self.navigationController?.pushViewController(statictisViewController, animated: true)
+        
+        
+    }
+    
+    
 }
 
 

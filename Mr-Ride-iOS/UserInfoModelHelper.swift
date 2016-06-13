@@ -51,9 +51,7 @@ extension UserInfoModelHelper: JSONParsable
 // MARK: - NSUserDefaultsParsable
 
 extension UserInfoModelHelper: UserDefaultParsable {
-    
-    typealias NSUserDefaultKey = UserInfoManager.NSUserDefaultKey
-    
+        
     enum NSUserDefaultError: ErrorType {
         case MissingId
         case MissingName

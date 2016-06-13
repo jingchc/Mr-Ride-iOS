@@ -55,7 +55,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         // check height& weight: value, correct type, save to userdefault
         if userHeight.text != nil {
             guard let userHeight = getDoubleType(userHeight.text!) else { return }
-            NSUserDefaults.standardUserDefaults().setDouble(userHeight, forKey: UserInfoManager.NSUserDefaultKey.Height)
+            NSUserDefaults.standardUserDefaults().setDouble(userHeight, forKey: NSUserDefaultKey.Height)
             
         }else {
             print("no height data")
@@ -65,7 +65,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         if userWeight.text != nil {
             guard let userWeight = getDoubleType(userWeight.text!) else { return }
-            NSUserDefaults.standardUserDefaults().setDouble(userWeight, forKey: UserInfoManager.NSUserDefaultKey.Weight)
+            NSUserDefaults.standardUserDefaults().setDouble(userWeight, forKey: NSUserDefaultKey.Weight)
         }else {
             print("no weight data")
             // todo: alarm - can't be empty

@@ -55,6 +55,19 @@ class StatictisViewController: UIViewController {
         let leftItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.close))
         self.navigationItem.leftBarButtonItem = leftItem
         
+        // navigation title
+        let getTodayDate = NSDateFormatter()
+        getTodayDate.dateFormat = "yyyy / MM / dd"
+        var todayDate: NSDate {
+            get{
+                return getTodayDate.dateFromString(self.navigationItem.title!)!
+            }
+            set {
+                self.navigationItem.title = getTodayDate.stringFromDate(newValue)
+            }
+        }
+        todayDate = NSDate()
+        
         // labels
         
         self.distanceLabel.font = UIFont.mrTextStyle12Font()
