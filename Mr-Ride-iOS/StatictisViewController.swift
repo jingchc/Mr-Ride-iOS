@@ -23,6 +23,9 @@ class StatictisViewController: UIViewController {
     
     // instance
     
+    // todo: 判斷從record or history 來，決定left item是什麼，以及rideInfo的內容是什麼，目前這裡只有一個選擇，也就是從record來。
+    
+    
     var rideInfo: RideInfo? = NewRecordViewController.rideInfo
     
     override func viewDidLoad() {

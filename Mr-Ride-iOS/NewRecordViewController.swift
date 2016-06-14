@@ -146,17 +146,17 @@ extension NewRecordViewController {
                 self.rideButton.transform = CGAffineTransformMakeScale(1, 1)
                 self.rideButton.layer.cornerRadius = self.rideButton.frame.width / 2
             })
-            self.currentAnimation = .Continue
+            currentAnimation = .Continue
             
             // timer pause
             timer.invalidate()
-            self.pausedTime = NSDate.timeIntervalSinceReferenceDate()
+            pausedTime = NSDate.timeIntervalSinceReferenceDate()
             
             // location update pause
-            self.locationManager.stopUpdatingLocation()
-            self.currentDistance += self.distance
-            for location in self.locations {
-                self.totalLocations.append(location)
+            locationManager.stopUpdatingLocation()
+            currentDistance += self.distance
+            for location in locations {
+                totalLocations.append(location)
             }
             
             // add fixed polyline
@@ -421,6 +421,15 @@ extension NewRecordViewController {
     }
     
     @objc func finish() {
+        
+        // check data
+        if totalDistance == 0.0 {
+            // todo: alert
+            print("no data")
+            return
+        }
+        
+        locationManager.stopUpdatingLocation()
         
         // get averagespeed
         getAverageSpeed()
