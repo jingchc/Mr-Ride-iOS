@@ -21,9 +21,14 @@ class StatictisViewController: UIViewController {
     @IBOutlet weak var totalTime: UILabel!
     @IBOutlet weak var goodJob: UILabel!
     
+    // instance
+    
+    var rideInfo: RideInfo? = NewRecordViewController.rideInfo
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        print(rideInfo?.Calorie)
 
     }
     
@@ -38,7 +43,6 @@ class StatictisViewController: UIViewController {
     
     
     // set up
-    
     private func setUp() {
         
         // backgroung
@@ -56,17 +60,7 @@ class StatictisViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = leftItem
         
         // navigation title
-        let getTodayDate = NSDateFormatter()
-        getTodayDate.dateFormat = "yyyy / MM / dd"
-        var todayDate: NSDate {
-            get{
-                return getTodayDate.dateFromString(self.navigationItem.title!)!
-            }
-            set {
-                self.navigationItem.title = getTodayDate.stringFromDate(newValue)
-            }
-        }
-        todayDate = NSDate()
+         self.navigationItem.title = RideInfoHelper.shared.todayDate
         
         // labels
         

@@ -13,6 +13,9 @@ import MapKit
 
 class NewRecordViewController: UIViewController {
     
+    // rideInfo
+    static var rideInfo: RideInfo? = nil
+    
     // items
     
     @IBOutlet weak var mapView: MKMapView!
@@ -55,8 +58,16 @@ class NewRecordViewController: UIViewController {
     // locationManager
     
     var distance = 0.0
-    lazy var currentDistance = 0.0
-    lazy var totalDistance = 0.0
+    var currentDistance = 0.0
+    var totalDistance = 0.0
+        { didSet
+        {
+            nowDistance.text = RideInfoHelper.shared.getDistanceFormat(totalDistance)
+            nowSpeed.text = RideInfoHelper.shared.getSpeedFormat(currentSpeed)
+            nowCalories.text = "\(self.getCalorieBurnedData()) kcal"
+
+        }
+    }
     lazy var locations = [CLLocation]()
     lazy var totalLocations = [CLLocation]()
 
@@ -87,6 +98,7 @@ class NewRecordViewController: UIViewController {
     lazy var timer = NSTimer()
     var currentAnimation = RideButtonFunction.Start
     var time: NSTimeInterval = 0.00
+        { didSet { nowTime.text = RideInfoHelper.shared.getTimeFormat(time) as String } }
     var startTime = NSDate.timeIntervalSinceReferenceDate()
     var pausedTime: NSTimeInterval = 0.00
     var continuedTime: NSTimeInterval = 0.00
@@ -179,41 +191,14 @@ extension NewRecordViewController {
     
     @objc private func eachMillisecond(timer: NSTimer) {
         
-        self.time = NSDate.timeIntervalSinceReferenceDate() - self.startTime - self.totalPausedTime        
-        self.nowTime.text = String(getTimeFormat(self.time))
-        
-        self.nowDistance.text = getDistanceFormat(self.distance)
-        
-        var currentSpeed: String? {
-            if locations.last != nil {
-                self.currentSpeed = (self.locations.last?.speed)! * 3.6
-                return "\(String(Int(self.currentSpeed))) km / h"
-            } else {
-                self.currentSpeed = 0.0
-                return "0 km / h"
-            }
-        }
-        self.nowSpeed.text = currentSpeed
+        time = NSDate.timeIntervalSinceReferenceDate() - startTime - totalPausedTime
+        totalDistance = currentDistance + distance
+
+        if let locationSpeed = locations.last { self.currentSpeed = locationSpeed.speed * 3.6 }
+        else { self.currentSpeed = 0.0 }
+
     }
     
-    // time format
-    
-    private func getTimeFormat(trackDuration: NSTimeInterval) -> NSString {
-        let time = NSInteger(trackDuration)
-        let milliseconds = Int((trackDuration % 1) * 100)
-        let seconds = time % 60
-        let minutes = (time / 60) % 60
-        let hours = time / 3600
-        
-        return NSString(format: "%0.2d:%0.2d:%0.2d.%0.2d", hours, minutes,seconds,milliseconds)
-    }
-    
-    // distance format
-    
-    private func getDistanceFormat(distance:Double) -> String {
-        self.totalDistance = self.currentDistance + distance
-        return "\(Int(self.totalDistance)) m"
-    }
     
     // calorie
     
@@ -261,7 +246,6 @@ extension NewRecordViewController: CLLocationManagerDelegate {
         
         self.showUserLocation()
         self.loadMap()
-        self.nowCalories.text = "\(self.getCalorieBurnedData()) kcal"
     }
     
     // show current location on the map
@@ -400,17 +384,7 @@ extension NewRecordViewController {
 
         
         // navigation title
-        let getTodayDate = NSDateFormatter()
-        getTodayDate.dateFormat = "yyyy / MM / dd"
-        var todayDate: NSDate {
-            get{
-                return getTodayDate.dateFromString(self.navigationItem.title!)!
-            }
-            set {
-                self.navigationItem.title = getTodayDate.stringFromDate(newValue)
-            }
-        }
-        todayDate = NSDate()
+        self.navigationItem.title = RideInfoHelper.shared.todayDate
     }
     
     private func setButton() {
@@ -467,18 +441,8 @@ enum RideButtonFunction {
 
 // MARK: - MethodsForFinish
 
+
 extension NewRecordViewController {
-    
-    
-    struct RideInfo {
-        let ID: String
-        let Date: NSDate
-        let SpendTime: NSTimeInterval
-        let Distance: Double
-        let AverageSeppd: Double
-        let Calorie: Double
-        let Routes: [CLLocation]
-    }
     
     private func saveThisRide() {
         
@@ -491,23 +455,16 @@ extension NewRecordViewController {
                         Calorie: self.calorie,
                         Routes: self.totalLocations)
         
-        print(rideInfo.ID)
-        print(rideInfo.Date)
-        print(rideInfo.SpendTime)
-        print(rideInfo.Distance)
-        print(rideInfo.AverageSeppd)
-        print(rideInfo.Calorie)
-        print(rideInfo.Routes)
+        NewRecordViewController.rideInfo = rideInfo
+        
+        // todo: 存入code data
+       
         
     }
     
-    // ????
     private func getAverageSpeed() {
         self.currentSpeed = self.totalDistance / self.time * 3.6
     }
-    
-    
-    
     
     
     private func pushToStatisticPage() {
