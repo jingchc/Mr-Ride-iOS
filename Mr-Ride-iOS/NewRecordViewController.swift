@@ -10,14 +10,17 @@ import UIKit
 import CoreLocation
 import HealthKit
 import MapKit
+import CoreData
 
 class NewRecordViewController: UIViewController {
     
     // rideInfo
     static var rideInfo: RideInfo? = nil
     
-    // items
+    // coreData
+    let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
+    // items
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var nowDistance: UILabel!
@@ -32,7 +35,6 @@ class NewRecordViewController: UIViewController {
     let defaults = NSUserDefaults.standardUserDefaults()
     
     // life cycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackground()
@@ -422,22 +424,16 @@ extension NewRecordViewController {
     
     @objc func finish() {
         
+        locationManager.stopUpdatingLocation()
         // check data
         if totalDistance == 0.0 {
             // todo: alert
             print("no data")
             return
         }
-        
-        locationManager.stopUpdatingLocation()
-        
-        // get averagespeed
         getAverageSpeed()
-        
         // save data to coredata & (update  history page and chart)
-        saveThisRide()
-        
-        // trans data to statistic page
+        saveThisRideToSingleton()
         pushToStatisticPage()
     }
 
@@ -456,7 +452,9 @@ enum RideButtonFunction {
 
 
 extension NewRecordViewController {
-    private func saveThisRide() {
+    
+    private func saveThisRideToSingleton() {
+        
         let rideInfo = RideInfo.init(
                         ID: NSUUID.init().UUIDString,
                         Date: NSDate(),
@@ -467,10 +465,6 @@ extension NewRecordViewController {
                         Routes: self.totalLocations)
         
         NewRecordViewController.rideInfo = rideInfo
-        
-        // todo: 存入code data
-       
-        
     }
     
     private func getAverageSpeed() {
@@ -481,6 +475,40 @@ extension NewRecordViewController {
     private func pushToStatisticPage() {
         let statictisViewController = self.storyboard?.instantiateViewControllerWithIdentifier("StatictisViewController") as! StatictisViewController
         self.navigationController?.pushViewController(statictisViewController, animated: true)
+    }
+    
+    private func saveThisRideToCoreData() {
+        
+        let ride = NSEntityDescription.insertNewObjectForEntityForName("Ride", inManagedObjectContext: self.moc) as! Ride
+        
+        let _rideInfo = NewRecordViewController.rideInfo
+        
+        if _rideInfo != nil {
+            ride.id = _rideInfo?.ID
+            ride.date = _rideInfo?.Date
+            ride.distance = _rideInfo?.Distance
+            ride.time = _rideInfo?.SpendTime
+            ride.averageSpeed = _rideInfo?.SpendTime
+            ride.calorie = _rideInfo?.Calorie
+            }
+        
+        var routes = [Route]()
+        
+        for location in (_rideInfo?.Routes)! {
+            
+            let route = NSEntityDescription.insertNewObjectForEntityForName("Route", inManagedObjectContext: self.moc) as! Route
+            
+            route.id = _rideInfo?.ID
+            route.latitude = location.coordinate.latitude
+            route.longitude = location.coordinate.longitude
+            route.timeStamp = location.timestamp
+            route.speed = location.speed
+            routes.append(route)
+        }
+        
+        ride.route = NSOrderedSet(array: routes)
+        
+        do { try moc.save() } catch { fatalError(" core data error \(error)") }
         
         
     }
