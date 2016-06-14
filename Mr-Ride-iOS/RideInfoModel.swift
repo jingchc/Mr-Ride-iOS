@@ -14,7 +14,7 @@ struct RideInfo {
     let Date: NSDate
     let SpendTime: NSTimeInterval
     let Distance: Double
-    let AverageSeppd: Double
+    let AverageSpeed: Double
     let Calorie: Double
     let Routes: [CLLocation]
 }

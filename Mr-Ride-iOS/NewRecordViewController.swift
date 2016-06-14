@@ -50,6 +50,10 @@ class NewRecordViewController: UIViewController {
         timer.invalidate()
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        mapView = nil
+    }
+    
     
     deinit {
         print("NewRecordViewController deinit")
@@ -116,14 +120,14 @@ extension NewRecordViewController {
     
     @IBAction private func rideButtonPressed(sender: UIButton) {
         switch currentAnimation {
+    
         case .Start:
             UIView.animateWithDuration(0.6, animations: {
                 self.rideButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
                 self.rideButton.layer.cornerRadius = 4
             })
             self.currentAnimation = .Pause
-            
-            
+    
             // timer start
             self.startTime = NSDate.timeIntervalSinceReferenceDate()
             timer = NSTimer.scheduledTimerWithTimeInterval(0.01,
@@ -340,39 +344,39 @@ extension NewRecordViewController {
     
     private func setLabels() {
         
-        self.distanceLabel.font = UIFont.mrTextStyle12Font()
-        self.distanceLabel.textColor = UIColor.whiteColor()
-        self.distanceLabel.shadowColor = UIColor.mrBlack20Color()
-        self.distanceLabel.text = "Distance"
+        distanceLabel.font = UIFont.mrTextStyle12Font()
+        distanceLabel.textColor = UIColor.whiteColor()
+        distanceLabel.shadowColor = UIColor.mrBlack20Color()
+        distanceLabel.text = "Distance"
         
-        self.averageSpeed.font = UIFont.mrTextStyle12Font()
-        self.averageSpeed.textColor = UIColor.whiteColor()
-        self.averageSpeed.shadowColor = UIColor.mrBlack20Color()
-        self.averageSpeed.text = "Current Speed"
+        averageSpeed.font = UIFont.mrTextStyle12Font()
+        averageSpeed.textColor = UIColor.whiteColor()
+        averageSpeed.shadowColor = UIColor.mrBlack20Color()
+        averageSpeed.text = "Current Speed"
         
-        self.calories.font = UIFont.mrTextStyle12Font()
-        self.calories.textColor = UIColor.whiteColor()
-        self.calories.shadowColor = UIColor.mrBlack20Color()
-        self.calories.text = "Calories"
+        calories.font = UIFont.mrTextStyle12Font()
+        calories.textColor = UIColor.whiteColor()
+        calories.shadowColor = UIColor.mrBlack20Color()
+        calories.text = "Calories"
         
-        self.nowDistance.font = UIFont.mrTextStyle9Font()
-        self.nowDistance.textColor = UIColor.whiteColor()
-        self.nowDistance.shadowColor = UIColor.mrBlack15Color()
-        self.nowDistance.text = "0 m"
+        nowDistance.font = UIFont.mrTextStyle9Font()
+        nowDistance.textColor = UIColor.whiteColor()
+        nowDistance.shadowColor = UIColor.mrBlack15Color()
+        nowDistance.text = "0 m"
         
-        self.nowSpeed.font = UIFont.mrTextStyle9Font()
-        self.nowSpeed.textColor = UIColor.whiteColor()
-        self.nowSpeed.shadowColor = UIColor.mrBlack15Color()
-        self.nowSpeed.text = "0 km / h"
+        nowSpeed.font = UIFont.mrTextStyle9Font()
+        nowSpeed.textColor = UIColor.whiteColor()
+        nowSpeed.shadowColor = UIColor.mrBlack15Color()
+        nowSpeed.text = "0 km / h"
         
-        self.nowCalories.font = UIFont.mrTextStyle9Font()
-        self.nowCalories.textColor = UIColor.whiteColor()
-        self.nowCalories.shadowColor = UIColor.mrBlack15Color()
-        self.nowCalories.text = "0.0 kcal"
+        nowCalories.font = UIFont.mrTextStyle9Font()
+        nowCalories.textColor = UIColor.whiteColor()
+        nowCalories.shadowColor = UIColor.mrBlack15Color()
+        nowCalories.text = "0.0 kcal"
         
-        self.nowTime.font = UIFont(name: "RobotoMono-Regular", size: 30)
-        self.nowTime.textColor = UIColor.mrWhiteColor().colorWithAlphaComponent(0.8)
-        self.nowTime.text = "00:00:00.00"
+        nowTime.font = UIFont(name: "RobotoMono-Regular", size: 30)
+        nowTime.textColor = UIColor.mrWhiteColor().colorWithAlphaComponent(0.8)
+        nowTime.text = "00:00:00.00"
         
         // navigation left button
         let leftItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target:self, action: #selector(self.cancel))
@@ -443,15 +447,13 @@ enum RideButtonFunction {
 
 
 extension NewRecordViewController {
-    
     private func saveThisRide() {
-        
         let rideInfo = RideInfo.init(
                         ID: NSUUID.init().UUIDString,
                         Date: NSDate(),
                         SpendTime: self.time,
                         Distance: self.totalDistance,
-                        AverageSeppd: self.currentSpeed ,
+                        AverageSpeed: self.currentSpeed ,
                         Calorie: self.calorie,
                         Routes: self.totalLocations)
         

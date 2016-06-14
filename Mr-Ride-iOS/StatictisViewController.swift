@@ -41,7 +41,6 @@ class StatictisViewController: UIViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
     // set up
     private func setUp() {
         
@@ -54,7 +53,6 @@ class StatictisViewController: UIViewController {
         gradient.colors = [color1.CGColor, color2.CGColor]
         self.view.layer.insertSublayer(gradient, atIndex: 0)
 
-        
         // navigation left button
         let leftItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.close))
         self.navigationItem.leftBarButtonItem = leftItem
@@ -64,50 +62,59 @@ class StatictisViewController: UIViewController {
         
         // labels
         
-        self.distanceLabel.font = UIFont.mrTextStyle12Font()
-        self.distanceLabel.textColor = UIColor.whiteColor()
-        self.distanceLabel.shadowColor = UIColor.mrBlack20Color()
-        self.distanceLabel.text = "Distance"
+        distanceLabel.font = UIFont.mrTextStyle12Font()
+        distanceLabel.textColor = UIColor.whiteColor()
+        distanceLabel.shadowColor = UIColor.mrBlack20Color()
+        distanceLabel.text = "Distance"
         
-        self.speedLabel.font = UIFont.mrTextStyle12Font()
-        self.speedLabel.textColor = UIColor.whiteColor()
-        self.speedLabel.shadowColor = UIColor.mrBlack20Color()
-        self.speedLabel.text = "Average Speed"
+        speedLabel.font = UIFont.mrTextStyle12Font()
+        speedLabel.textColor = UIColor.whiteColor()
+        speedLabel.shadowColor = UIColor.mrBlack20Color()
+        speedLabel.text = "Average Speed"
         
-        self.caloriesLabel.font = UIFont.mrTextStyle12Font()
-        self.caloriesLabel.textColor = UIColor.whiteColor()
-        self.caloriesLabel.shadowColor = UIColor.mrBlack20Color()
-        self.caloriesLabel.text = "Calories"
+        caloriesLabel.font = UIFont.mrTextStyle12Font()
+        caloriesLabel.textColor = UIColor.whiteColor()
+        caloriesLabel.shadowColor = UIColor.mrBlack20Color()
+        caloriesLabel.text = "Calories"
         
-        self.timeLabel.font = UIFont.mrTextStyle12Font()
-        self.timeLabel.textColor = UIColor.whiteColor()
-        self.timeLabel.shadowColor = UIColor.mrBlack20Color()
-        self.timeLabel.text = "Total Time"
+        timeLabel.font = UIFont.mrTextStyle12Font()
+        timeLabel.textColor = UIColor.whiteColor()
+        timeLabel.shadowColor = UIColor.mrBlack20Color()
+        timeLabel.text = "Total Time"
         
-        self.totalDistance.font = UIFont.mrTextStyle9Font()
-        self.totalDistance.textColor = UIColor.whiteColor()
-        self.totalDistance.shadowColor = UIColor.mrBlack15Color()
-        self.totalDistance.text = "0 m"
+        totalDistance.font = UIFont.mrTextStyle9Font()
+        totalDistance.textColor = UIColor.whiteColor()
+        totalDistance.shadowColor = UIColor.mrBlack15Color()
         
-        self.averageSpeed.font = UIFont.mrTextStyle9Font()
-        self.averageSpeed.textColor = UIColor.whiteColor()
-        self.averageSpeed.shadowColor = UIColor.mrBlack15Color()
-        self.averageSpeed.text = "0 km / h"
+        averageSpeed.font = UIFont.mrTextStyle9Font()
+        averageSpeed.textColor = UIColor.whiteColor()
+        averageSpeed.shadowColor = UIColor.mrBlack15Color()
         
-        self.calories.font = UIFont.mrTextStyle9Font()
-        self.calories.textColor = UIColor.whiteColor()
-        self.calories.shadowColor = UIColor.mrBlack15Color()
-        self.calories.text = "?? kcal"
-
-        self.totalTime.font = UIFont.mrTextStyle9Font()
-        self.totalTime.textColor = UIColor.whiteColor()
-        self.totalTime.shadowColor = UIColor.mrBlack15Color()
-        self.totalTime.text = "00:00:00.00"
+        calories.font = UIFont.mrTextStyle9Font()
+        calories.textColor = UIColor.whiteColor()
+        calories.shadowColor = UIColor.mrBlack15Color()
+        calories.text = "?? kcal"
         
-        self.goodJob.font = UIFont.textStyle20Font()
-        self.goodJob.textColor = UIColor.whiteColor()
-        self.goodJob.shadowColor = UIColor.mrBlack20Color()
-        self.goodJob.text = "Good Job"
+        totalTime.font = UIFont.mrTextStyle9Font()
+        totalTime.textColor = UIColor.whiteColor()
+        totalTime.shadowColor = UIColor.mrBlack15Color()
+        
+        goodJob.font = UIFont.textStyle20Font()
+        goodJob.textColor = UIColor.whiteColor()
+        goodJob.shadowColor = UIColor.mrBlack20Color()
+        goodJob.text = "Good Job"
+        
+        if let _rideInfo = rideInfo {
+            totalTime.text = RideInfoHelper.shared.getTimeFormat(_rideInfo.SpendTime) as String
+            totalDistance.text = RideInfoHelper.shared.getDistanceFormat(_rideInfo.Distance)
+            averageSpeed.text =  RideInfoHelper.shared.getSpeedFormat(_rideInfo.AverageSpeed)
+            
+            var calorie: String {
+                let _calorie = NSString(format: "%.1f",_rideInfo.Calorie)
+                return _calorie as String
+            }
+            calories.text = "\(calorie) kcal"
+        }
         
     }
     

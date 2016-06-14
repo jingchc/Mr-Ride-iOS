@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Automatic">
+    <entity name="Ride" syncable="YES">
+        <attribute name="calorie" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="route" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Route" syncable="YES"/>
+    </entity>
+    <entity name="Route" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Ride" positionX="-2187" positionY="42" width="128" height="133"/>
+        <element name="Route" positionX="-2034" positionY="126" width="128" height="118"/>
+    </elements>
 </model>
