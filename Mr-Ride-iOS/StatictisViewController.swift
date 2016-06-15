@@ -31,8 +31,6 @@ class StatictisViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        print(rideInfo?.Calorie)
-
     }
     
     deinit {

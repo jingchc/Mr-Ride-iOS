@@ -394,20 +394,20 @@ extension NewRecordViewController {
     }
     
     private func setButton() {
-        self.buttonBorder.layer.borderColor = UIColor.whiteColor().CGColor
-        self.buttonBorder.backgroundColor = UIColor.clearColor()
-        self.buttonBorder.layer.borderWidth = 4
-        self.buttonBorder.layer.shadowColor = UIColor.mrBlack20Color().CGColor
-        self.buttonBorder.layer.cornerRadius = self.buttonBorder.frame.size.width / 2
-        self.rideButton.layer.cornerRadius = self.rideButton.frame.width / 2
+        buttonBorder.layer.borderColor = UIColor.whiteColor().CGColor
+        buttonBorder.backgroundColor = UIColor.clearColor()
+        buttonBorder.layer.borderWidth = 4
+        buttonBorder.layer.shadowColor = UIColor.mrBlack20Color().CGColor
+        buttonBorder.layer.cornerRadius = self.buttonBorder.frame.size.width / 2
+        rideButton.layer.cornerRadius = self.rideButton.frame.width / 2
     }
     
     // set mapView
     
     private func setMapView() {
-        self.mapView.layer.cornerRadius = 10
-        self.mapView.showsUserLocation = true
-        self.mapView.delegate = self
+        mapView.layer.cornerRadius = 10
+        mapView.showsUserLocation = true
+        mapView.delegate = self
     }
     
 }
@@ -432,8 +432,10 @@ extension NewRecordViewController {
             return
         }
         getAverageSpeed()
-        // save data to coredata & (update  history page and chart)
         saveThisRideToSingleton()
+//        cleanUpCoreData()
+//        saveThisRideToCoreData()
+//        checkCoreDate()
         pushToStatisticPage()
     }
 
@@ -488,7 +490,7 @@ extension NewRecordViewController {
             ride.date = _rideInfo?.Date
             ride.distance = _rideInfo?.Distance
             ride.time = _rideInfo?.SpendTime
-            ride.averageSpeed = _rideInfo?.SpendTime
+            ride.averageSpeed = _rideInfo?.AverageSpeed
             ride.calorie = _rideInfo?.Calorie
             }
         
@@ -510,7 +512,48 @@ extension NewRecordViewController {
         
         do { try moc.save() } catch { fatalError(" core data error \(error)") }
         
+    }
+    
+    
+    // help func - check data
+    private func checkCoreDate() {
+
+        let request = NSFetchRequest(entityName: "Ride")
         
+        do {
+            let results = try moc.executeFetchRequest(request) as! [Ride]
+            for result in results {
+                print("=============")
+                print(result.id)
+                print(result.time)
+                print(result.averageSpeed)
+                print(result.date)
+                print(result.distance)
+                print(result.calorie)
+                print(result.route)
+                print("=============")
+
+            }
+        } catch {
+            fatalError("fail to fetch core data")
+        }
+    }
+    
+    // help func - delete data
+
+    private func cleanUpCoreData() {
+        
+        let request = NSFetchRequest(entityName: "Ride")
+        
+        do {
+            let results = try moc.executeFetchRequest(request) as! [Ride]
+            
+            for result in results {
+                moc.deleteObject(result)
+            }
+        } catch {
+            fatalError("clean up core data error")
+        }
     }
     
     
