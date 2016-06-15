@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		138D97878F737EACE642BB60 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1932BC444B81FFC90CEB757C /* Pods.framework */; };
+		3F118C0C1D112CCE0085EEA8 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F118C0B1D112CCE0085EEA8 /* HistoryViewController.swift */; };
 		3F34BDFE1D0960FF00F839CF /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34BDFD1D0960FF00F839CF /* UserInfoModel.swift */; };
 		3F34BE001D09630600F839CF /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34BDFF1D09630600F839CF /* UserInfoManager.swift */; };
 		3F34BE031D0AA3ED00F839CF /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34BE021D0AA3ED00F839CF /* protocols.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		1932BC444B81FFC90CEB757C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E8372B0032E0C58D05719C7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		3F118C0B1D112CCE0085EEA8 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		3F34BDFD1D0960FF00F839CF /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		3F34BDFF1D09630600F839CF /* UserInfoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
 		3F34BE021D0AA3ED00F839CF /* protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = protocols.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 		3FFD61D71CFC04C80054CBA5 /* History */ = {
 			isa = PBXGroup;
 			children = (
+				3F118C0B1D112CCE0085EEA8 /* HistoryViewController.swift */,
 				3FFD61D81CFC04E60054CBA5 /* HistoryTableViewController.swift */,
 				3FFD61DA1CFC054C0054CBA5 /* HistoryTableViewCell.swift */,
 			);
@@ -462,6 +465,7 @@
 				3FC3FCF31D0BABB2002FC0E1 /* FBLogInPermission.swift in Sources */,
 				3F8A50ED1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift in Sources */,
 				3FC9B0E51D10361B004B2AAE /* Route.swift in Sources */,
+				3F118C0C1D112CCE0085EEA8 /* HistoryViewController.swift in Sources */,
 				3FD7FE311D0D92CD00CD42E8 /* StatictisViewController.swift in Sources */,
 				3F908A0A1CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodeld in Sources */,
 				3FFD61DB1CFC054C0054CBA5 /* HistoryTableViewCell.swift in Sources */,

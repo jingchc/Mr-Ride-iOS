@@ -301,8 +301,8 @@ extension NewRecordViewController: CLLocationManagerDelegate {
     }
     
     private func totalLoadMap() {
-        if self.totalLocations.count > 0 {
-            self.mapView.removeOverlays(self.mapView.overlays)
+        if totalLocations.count > 0 {
+            mapView.removeOverlays(mapView.overlays)
             mapView.addOverlay(totalPolyLine())
         }
     }
@@ -388,7 +388,6 @@ extension NewRecordViewController {
         let rightItem = UIBarButtonItem(title: "Finish", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.finish))
         self.navigationItem.rightBarButtonItem = rightItem
 
-        
         // navigation title
         self.navigationItem.title = RideInfoHelper.shared.todayDate
     }

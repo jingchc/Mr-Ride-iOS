@@ -433,7 +433,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ycY-B2-ey9">
-                                <rect key="frame" x="0.0" y="92" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ycY-B2-ey9" id="sz4-Jv-jS6">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
@@ -452,6 +452,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDu-Dg-dOw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1444" y="534"/>
+        </scene>
+        <!--History View Controller-->
+        <scene sceneID="hP1-1d-Jqn">
+            <objects>
+                <viewController storyboardIdentifier="HistoryViewController" id="5rH-qg-LYd" customClass="HistoryViewController" customModule="Mr_Ride_iOS" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6H7-r8-n92"/>
+                        <viewControllerLayoutGuide type="bottom" id="6lp-kB-v3G"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8XK-pq-pPG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-history-background" translatesAutoresizingMaskIntoConstraints="NO" id="eML-hb-N09">
+                                <rect key="frame" x="0.0" y="403" width="414" height="333"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="333" id="PR0-Dc-pPh"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="eML-hb-N09" secondAttribute="trailing" constant="-20" id="6Gy-RC-pJW"/>
+                            <constraint firstItem="eML-hb-N09" firstAttribute="leading" secondItem="8XK-pq-pPG" secondAttribute="leadingMargin" constant="-20" id="SaJ-5d-esE"/>
+                            <constraint firstItem="6lp-kB-v3G" firstAttribute="top" secondItem="eML-hb-N09" secondAttribute="bottom" id="asr-Th-fzz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="wpR-6D-2vJ"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="backgroundImage" destination="eML-hb-N09" id="hxw-Yd-oae"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VSr-aW-DTs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1889" y="534"/>
         </scene>
         <!--New Record View Controller-->
         <scene sceneID="B6l-YL-edc">
@@ -703,6 +739,7 @@
                         <outlet property="caloriesLabel" destination="WAb-5Q-hRp" id="SLN-fZ-UH8"/>
                         <outlet property="distanceLabel" destination="bTn-Y4-geh" id="dEq-IE-jlY"/>
                         <outlet property="goodJob" destination="akc-se-0lm" id="M9g-GM-qqo"/>
+                        <outlet property="mapView" destination="IRO-pu-Exw" id="vSL-Ad-IW5"/>
                         <outlet property="speedLabel" destination="3MN-kr-st6" id="W9Q-zr-Nmm"/>
                         <outlet property="timeLabel" destination="onV-yE-EbZ" id="Vv2-zX-ltW"/>
                         <outlet property="totalDistance" destination="JVJ-ce-zlA" id="YHa-xy-wZi"/>
@@ -725,7 +762,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="hgh-7A-VqN" kind="relationship" relationship="rootViewController" id="DKR-nM-uLn"/>
+                        <segue destination="5rH-qg-LYd" kind="relationship" relationship="rootViewController" id="ygq-Q6-FAW"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vzm-M8-CtU" userLabel="First Responder" sceneMemberID="firstResponder"/>

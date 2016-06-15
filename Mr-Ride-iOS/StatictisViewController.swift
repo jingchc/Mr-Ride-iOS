@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import MapKit
 
 class StatictisViewController: UIViewController {
     
-    // labels
+    // items
+    
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var totalDistance: UILabel!
     @IBOutlet weak var speedLabel: UILabel!
@@ -23,21 +26,32 @@ class StatictisViewController: UIViewController {
     
     // instance
     
-    // todo: 判斷從record or history 來，決定left item是什麼，以及rideInfo的內容是什麼，目前這裡只有一個選擇，也就是從record來。
+    // todo: 判斷從record or history 來，決定left item(close:dismiss, back: back)，以及rideInfo的內容是什麼，tittle，目前這裡只有一個選擇，也就是從record來。
     
+    // 寫一個enum，History, NewRecoed
     
     var rideInfo: RideInfo? = NewRecordViewController.rideInfo
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
+        setLeftItem()
+        loadMap()
     }
     
     deinit {
         print("StatictisViewController deinit")
     }
+}
+
+extension StatictisViewController {
+   
+    // left item
+    private func setLeftItem() {
+        let leftItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.close))
+        self.navigationItem.leftBarButtonItem = leftItem
+    }
     
-    // close
     @objc func close() {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -46,6 +60,7 @@ class StatictisViewController: UIViewController {
     private func setUp() {
         
         // backgroung
+        
         let gradient = CAGradientLayer()
         self.view.backgroundColor = UIColor.mrLightblueColor()
         let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.60)
@@ -54,11 +69,8 @@ class StatictisViewController: UIViewController {
         gradient.colors = [color1.CGColor, color2.CGColor]
         self.view.layer.insertSublayer(gradient, atIndex: 0)
 
-        // navigation left button
-        let leftItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.close))
-        self.navigationItem.leftBarButtonItem = leftItem
-        
         // navigation title
+        
          self.navigationItem.title = RideInfoHelper.shared.todayDate
         
         // labels
@@ -94,7 +106,6 @@ class StatictisViewController: UIViewController {
         calories.font = UIFont.mrTextStyle9Font()
         calories.textColor = UIColor.whiteColor()
         calories.shadowColor = UIColor.mrBlack15Color()
-        calories.text = "?? kcal"
         
         totalTime.font = UIFont.mrTextStyle9Font()
         totalTime.textColor = UIColor.whiteColor()
@@ -117,8 +128,76 @@ class StatictisViewController: UIViewController {
             calories.text = "\(calorie) kcal"
         }
         
+        // mapView
+        
+        mapView.layer.cornerRadius = 10
+        mapView.delegate = self
+    }
+}
+
+
+// map
+
+extension StatictisViewController: MKMapViewDelegate {
+    
+    // polyline
+    
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        let polyline = overlay as! MKPolyline
+        let renderer = MKPolylineRenderer(polyline: polyline)
+        renderer.strokeColor = UIColor.mrBubblegumColor()
+        renderer.lineWidth = 10
+        
+        return renderer
     }
     
-   
-
+    private func polyline() -> MKPolyline {
+        
+        var coords = [CLLocationCoordinate2D]()
+        guard let locations = rideInfo?.Routes else {
+            print("no Route data")
+            return MKPolyline(coordinates: &coords, count: coords.count)
+        }
+        
+        for location in locations {
+            coords.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+        }
+        return MKPolyline(coordinates: &coords, count: locations.count)
+    }
+    
+    private func loadMap() {
+        mapView.region = showRouteRegion()
+        if rideInfo?.Routes.count > 0 {
+            mapView.addOverlay(polyline())
+        }
+    }
+    
+    // show route region
+    
+    private func showRouteRegion() -> MKCoordinateRegion{
+        
+        let startLocation = rideInfo!.Routes.first!
+        
+        var minLatitude = startLocation.coordinate.latitude
+        var minLongitude = startLocation.coordinate.longitude
+        var maxLatitude = minLatitude
+        var maxLongitude = minLongitude
+        
+        let locations = rideInfo!.Routes
+        
+        for location in locations {
+            minLatitude = min(minLatitude, location.coordinate.latitude)
+            minLongitude = min(minLongitude, location.coordinate.longitude)
+            maxLatitude = max(maxLatitude, location.coordinate.latitude)
+            maxLongitude = max(maxLongitude, location.coordinate.longitude)
+        }
+        
+        return MKCoordinateRegion(
+            center: CLLocationCoordinate2D(
+                latitude: (maxLatitude + minLatitude) / 2,
+                longitude: (maxLongitude + minLongitude) / 2 ),
+            span: MKCoordinateSpan(
+                latitudeDelta: (maxLatitude - minLatitude) * 1.5 ,
+                longitudeDelta: (maxLongitude - minLongitude) * 1.5))
+    }
 }

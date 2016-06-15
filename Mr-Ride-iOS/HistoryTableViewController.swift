@@ -14,16 +14,9 @@ class HistoryTableViewController: UITableViewController {
         super.viewDidLoad()
         setUp()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     private func setUp() {
-        
-        self.view.backgroundColor = UIColor.mrLightblueColor()
         
         // navigation transparent
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
