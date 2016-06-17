@@ -438,19 +438,30 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-history-background" translatesAutoresizingMaskIntoConstraints="NO" id="eML-hb-N09">
                                 <rect key="frame" x="0.0" y="403" width="414" height="333"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="333" id="PR0-Dc-pPh"/>
+                                    <constraint firstAttribute="height" constant="333" id="Jj9-6f-0zE"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7a-KY-fBZ" userLabel="chartView">
                                 <rect key="frame" x="20" y="64" width="374" height="200"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="螢幕快照 2016-06-17 下午3.24.34" translatesAutoresizingMaskIntoConstraints="NO" id="LKB-yG-3sW">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="200"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" red="0.99607843139999996" green="0.94509803920000002" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="wPw-A1-FPB"/>
+                                    <constraint firstAttribute="bottom" secondItem="LKB-yG-3sW" secondAttribute="bottom" id="9Pq-GL-duH"/>
+                                    <constraint firstItem="LKB-yG-3sW" firstAttribute="top" secondItem="X7a-KY-fBZ" secondAttribute="top" id="hCs-Zp-r7M"/>
+                                    <constraint firstAttribute="trailing" secondItem="LKB-yG-3sW" secondAttribute="trailing" id="pB3-Jl-EQj"/>
+                                    <constraint firstItem="LKB-yG-3sW" firstAttribute="leading" secondItem="X7a-KY-fBZ" secondAttribute="leading" id="s2o-lH-0zT"/>
                                 </constraints>
                             </view>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="59" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dF9-gA-uka">
                                 <rect key="frame" x="20" y="284" width="374" height="452"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="452" id="Z1P-Ly-7uX"/>
+                                </constraints>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell opaque="NO" clipsSubviews="YES" alpha="0.84999999999999998" contentMode="scaleToFill" selectionStyle="none" indentationWidth="59" reuseIdentifier="Cell" rowHeight="59" id="nmw-d0-6dc" customClass="HistoryTableViewCell" customModule="Mr_Ride_iOS" customModuleProvider="target">
@@ -554,17 +565,17 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="eML-hb-N09" secondAttribute="trailing" constant="-20" id="6Gy-RC-pJW"/>
+                            <constraint firstItem="dF9-gA-uka" firstAttribute="bottom" secondItem="6lp-kB-v3G" secondAttribute="top" id="6Iw-VB-bIT"/>
                             <constraint firstItem="dF9-gA-uka" firstAttribute="centerX" secondItem="eML-hb-N09" secondAttribute="centerX" id="99q-no-pUW"/>
-                            <constraint firstItem="X7a-KY-fBZ" firstAttribute="top" secondItem="6H7-r8-n92" secondAttribute="bottom" id="AML-Ol-VEJ"/>
-                            <constraint firstItem="dF9-gA-uka" firstAttribute="top" secondItem="X7a-KY-fBZ" secondAttribute="bottom" constant="20" id="Bdl-U5-JNd"/>
-                            <constraint firstItem="X7a-KY-fBZ" firstAttribute="leading" secondItem="8XK-pq-pPG" secondAttribute="leadingMargin" id="RcB-Tm-kbi"/>
-                            <constraint firstItem="dF9-gA-uka" firstAttribute="bottom" secondItem="6lp-kB-v3G" secondAttribute="top" id="SBr-Zl-Eqr"/>
-                            <constraint firstItem="eML-hb-N09" firstAttribute="leading" secondItem="8XK-pq-pPG" secondAttribute="leadingMargin" constant="-20" id="SaJ-5d-esE"/>
-                            <constraint firstItem="6lp-kB-v3G" firstAttribute="top" secondItem="eML-hb-N09" secondAttribute="bottom" id="asr-Th-fzz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="X7a-KY-fBZ" secondAttribute="trailing" id="ceo-Ip-YIE"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="dF9-gA-uka" secondAttribute="trailing" id="hUI-I7-KBu"/>
-                            <constraint firstItem="dF9-gA-uka" firstAttribute="leading" secondItem="8XK-pq-pPG" secondAttribute="leadingMargin" id="vCs-fO-EGn"/>
+                            <constraint firstItem="X7a-KY-fBZ" firstAttribute="trailing" secondItem="dF9-gA-uka" secondAttribute="trailing" id="AJy-yd-73Y"/>
+                            <constraint firstItem="dF9-gA-uka" firstAttribute="top" secondItem="X7a-KY-fBZ" secondAttribute="bottom" constant="20" id="CpH-rO-BRh"/>
+                            <constraint firstItem="eML-hb-N09" firstAttribute="bottom" secondItem="6lp-kB-v3G" secondAttribute="top" id="H3O-xa-ctl"/>
+                            <constraint firstItem="X7a-KY-fBZ" firstAttribute="leading" secondItem="dF9-gA-uka" secondAttribute="leading" id="HB6-Pq-RRl"/>
+                            <constraint firstItem="dF9-gA-uka" firstAttribute="centerX" secondItem="eML-hb-N09" secondAttribute="centerX" id="dHY-5K-eSZ"/>
+                            <constraint firstItem="X7a-KY-fBZ" firstAttribute="top" secondItem="6H7-r8-n92" secondAttribute="bottom" id="mjK-nt-Mcx"/>
+                            <constraint firstItem="X7a-KY-fBZ" firstAttribute="leading" secondItem="8XK-pq-pPG" secondAttribute="leadingMargin" id="pdR-bl-pWO"/>
+                            <constraint firstAttribute="trailing" secondItem="eML-hb-N09" secondAttribute="trailing" id="u1u-uK-ALW"/>
+                            <constraint firstItem="eML-hb-N09" firstAttribute="leading" secondItem="8XK-pq-pPG" secondAttribute="leading" id="zgo-zx-laP"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -861,6 +872,26 @@
             </objects>
             <point key="canvasLocation" x="546" y="514"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="Gla-jk-SXf">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" id="mLb-0b-AYf" customClass="MapViewController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RN7-hc-Gz1"/>
+                        <viewControllerLayoutGuide type="bottom" id="xu4-cX-RT9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sg5-tT-NFK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="A7c-ue-lTt"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4R2-wA-RBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1044" y="1323"/>
+        </scene>
         <!--Home Navigation Controller-->
         <scene sceneID="8ZH-Wp-lqZ">
             <objects>
@@ -899,10 +930,30 @@
             </objects>
             <point key="canvasLocation" x="1526" y="-336"/>
         </scene>
+        <!--Map Navigation Controller-->
+        <scene sceneID="XGj-as-qhT">
+            <objects>
+                <navigationController storyboardIdentifier="MapNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="eoW-8w-m41" customClass="MapNavigationController" customModule="Mr_Ride_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cO2-WT-UOz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mLb-0b-AYf" kind="relationship" relationship="rootViewController" id="zng-1M-l12"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jIz-Lg-zEn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="554" y="1323"/>
+        </scene>
     </scenes>
     <resources>
         <image name="image-history-background" width="1536" height="1021"/>
         <image name="image-medal" width="55" height="85"/>
         <image name="logo-facebook" width="20" height="20"/>
+        <image name="螢幕快照 2016-06-17 下午3.24.34" width="347" height="166"/>
     </resources>
 </document>

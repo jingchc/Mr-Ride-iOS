@@ -37,7 +37,6 @@ class HistoryTableViewCell: UITableViewCell {
     private func setUp(){
         selectionStyle = .None
         backgroundView?.opaque = false
-
         
     }
 

@@ -30,29 +30,42 @@ class StatictisViewController: UIViewController {
     
     // 寫一個enum，History, NewRecoed
     
-    var rideInfo: RideInfo? = NewRecordViewController.rideInfo
+    var fromController: String? = NewRecordViewController.newRecordPage ?? HistoryViewController.historyPage
+    
+    var rideInfo: RideInfo? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fromWichController()
+       
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         setUp()
-        setLeftItem()
         loadMap()
     }
     
-//    deinit {
-//        print("StatictisViewController deinit")
-//    }
+    deinit {
+        fromController = nil
+        NewRecordViewController.newRecordPage = nil
+        HistoryViewController.historyPage = nil
+        print("StatictisViewController deinit")
+    }
 }
 
 extension StatictisViewController {
    
     // left item
-    private func setLeftItem() {
+    private func setCloseItem() {
         let leftItem = UIBarButtonItem(title: "Close", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(self.close))
         self.navigationItem.leftBarButtonItem = leftItem
     }
     
     @objc func close() {
+//        rideInfo = nil
+        fromController = nil
+//        NewRecordViewController.newRecordPage = nil
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -69,10 +82,6 @@ extension StatictisViewController {
         gradient.colors = [color1.CGColor, color2.CGColor]
         self.view.layer.insertSublayer(gradient, atIndex: 0)
 
-        // navigation title
-        
-         self.navigationItem.title = RideInfoHelper.shared.todayDate
-        
         // labels
         
         distanceLabel.font = UIFont.mrTextStyle12Font()
@@ -132,6 +141,60 @@ extension StatictisViewController {
         
         mapView.layer.cornerRadius = 10
         mapView.delegate = self
+    }
+    
+    private func fromWichController() {
+        
+        if let _fromController = fromController {
+        
+            switch _fromController {
+            
+            case "HistoryPage":
+                var route: [CLLocation] = []
+                let ride = HistoryViewController.ride
+                let routeEntity = ride!.route
+                
+                for item in routeEntity! {
+                    let routes =  item as! Route
+                    let location = CLLocation(
+                        latitude: routes.latitude as! CLLocationDegrees,
+                        longitude: routes.longitude  as! CLLocationDegrees)
+                    route.append(location)
+                }
+
+                rideInfo = RideInfo(
+                    ID: (ride?.id!)!,
+                    Date: (ride?.date)!,
+                    SpendTime: NSTimeInterval((ride?.time!)!),
+                    Distance: Double((ride?.distance)!),
+                    AverageSpeed:  Double((ride?.averageSpeed)!),
+                    Calorie:  Double((ride?.calorie)!),
+                    Routes: route)
+                
+                var navigationDate: String {
+                    let date = NSDateFormatter()
+                    date.dateFormat = "yyyy / MM / dd"
+                    
+                    return date.stringFromDate((ride?.date)!)
+                }
+
+                self.navigationItem.title = navigationDate
+                
+                print("from HistoryPage")
+                
+            case "NewRecordPage":
+                rideInfo = NewRecordViewController.rideInfo
+                setCloseItem()
+                self.navigationItem.title = RideInfoHelper.shared.todayDate
+
+                print("from NewRecordPage")
+                
+            
+            default:
+                print("I don't where I came from")
+                break
+            }
+        }
     }
 }
 

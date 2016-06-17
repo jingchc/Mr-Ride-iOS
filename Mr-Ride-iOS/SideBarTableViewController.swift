@@ -86,8 +86,8 @@ class SideBarTableViewController: UITableViewController {
             let destination = storyboard.instantiateViewControllerWithIdentifier("HistoryNavigationController") as! HistoryNavigationController
             SWRevealViewControllerSeguePushController.init(identifier: "HistoryNavigationController", source: self, destination: destination).perform()
         case .Map:
-            print("mapViewController")
-            
+            let destination = storyboard.instantiateViewControllerWithIdentifier("MapNavigationController") as! MapNavigationController
+            SWRevealViewControllerSeguePushController.init(identifier: "MapNavigationController", source: self, destination: destination).perform()
         }
     }
     

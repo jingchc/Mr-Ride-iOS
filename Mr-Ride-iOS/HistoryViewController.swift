@@ -11,6 +11,8 @@ import CoreData
 
 class HistoryViewController: UIViewController {
     
+    static var ride: Ride? = nil
+    static var historyPage: String? = nil
     
     let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
@@ -151,8 +153,22 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource, NSF
         return nil
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+        let ridedata = fetchedResultsController.objectAtIndexPath(indexPath) as! Ride
+        
+        HistoryViewController.ride = ridedata
+        HistoryViewController.historyPage = "HistoryPage"
+
+        let statisticPage = self.storyboard?.instantiateViewControllerWithIdentifier("StatictisViewController") as! StatictisViewController
+        
+        self.navigationController?.pushViewController(statisticPage, animated: true)
+        
+    }
+    
+    
 //    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        <#code#>
+//     todo: cunstom header view(cell)
 //    }
     
     

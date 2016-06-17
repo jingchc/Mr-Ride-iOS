@@ -16,6 +16,9 @@ class NewRecordViewController: UIViewController {
     
     // rideInfo
     static var rideInfo: RideInfo? = nil
+    static var newRecordPage: String? = nil
+
+    
     
     // coreData
     let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
@@ -57,9 +60,9 @@ class NewRecordViewController: UIViewController {
     }
     
     
-    deinit {
-        print("NewRecordViewController deinit")
-    }
+//    deinit {
+//        print("NewRecordViewController deinit")
+//    }
     
     // locationManager
     
@@ -237,7 +240,7 @@ extension NewRecordViewController: CLLocationManagerDelegate {
         // get distance & locations
                 
         for location in locations {
-            if location.horizontalAccuracy < 25 {
+            if location.horizontalAccuracy < 35 {
                 if self.locations.count > 0 {
                     if location.distanceFromLocation(self.locations.last!) > 10 {
                         distance = 0.0
@@ -430,6 +433,7 @@ extension NewRecordViewController {
             print("no data")
             return
         }
+
         getAverageSpeed()
         saveThisRideToSingleton()
 //        cleanUpCoreData()
@@ -457,7 +461,7 @@ extension NewRecordViewController {
     
     private func saveThisRideToSingleton() {
         
-        let fakedate = 65.0
+        let fakedate = 85.0
         
         let rideInfo = RideInfo.init(
                         ID: NSUUID.init().UUIDString,
@@ -469,6 +473,7 @@ extension NewRecordViewController {
                         Routes: self.totalLocations)
         
         NewRecordViewController.rideInfo = rideInfo
+        NewRecordViewController.newRecordPage = "NewRecordPage"
         
     }
     
