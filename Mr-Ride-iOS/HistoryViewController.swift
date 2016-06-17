@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Charts
 
 class HistoryViewController: UIViewController {
     
@@ -36,7 +37,8 @@ class HistoryViewController: UIViewController {
     
     @IBOutlet weak var historyTableView: UITableView!    
     @IBOutlet weak var backgroundImage: UIImageView!
-
+    @IBOutlet weak var barChartView: BarChartView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
@@ -194,5 +196,10 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource, NSF
             fatalError("fail to fetch core data")
         }
     }
+}
+
+// chart view
+
+extension HistoryViewController {
     
 }
