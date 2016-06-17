@@ -100,4 +100,5 @@ extension UIFont {
     class func textStyle24Font() -> UIFont {
         return UIFont.systemFontOfSize(20.0, weight: UIFontWeightRegular)
     }
+    
 }

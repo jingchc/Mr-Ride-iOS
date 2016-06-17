@@ -27,8 +27,14 @@ class HomeViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setLabelContent()
+
+    }
+    
     deinit {
-        print("HomeViewController deinit")
+//        print("HomeViewController deinit")
     }
     
     
@@ -91,17 +97,17 @@ class HomeViewController: UIViewController {
         self.totalDistanceData.textColor = UIColor.mrWhiteColor()
         self.totalDistanceData.shadowOffset.height = 2
         self.totalDistanceData.shadowColor = UIColor.mrBlack25Color()
-        self.totalDistanceData.text = "???? km"
+        self.totalDistanceData.text = "0 km"
         
         self.totalConutData.font = UIFont.asiTextStyle15Font()
         self.totalConutData.textColor = UIColor.mrWhiteColor()
         self.totalConutData.shadowColor = UIColor.mrBlack15Color()
-        self.totalConutData.text = "?? times"
+        self.totalConutData.text = "0 times"
         
         self.averageSpeedData.font = UIFont.asiTextStyle15Font()
         self.averageSpeedData.textColor = UIColor.mrWhiteColor()
         self.averageSpeedData.shadowColor = UIColor.mrBlack15Color()
-        self.averageSpeedData.text = "?? km / h"
+        self.averageSpeedData.text = "0 km / h"
         
         // button
         
@@ -114,6 +120,32 @@ class HomeViewController: UIViewController {
         self.rideButton.layer.shadowOffset.height = 2
         self.rideButton.layer.shadowColor = UIColor.mrBlack25Color().CGColor
         self.rideButton.layer.shadowOpacity = 2
+        
+    }
+    
+    private func setLabelContent() {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let totalCount = defaults.stringForKey(NSUserDefaultKey.TotalCount)
+        let totalDistance = defaults.stringForKey(NSUserDefaultKey.TotalDistance)
+        let averageSpeed = defaults.stringForKey(NSUserDefaultKey.AverageSpeed)
+        
+        if totalCount != nil {
+            let intTotalCount = Int(totalCount!)!
+            totalConutData.text = "\(intTotalCount) times"
+        }
+        if totalDistance != nil {
+            let doubleTotalDistance = Double(totalDistance!)! / 1000
+            let _totalDistance = NSString(format: "%.1f", doubleTotalDistance)
+            self.totalDistanceData.text = "\(String(_totalDistance)) km"
+        }
+        
+        if averageSpeed != nil {
+            let doublAverageSpeed = Double(averageSpeed!)! * 3.6
+            let _doublAverageSpeed = NSString(format: "%.1f", doublAverageSpeed)
+            self.averageSpeedData.text = "\(String(_doublAverageSpeed)) km/h"
+   
+        }
         
     }
 

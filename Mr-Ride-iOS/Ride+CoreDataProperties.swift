@@ -21,5 +21,13 @@ extension Ride {
     @NSManaged var id: String?
     @NSManaged var time: NSNumber?
     @NSManaged var route: NSOrderedSet?
+    
+    var dateForSection: String {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMM yyyy"
+        
+        return dateFormatter.stringFromDate(date!)
+    }
 
 }

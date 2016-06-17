@@ -187,10 +187,12 @@ struct NSUserDefaultKey {
     static let FacebookURL = "NSUserDefaultKey.FacebookURL"
     static let Height = "NSUserDefaultKey.Height"
     static let Weight = "NSUserDefaultKey.Weight"
+    static let TotalDistance = "NSUserDefaultKey.TotalDistance"
+    static let TotalCount = "NSUserDefaultKey.TotalCount"
+    static let AverageSpeed = "NSUserDefaultKey.AverageSpeed"
 }
 
 extension UserInfoManager {
-    
     
     private func setUser() {
         
@@ -198,7 +200,6 @@ extension UserInfoManager {
             
             NSUserDefaults.standardUserDefaults().setObject(user.id, forKey: NSUserDefaultKey.Id)
             NSUserDefaults.standardUserDefaults().setObject(user.name, forKey: NSUserDefaultKey.Name)
-            
             
             if let email = user.email {
                 NSUserDefaults.standardUserDefaults().setObject(email, forKey: NSUserDefaultKey.Email)

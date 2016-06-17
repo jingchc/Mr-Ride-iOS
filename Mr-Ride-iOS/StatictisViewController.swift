@@ -39,9 +39,9 @@ class StatictisViewController: UIViewController {
         loadMap()
     }
     
-    deinit {
-        print("StatictisViewController deinit")
-    }
+//    deinit {
+//        print("StatictisViewController deinit")
+//    }
 }
 
 extension StatictisViewController {
@@ -166,10 +166,10 @@ extension StatictisViewController: MKMapViewDelegate {
     }
     
     private func loadMap() {
-        mapView.region = showRouteRegion()
         if rideInfo?.Routes.count > 0 {
             mapView.addOverlay(polyline())
         }
+        mapView.region = showRouteRegion()
     }
     
     // show route region

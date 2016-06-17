@@ -237,7 +237,7 @@ extension NewRecordViewController: CLLocationManagerDelegate {
         // get distance & locations
                 
         for location in locations {
-            if location.horizontalAccuracy < 20 {
+            if location.horizontalAccuracy < 25 {
                 if self.locations.count > 0 {
                     if location.distanceFromLocation(self.locations.last!) > 10 {
                         distance = 0.0
@@ -433,7 +433,8 @@ extension NewRecordViewController {
         getAverageSpeed()
         saveThisRideToSingleton()
 //        cleanUpCoreData()
-//        saveThisRideToCoreData()
+        saveThisRideToCoreData()
+        saveHomepageInfoToUserDefault()
 //        checkCoreDate()
         pushToStatisticPage()
     }
@@ -456,9 +457,11 @@ extension NewRecordViewController {
     
     private func saveThisRideToSingleton() {
         
+        let fakedate = 65.0
+        
         let rideInfo = RideInfo.init(
                         ID: NSUUID.init().UUIDString,
-                        Date: NSDate(),
+                        Date: NSDate.init(timeIntervalSinceNow: 86400*fakedate),
                         SpendTime: self.time,
                         Distance: self.totalDistance,
                         AverageSpeed: self.currentSpeed ,
@@ -466,6 +469,7 @@ extension NewRecordViewController {
                         Routes: self.totalLocations)
         
         NewRecordViewController.rideInfo = rideInfo
+        
     }
     
     private func getAverageSpeed() {
@@ -510,6 +514,39 @@ extension NewRecordViewController {
         ride.route = NSOrderedSet(array: routes)
         
         do { try moc.save() } catch { fatalError(" core data error \(error)") }
+        
+    }
+    
+    private func saveHomepageInfoToUserDefault() {
+        
+        let request = NSFetchRequest(entityName: "Ride")
+        var totalCounts = 0
+        var totalDistance = 0.0
+        var totalTime = 0.0
+        var averageSpeed = 0.0
+        
+        do {
+            let results = try moc.executeFetchRequest(request) as! [Ride]
+            totalCounts = results.count
+            
+            for result in results {
+                
+                guard result.distance != nil else { return }
+                totalDistance += Double(result.distance!)
+                
+                guard result.time != nil else { return }
+                totalTime += Double(result.time!)
+                
+            }
+        } catch {
+            fatalError("fail to fetch core data")
+        }
+        
+        averageSpeed = totalDistance / totalTime
+        
+        NSUserDefaults.standardUserDefaults().setInteger(totalCounts, forKey: NSUserDefaultKey.TotalCount)
+        NSUserDefaults.standardUserDefaults().setDouble(totalDistance, forKey: NSUserDefaultKey.TotalDistance)
+        NSUserDefaults.standardUserDefaults().setDouble(averageSpeed, forKey: NSUserDefaultKey.AverageSpeed)
         
     }
     

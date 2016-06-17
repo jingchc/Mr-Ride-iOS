@@ -42,6 +42,15 @@ class RideInfoHelper {
         
         return NSString(format: "%0.2d:%0.2d:%0.2d.%0.2d", hours, minutes,seconds,milliseconds)
     }
+    
+    func getTimeFormatForHistoryPage(trackDuration: NSNumber) -> String {
+        let time = NSInteger(trackDuration)
+        let seconds = time % 60
+        let minutes = (time / 60) % 60
+        let hours = time / 3600
+        
+        return String(NSString(format: "%0.2d:%0.2d:%0.2d", hours, minutes,seconds))
+    }
 
     
     // distance
@@ -49,6 +58,14 @@ class RideInfoHelper {
     func getDistanceFormat(distance:Double) -> String {
         return "\(Int(distance)) m"
     }
+    
+    func getDistanceFormatkm(distance:Double) -> String {
+        let distanceKm = distance / 1000
+        let _distanceKm = NSString(format: "%0.2f", distanceKm)
+        
+        return "\(String(_distanceKm)) "
+    }
+
     
     // current speed
     
