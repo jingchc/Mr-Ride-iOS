@@ -461,7 +461,7 @@ extension NewRecordViewController {
     
     private func saveThisRideToSingleton() {
         
-        let fakedate = 85.0
+        let fakedate = 1.0
         
         let rideInfo = RideInfo.init(
                         ID: NSUUID.init().UUIDString,

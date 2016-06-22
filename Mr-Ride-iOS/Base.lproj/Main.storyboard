@@ -443,7 +443,18 @@
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7a-KY-fBZ" userLabel="chartView" customClass="BarChartView" customModule="Charts">
                                 <rect key="frame" x="20" y="64" width="374" height="200"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="螢幕快照 2016-06-17 下午3.24.34" translatesAutoresizingMaskIntoConstraints="NO" id="YhM-8A-6Ba">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="200"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" red="0.99607843139999996" green="0.94509803920000002" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="YhM-8A-6Ba" secondAttribute="trailing" id="BXs-Z3-pF9"/>
+                                    <constraint firstAttribute="bottom" secondItem="YhM-8A-6Ba" secondAttribute="bottom" id="ELi-JS-R71"/>
+                                    <constraint firstItem="YhM-8A-6Ba" firstAttribute="leading" secondItem="X7a-KY-fBZ" secondAttribute="leading" id="SSk-uE-xla"/>
+                                    <constraint firstItem="YhM-8A-6Ba" firstAttribute="top" secondItem="X7a-KY-fBZ" secondAttribute="top" id="kaG-4y-H40"/>
+                                </constraints>
                             </view>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="59" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dF9-gA-uka">
                                 <rect key="frame" x="20" y="284" width="374" height="452"/>
@@ -944,5 +955,6 @@
         <image name="image-history-background" width="1536" height="1021"/>
         <image name="image-medal" width="55" height="85"/>
         <image name="logo-facebook" width="20" height="20"/>
+        <image name="螢幕快照 2016-06-17 下午3.24.34" width="347" height="166"/>
     </resources>
 </document>
