@@ -17,8 +17,6 @@ class NewRecordViewController: UIViewController {
     // rideInfo
     static var rideInfo: RideInfo? = nil
     static var newRecordPage: String? = nil
-
-    
     
     // coreData
     let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
@@ -44,10 +42,16 @@ class NewRecordViewController: UIViewController {
         setLabels()
         setButton()
         setMapView()
+    
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // todo: 確認授權狀態，請使用者授權
+//        self.locationManager.requestWhenInUseAuthorization()
+//        checkLocationAuthority(CLLocationManager.authorizationStatus())
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -127,6 +131,8 @@ extension NewRecordViewController {
         switch currentAnimation {
     
         case .Start:
+            
+            // animation
             UIView.animateWithDuration(0.6, animations: {
                 self.rideButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
                 self.rideButton.layer.cornerRadius = 4
@@ -225,7 +231,7 @@ extension NewRecordViewController {
 }
 
 
-// MARK: - CLLocationManagerl
+// MARK: - CLLocationManager
 
 extension NewRecordViewController: CLLocationManagerDelegate {
     

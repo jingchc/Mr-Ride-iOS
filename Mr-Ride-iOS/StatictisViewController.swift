@@ -24,12 +24,6 @@ class StatictisViewController: UIViewController {
     @IBOutlet weak var totalTime: UILabel!
     @IBOutlet weak var goodJob: UILabel!
     
-    // instance
-    
-    // todo: 判斷從record or history 來，決定left item(close:dismiss, back: back)，以及rideInfo的內容是什麼，tittle，目前這裡只有一個選擇，也就是從record來。
-    
-    // 寫一個enum，History, NewRecoed
-    
     var fromController: String? = NewRecordViewController.newRecordPage ?? HistoryViewController.historyPage
     
     var rideInfo: RideInfo? = nil
@@ -50,6 +44,7 @@ class StatictisViewController: UIViewController {
         fromController = nil
         NewRecordViewController.newRecordPage = nil
         HistoryViewController.historyPage = nil
+        mapView = nil
         print("StatictisViewController deinit")
     }
 }

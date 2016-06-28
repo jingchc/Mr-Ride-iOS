@@ -13,7 +13,6 @@ class HomeViewController: UIViewController {
     
     // labels
     
-    
     @IBOutlet weak var totalDistance: UILabel!
     @IBOutlet weak var totalDistanceData: UILabel!
     @IBOutlet weak var totalCount: UILabel!
@@ -25,7 +24,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        
     }
     
     override func viewWillAppear(animated: Bool) {

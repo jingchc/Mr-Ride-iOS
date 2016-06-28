@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		138D97878F737EACE642BB60 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1932BC444B81FFC90CEB757C /* Pods.framework */; };
 		3F118C0C1D112CCE0085EEA8 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F118C0B1D112CCE0085EEA8 /* HistoryViewController.swift */; };
+		3F1879631D1A823C00B798AC /* RestroomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1879621D1A823C00B798AC /* RestroomModel.swift */; };
+		3F1879651D1A838700B798AC /* RestroomModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1879641D1A838700B798AC /* RestroomModelHelper.swift */; };
+		3F25D0181D1CCFD10003DBC6 /* DataRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25D0171D1CCFD10003DBC6 /* DataRouter.swift */; };
+		3F25D01A1D1D0E1D0003DBC6 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25D0191D1D0E1D0003DBC6 /* DataManager.swift */; };
 		3F34BDFE1D0960FF00F839CF /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34BDFD1D0960FF00F839CF /* UserInfoModel.swift */; };
 		3F34BE001D09630600F839CF /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34BDFF1D09630600F839CF /* UserInfoManager.swift */; };
 		3F34BE031D0AA3ED00F839CF /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34BE021D0AA3ED00F839CF /* protocols.swift */; };
@@ -57,6 +61,10 @@
 		1932BC444B81FFC90CEB757C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E8372B0032E0C58D05719C7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3F118C0B1D112CCE0085EEA8 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		3F1879621D1A823C00B798AC /* RestroomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestroomModel.swift; sourceTree = "<group>"; };
+		3F1879641D1A838700B798AC /* RestroomModelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestroomModelHelper.swift; sourceTree = "<group>"; };
+		3F25D0171D1CCFD10003DBC6 /* DataRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRouter.swift; sourceTree = "<group>"; };
+		3F25D0191D1D0E1D0003DBC6 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3F34BDFD1D0960FF00F839CF /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		3F34BDFF1D09630600F839CF /* UserInfoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
 		3F34BE021D0AA3ED00F839CF /* protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = protocols.swift; sourceTree = "<group>"; };
@@ -118,6 +126,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F18795F1D1A7A3900B798AC /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				3F25D0191D1D0E1D0003DBC6 /* DataManager.swift */,
+				3F1879621D1A823C00B798AC /* RestroomModel.swift */,
+				3F1879641D1A838700B798AC /* RestroomModelHelper.swift */,
+				3F25D0171D1CCFD10003DBC6 /* DataRouter.swift */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
 		3F34BDFA1D090AA400F839CF /* FaceBook LogIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +226,7 @@
 				3FD7FE2F1D0D928C00CD42E8 /* Statistic Page */,
 				3FFD61D71CFC04C80054CBA5 /* History */,
 				3F9DD1671D13DE0B00DE99EF /* Map */,
+				3F18795F1D1A7A3900B798AC /* DataModel */,
 				3FC9B0E61D10363E004B2AAE /* Core Data */,
 				3F908A181CF2AE7E008091E5 /* Navigation */,
 				3F34BE011D0AA3CA00F839CF /* Protocol */,
@@ -459,8 +479,10 @@
 			files = (
 				3F9F7B961CFEBFDF005CDADB /* NewRecordNavigationViewController.swift in Sources */,
 				3FD7FE331D0E5C4200CD42E8 /* CalorieCalculator.swift in Sources */,
+				3F1879631D1A823C00B798AC /* RestroomModel.swift in Sources */,
 				3F8A51081CF2F990002D6C21 /* NewRecordViewController.swift in Sources */,
 				3F9DD16B1D13DECA00DE99EF /* MapNavigationController.swift in Sources */,
+				3F1879651D1A838700B798AC /* RestroomModelHelper.swift in Sources */,
 				3FFD61D61CFBFAF10054CBA5 /* SideBarTableViewController.swift in Sources */,
 				3F908A021CF2A777008091E5 /* AppDelegate.swift in Sources */,
 				3F34BDFE1D0960FF00F839CF /* UserInfoModel.swift in Sources */,
@@ -474,10 +496,12 @@
 				3F34BE001D09630600F839CF /* UserInfoManager.swift in Sources */,
 				3FFD61DE1CFC05800054CBA5 /* SideBarTableViewCell.swift in Sources */,
 				3FC3FCF31D0BABB2002FC0E1 /* FBLogInPermission.swift in Sources */,
+				3F25D01A1D1D0E1D0003DBC6 /* DataManager.swift in Sources */,
 				3F8A50ED1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift in Sources */,
 				3FC9B0E51D10361B004B2AAE /* Route.swift in Sources */,
 				3F86F3581D128C6F001F2A24 /* HistoryTableViewCell.swift in Sources */,
 				3F118C0C1D112CCE0085EEA8 /* HistoryViewController.swift in Sources */,
+				3F25D0181D1CCFD10003DBC6 /* DataRouter.swift in Sources */,
 				3FD7FE311D0D92CD00CD42E8 /* StatictisViewController.swift in Sources */,
 				3F908A0A1CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodeld in Sources */,
 				3FD7FE351D0EA95E00CD42E8 /* RideInfoModel.swift in Sources */,
@@ -532,6 +556,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -578,6 +603,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

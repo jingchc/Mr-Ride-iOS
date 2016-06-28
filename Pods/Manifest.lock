@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (3.4.1)
   - Bolts (1.7.0):
     - Bolts/AppLinks (= 1.7.0)
     - Bolts/Tasks (= 1.7.0)
@@ -17,6 +18,7 @@ PODS:
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
+  - Alamofire (= 3.4.1)
   - Charts (= 2.2.5)
   - FBSDKCoreKit (= 4.11.0)
   - FBSDKLoginKit (= 4.11.0)
@@ -24,6 +26,7 @@ DEPENDENCIES:
   - SwiftyJSON (= 2.3.2)
 
 SPEC CHECKSUMS:
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
   Charts: b48fcc8d7190de910ff9e9748f5360c8ea7856e5
   FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
