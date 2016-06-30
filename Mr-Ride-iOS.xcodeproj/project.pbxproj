@@ -17,6 +17,7 @@
 		3F34BE001D09630600F839CF /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34BDFF1D09630600F839CF /* UserInfoManager.swift */; };
 		3F34BE031D0AA3ED00F839CF /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34BE021D0AA3ED00F839CF /* protocols.swift */; };
 		3F34BE051D0AA4FF00F839CF /* UserInfoModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34BE041D0AA4FF00F839CF /* UserInfoModelHelper.swift */; };
+		3F5ED6561D23B22600FE3177 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5ED6551D23B22600FE3177 /* Annotation.swift */; };
 		3F86F3581D128C6F001F2A24 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86F3571D128C6F001F2A24 /* HistoryTableViewCell.swift */; };
 		3F8A50ED1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A50EB1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift */; };
 		3F8A50EE1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A50EC1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift */; };
@@ -43,6 +44,10 @@
 		3F9F7B961CFEBFDF005CDADB /* NewRecordNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F7B951CFEBFDF005CDADB /* NewRecordNavigationViewController.swift */; };
 		3FC185801D058A0F0005C291 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC1857F1D058A0F0005C291 /* LogInViewController.swift */; };
 		3FC3FCF31D0BABB2002FC0E1 /* FBLogInPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC3FCF21D0BABB2002FC0E1 /* FBLogInPermission.swift */; };
+		3FC8093D1D22597D00B4C982 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC8093B1D22597D00B4C982 /* Fabric.framework */; };
+		3FC8093E1D22597D00B4C982 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC8093C1D22597D00B4C982 /* Crashlytics.framework */; };
+		3FC809411D22A2D100B4C982 /* YoubikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC809401D22A2D100B4C982 /* YoubikeModel.swift */; };
+		3FC809431D22A52B00B4C982 /* YoubikeModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC809421D22A52B00B4C982 /* YoubikeModelHelper.swift */; };
 		3FC9B0E21D10361B004B2AAE /* Ride+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9B0DE1D10361B004B2AAE /* Ride+CoreDataProperties.swift */; };
 		3FC9B0E31D10361B004B2AAE /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9B0DF1D10361B004B2AAE /* Ride.swift */; };
 		3FC9B0E41D10361B004B2AAE /* Route+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9B0E01D10361B004B2AAE /* Route+CoreDataProperties.swift */; };
@@ -69,6 +74,7 @@
 		3F34BDFF1D09630600F839CF /* UserInfoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
 		3F34BE021D0AA3ED00F839CF /* protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = protocols.swift; sourceTree = "<group>"; };
 		3F34BE041D0AA4FF00F839CF /* UserInfoModelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModelHelper.swift; sourceTree = "<group>"; };
+		3F5ED6551D23B22600FE3177 /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 		3F86F3571D128C6F001F2A24 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		3F8A50EB1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+MRAdditions.swift"; sourceTree = "<group>"; };
 		3F8A50EC1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+MRAdditions.swift"; sourceTree = "<group>"; };
@@ -97,6 +103,10 @@
 		3F9F7B951CFEBFDF005CDADB /* NewRecordNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRecordNavigationViewController.swift; sourceTree = "<group>"; };
 		3FC1857F1D058A0F0005C291 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		3FC3FCF21D0BABB2002FC0E1 /* FBLogInPermission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLogInPermission.swift; sourceTree = "<group>"; };
+		3FC8093B1D22597D00B4C982 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../Fabric.framework; sourceTree = "<group>"; };
+		3FC8093C1D22597D00B4C982 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../Crashlytics.framework; sourceTree = "<group>"; };
+		3FC809401D22A2D100B4C982 /* YoubikeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoubikeModel.swift; sourceTree = "<group>"; };
+		3FC809421D22A52B00B4C982 /* YoubikeModelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoubikeModelHelper.swift; sourceTree = "<group>"; };
 		3FC9B0DE1D10361B004B2AAE /* Ride+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ride+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3FC9B0DF1D10361B004B2AAE /* Ride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
 		3FC9B0E01D10361B004B2AAE /* Route+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Route+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -120,6 +130,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				138D97878F737EACE642BB60 /* Pods.framework in Frameworks */,
+				3FC8093E1D22597D00B4C982 /* Crashlytics.framework in Frameworks */,
+				3FC8093D1D22597D00B4C982 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +144,8 @@
 				3F25D0191D1D0E1D0003DBC6 /* DataManager.swift */,
 				3F1879621D1A823C00B798AC /* RestroomModel.swift */,
 				3F1879641D1A838700B798AC /* RestroomModelHelper.swift */,
+				3FC809401D22A2D100B4C982 /* YoubikeModel.swift */,
+				3FC809421D22A52B00B4C982 /* YoubikeModelHelper.swift */,
 				3F25D0171D1CCFD10003DBC6 /* DataRouter.swift */,
 			);
 			name = DataModel;
@@ -199,6 +213,7 @@
 			children = (
 				3F908A001CF2A777008091E5 /* Mr-Ride-iOS */,
 				3F9089FF1CF2A776008091E5 /* Products */,
+				3FC8093F1D225DFA00B4C982 /* Crashlytics */,
 				3FFD61D01CFBE5200054CBA5 /* SWRevealViewController */,
 				F241636BB789978C167CCDBA /* Pods */,
 				76B475F03F5191C4038C2465 /* Frameworks */,
@@ -262,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				3F9DD1681D13DE3700DE99EF /* MapViewController.swift */,
+				3F5ED6551D23B22600FE3177 /* Annotation.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -272,6 +288,16 @@
 				3FC1857F1D058A0F0005C291 /* LogInViewController.swift */,
 			);
 			name = "LogIn Page";
+			sourceTree = "<group>";
+		};
+		3FC8093F1D225DFA00B4C982 /* Crashlytics */ = {
+			isa = PBXGroup;
+			children = (
+				3FC8093B1D22597D00B4C982 /* Fabric.framework */,
+				3FC8093C1D22597D00B4C982 /* Crashlytics.framework */,
+			);
+			name = Crashlytics;
+			path = "Mr-Ride-iOS";
 			sourceTree = "<group>";
 		};
 		3FC9B0E61D10363E004B2AAE /* Core Data */ = {
@@ -351,6 +377,7 @@
 				3F9089FC1CF2A776008091E5 /* Resources */,
 				E4C68C27139E8919216DC94F /* Embed Pods Frameworks */,
 				EE60B978FE1D067BEA2F9936 /* Copy Pods Resources */,
+				3FC8093A1D22589C00B4C982 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -425,6 +452,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3FC8093A1D22589C00B4C982 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 697594ef448e326a86bfdfee87e7956051435fcc bb140b0fec09fa517d6a1ffdb6565fc556f23e270dd419d74229563e5adbb909";
+		};
 		935574FF5351C6B9B8CD69AF /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -477,6 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FC809431D22A52B00B4C982 /* YoubikeModelHelper.swift in Sources */,
 				3F9F7B961CFEBFDF005CDADB /* NewRecordNavigationViewController.swift in Sources */,
 				3FD7FE331D0E5C4200CD42E8 /* CalorieCalculator.swift in Sources */,
 				3F1879631D1A823C00B798AC /* RestroomModel.swift in Sources */,
@@ -493,6 +534,7 @@
 				3FFD61E21CFC199E0054CBA5 /* HistoryNavigationController.swift in Sources */,
 				3FFD61D41CFBE5750054CBA5 /* SWRevealViewController.m in Sources */,
 				3FC185801D058A0F0005C291 /* LogInViewController.swift in Sources */,
+				3FC809411D22A2D100B4C982 /* YoubikeModel.swift in Sources */,
 				3F34BE001D09630600F839CF /* UserInfoManager.swift in Sources */,
 				3FFD61DE1CFC05800054CBA5 /* SideBarTableViewCell.swift in Sources */,
 				3FC3FCF31D0BABB2002FC0E1 /* FBLogInPermission.swift in Sources */,
@@ -509,6 +551,7 @@
 				3F8A510B1CF2FA79002D6C21 /* HomeViewController.swift in Sources */,
 				3F8A50EE1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift in Sources */,
 				3F34BE051D0AA4FF00F839CF /* UserInfoModelHelper.swift in Sources */,
+				3F5ED6561D23B22600FE3177 /* Annotation.swift in Sources */,
 				3F9DD1691D13DE3700DE99EF /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -628,6 +671,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Mr-Ride-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-Jing.Mr-Ride-iOS";
@@ -643,6 +691,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Mr-Ride-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-Jing.Mr-Ride-iOS";

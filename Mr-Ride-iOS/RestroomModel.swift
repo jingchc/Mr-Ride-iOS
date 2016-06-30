@@ -15,6 +15,7 @@ class RestroomModel {
     let name: String
     let address: String
     let coordinate: CLLocationCoordinate2D
+    let travelTime: String?
     
     init(id: String, place: String, name: String, address: String, coordinate:CLLocationCoordinate2D) {
         self.id = id
@@ -22,5 +23,6 @@ class RestroomModel {
         self.name = name
         self.address = address
         self.coordinate = coordinate
+        self.travelTime = nil
     }
 }

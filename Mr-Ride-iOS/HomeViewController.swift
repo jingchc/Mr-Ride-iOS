@@ -8,6 +8,8 @@
 
 import UIKit
 import Charts
+import Crashlytics
+
 
 class HomeViewController: UIViewController {
     

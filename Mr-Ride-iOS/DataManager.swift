@@ -44,9 +44,10 @@ extension DataManager {
                 success(restrooms: restrooms)
                 
             case .Failure(let error):
-                print(error)
                 failure(error: error)
                 
+                // todo: error handling
+                print(error)
             }
         }
         
@@ -57,4 +58,42 @@ extension DataManager {
 
 // MARK: YouBikeDataManager
 
+extension DataManager {
+    
+    typealias GetYoubikeSuccess = (youbikes: [YouBikeModel]) -> Void
+    typealias GetYoubikeFailure = (error: ErrorType) -> Void
+    
+    func getYoubikes(success success: GetYoubikeSuccess, failure: GetYoubikeFailure) -> Request {
+        
+        let URLRequest = Router.GetYouBikeStationData
+        let request = Alamofire.request(URLRequest).validate().responseData { result in
+            
+            switch result.result {
+            case .Success(let data):
+                
+                let json = JSON(data: data)
+                var youbikes: [YouBikeModel] = []
+                for (_, subJSON) in json["retVal"] {
+                    
+                    do {
+                        let youbike = try YoubikeModelHelper().parse(json: subJSON)
+                        youbikes.append(youbike)
+                    }
+                    catch {
+                        print("Can't get youbike data")
+                    }
+                }
+                
+                success(youbikes: youbikes)
+                
+            case .Failure(let error):
+                failure(error: error)
+                // todo: error handling
+                print(error)
+            }
+            
+        }
+        return request
+    }
+}
 
