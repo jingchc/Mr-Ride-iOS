@@ -9,6 +9,8 @@
 import UIKit
 import Charts
 import Crashlytics
+import CoreData
+import CoreLocation
 
 
 class HomeViewController: UIViewController {
@@ -32,13 +34,13 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setUp()
         getChartViewContent()
+        restroomLoadDataFromServer()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setLabelContent()
         
-
     }
     
     deinit {
@@ -224,6 +226,56 @@ class HomeViewController: UIViewController {
         let lineChartData = LineChartData(xVals: dataPoints, dataSet: lineChartDataSet)
         chartView.data = lineChartData
         
+    }
+    
+    // load restroom data from server
+    
+    private func restroomLoadDataFromServer(){
+        cleanUpCoreData()
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {
+            
+            DataManager.shared.getRestrooms(
+                success: { result in
+                    
+                    let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+                    
+                    for restroomInfoFromServer in result {
+                        let restroom = NSEntityDescription.insertNewObjectForEntityForName("Restroom", inManagedObjectContext: moc) as! Restroom
+                        
+                        restroom.id = restroomInfoFromServer.id
+                        restroom.name = restroomInfoFromServer.name
+                        restroom.place = restroomInfoFromServer.place
+                        restroom.address = restroomInfoFromServer.address
+                        restroom.longitude = restroomInfoFromServer.coordinate.longitude
+                        restroom.latitude = restroomInfoFromServer.coordinate.latitude
+                        
+                        do { try moc.save() } catch { fatalError(" core data error \(error)") }
+                    }
+                },
+                failure: { result in
+                    
+                    // todo: error handling
+                    print("no~~")
+                    
+                }
+            )
+        }
+    }
+
+    
+    private func cleanUpCoreData() {
+        
+        let request = NSFetchRequest(entityName: "Restroom")
+        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        do {
+            let results = try moc.executeFetchRequest(request) as! [Restroom]
+            
+            for result in results {
+                moc.deleteObject(result)
+            }
+        } catch {
+            fatalError("clean up core data error")
+        }
     }
 
 }

@@ -8,7 +8,7 @@
 
 import CoreLocation
 
-class RestroomModel {
+struct RestroomModel {
     
     let id: String
     let place: String

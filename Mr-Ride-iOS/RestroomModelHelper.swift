@@ -8,6 +8,7 @@
 
 import CoreLocation
 import SwiftyJSON
+import CoreData
 
 struct RestroomModelHelper { }
 
@@ -50,6 +51,41 @@ extension RestroomModelHelper: JSONParsable {
         
         return restRoom
     }
+    
+    
+    
+    func fetchDataFromCoreData() -> [RestroomModel]{
+        
+        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        
+        var restrooms: [RestroomModel] = []
+
+        do {
+            let request = NSFetchRequest(entityName: "Restroom")
+            
+            let datas = try moc.executeFetchRequest(request)
+            restrooms = []
+            
+            for data in datas {
+                let restroom = RestroomModel(
+                    id: data.valueForKey("id") as! String,
+                    place: data.valueForKey("place") as! String,
+                    name: data.valueForKey("name") as! String,
+                    address: data.valueForKey("address") as! String,
+                    coordinate: CLLocationCoordinate2D(latitude: (data.valueForKey("latitude") as! Double), longitude: (data.valueForKey("longitude") as! Double)))
+                
+                restrooms.append(restroom)
+                
+            }
+            
+            return restrooms
+            
+        } catch {
+            fatalError("error - fetching rideInfo from CoreData")
+        }
+    }
+    
+
     
 }
 

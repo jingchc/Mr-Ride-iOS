@@ -37,7 +37,7 @@ class MapViewController: UIViewController  {
             switch annotaionStatus {
             case .Restroom:
                 map.removeAnnotations(map.annotations)
-                restroomLoadData()
+                restroomLoadDataFromCoreData()
                 
             case .Youbike:
                 map.removeAnnotations(map.annotations)
@@ -77,7 +77,7 @@ class MapViewController: UIViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        restroomLoadData()
+        restroomLoadDataFromCoreData()
         setMapView()
     }
 }
@@ -129,7 +129,6 @@ extension MapViewController {
         pickerView.showsSelectionIndicator = true
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
-//        toolBar.sizeToFit()
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(MapViewController.cancel))
         let middleText = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: self, action: nil)
         middleText.title = "Look for"
@@ -137,7 +136,6 @@ extension MapViewController {
         
         toolBar.setItems([cancelButton, middleText, doneButton], animated: false)
         toolBar.userInteractionEnabled = true
-//        pickerView.addSubview(toolBar)
         
         
         // todo: rectangle color
@@ -159,38 +157,24 @@ extension MapViewController {
 
 extension MapViewController {
 
-    private func restroomLoadData() {
+    private func restroomLoadDataFromCoreData() {
         
-        // restroom
-        
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {
+        // fetch data from core data
+         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0)) {
+            self.restrooms = RestroomModelHelper().fetchDataFromCoreData()
+            print(self.restrooms.count)
             
-            DataManager.shared.getRestrooms(
-                success: { result in
+            dispatch_async(dispatch_get_main_queue()){
+                for restroom in self.restrooms {
+                    let annotation = MrRidePointAnnotation()
+                    annotation.coordinate = restroom.coordinate
+                    annotation.title = restroom.name
+                    annotation.type = " \(restroom.place) "
+                    annotation.street = restroom.address
                     
-                    self.restrooms = result
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        
-                        for restroom in self.restrooms {
-                            let annotation = MrRidePointAnnotation()
-                            annotation.coordinate = restroom.coordinate
-                            annotation.title = restroom.name
-                            annotation.type = " \(restroom.place) "
-                            annotation.street = restroom.address
-                            
-                            self.map.addAnnotation(annotation)
-                        }
-                    }
-                },
-                failure: { result in
-                    
-                    // todo: error handling
-                    print("no~~")
-                    
+                    self.map.addAnnotation(annotation)
                 }
-            )
-            
+            }
         }
     }
     
@@ -216,8 +200,9 @@ extension MapViewController {
                             annotation.street = youbike.stationAddress
                             
                             self.map.addAnnotation(annotation)
-                            
                         }
+                        print(self.youbikes.count)
+
                     }
                 },
                 failure: { result in

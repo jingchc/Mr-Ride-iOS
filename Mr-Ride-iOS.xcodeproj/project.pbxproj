@@ -56,6 +56,8 @@
 		3FD7FE331D0E5C4200CD42E8 /* CalorieCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7FE321D0E5C4200CD42E8 /* CalorieCalculator.swift */; };
 		3FD7FE351D0EA95E00CD42E8 /* RideInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7FE341D0EA95E00CD42E8 /* RideInfoModel.swift */; };
 		3FE1F7C81D27EE590088C247 /* RideInfoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE1F7C71D27EE590088C247 /* RideInfoHelper.swift */; };
+		3FF933061D28FED200BB3FFA /* Restroom+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF933041D28FED200BB3FFA /* Restroom+CoreDataProperties.swift */; };
+		3FF933071D28FED200BB3FFA /* Restroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF933051D28FED200BB3FFA /* Restroom.swift */; };
 		3FFD61D41CFBE5750054CBA5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFD61D31CFBE5750054CBA5 /* SWRevealViewController.m */; };
 		3FFD61D61CFBFAF10054CBA5 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFD61D51CFBFAF10054CBA5 /* SideBarTableViewController.swift */; };
 		3FFD61DE1CFC05800054CBA5 /* SideBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFD61DD1CFC05800054CBA5 /* SideBarTableViewCell.swift */; };
@@ -116,6 +118,8 @@
 		3FD7FE321D0E5C4200CD42E8 /* CalorieCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalorieCalculator.swift; sourceTree = "<group>"; };
 		3FD7FE341D0EA95E00CD42E8 /* RideInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideInfoModel.swift; sourceTree = "<group>"; };
 		3FE1F7C71D27EE590088C247 /* RideInfoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideInfoHelper.swift; sourceTree = "<group>"; };
+		3FF933041D28FED200BB3FFA /* Restroom+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Restroom+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3FF933051D28FED200BB3FFA /* Restroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restroom.swift; sourceTree = "<group>"; };
 		3FFD61D11CFBE5740054CBA5 /* Mr-Ride-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mr-Ride-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		3FFD61D21CFBE5750054CBA5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		3FFD61D31CFBE5750054CBA5 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -305,6 +309,8 @@
 		3FC9B0E61D10363E004B2AAE /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				3FF933041D28FED200BB3FFA /* Restroom+CoreDataProperties.swift */,
+				3FF933051D28FED200BB3FFA /* Restroom.swift */,
 				3FC9B0DE1D10361B004B2AAE /* Ride+CoreDataProperties.swift */,
 				3FC9B0DF1D10361B004B2AAE /* Ride.swift */,
 				3FC9B0E01D10361B004B2AAE /* Route+CoreDataProperties.swift */,
@@ -528,6 +534,7 @@
 				3F9DD16B1D13DECA00DE99EF /* MapNavigationController.swift in Sources */,
 				3F1879651D1A838700B798AC /* RestroomModelHelper.swift in Sources */,
 				3FFD61D61CFBFAF10054CBA5 /* SideBarTableViewController.swift in Sources */,
+				3FF933071D28FED200BB3FFA /* Restroom.swift in Sources */,
 				3F908A021CF2A777008091E5 /* AppDelegate.swift in Sources */,
 				3F34BDFE1D0960FF00F839CF /* UserInfoModel.swift in Sources */,
 				3FFD61E01CFC194D0054CBA5 /* HomeNavigationController.swift in Sources */,
@@ -538,6 +545,7 @@
 				3FFD61D41CFBE5750054CBA5 /* SWRevealViewController.m in Sources */,
 				3FC185801D058A0F0005C291 /* LogInViewController.swift in Sources */,
 				3FC809411D22A2D100B4C982 /* YoubikeModel.swift in Sources */,
+				3FF933061D28FED200BB3FFA /* Restroom+CoreDataProperties.swift in Sources */,
 				3F34BE001D09630600F839CF /* UserInfoManager.swift in Sources */,
 				3FFD61DE1CFC05800054CBA5 /* SideBarTableViewCell.swift in Sources */,
 				3FC3FCF31D0BABB2002FC0E1 /* FBLogInPermission.swift in Sources */,
