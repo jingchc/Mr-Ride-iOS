@@ -26,7 +26,7 @@ class StatictisViewController: UIViewController {
     
     var fromController: String? = NewRecordViewController.newRecordPage ?? HistoryViewController.historyPage
     
-    var rideInfo: RideInfo? = nil
+   private var rideInfo: RideInfo? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
