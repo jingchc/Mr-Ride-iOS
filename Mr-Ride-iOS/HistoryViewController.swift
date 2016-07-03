@@ -37,7 +37,7 @@ class HistoryViewController: UIViewController {
     
     @IBOutlet weak var historyTableView: UITableView!    
     @IBOutlet weak var backgroundImage: UIImageView!
-    @IBOutlet weak var barChartView: BarChartView!
+    @IBOutlet weak var chartView: LineChartView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +49,7 @@ class HistoryViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         historyTableView.reloadData()
+        getChartViewContent()
     }
 }
 
@@ -88,6 +89,24 @@ extension HistoryViewController {
             self.navigationItem.leftBarButtonItem?.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
+        
+        // chart View
+        
+        chartView.backgroundColor = UIColor.clearColor()
+        chartView.userInteractionEnabled = false
+        chartView.drawGridBackgroundEnabled = false
+        chartView.dragEnabled = false
+        chartView.drawMarkers = false
+        chartView.descriptionText = ""
+        chartView.legend.enabled = false
+        
+        chartView.rightAxis.enabled = false
+        chartView.leftAxis.enabled = false
+        
+        chartView.xAxis.drawLabelsEnabled = false
+        chartView.xAxis.drawAxisLineEnabled = false
+        chartView.xAxis.drawGridLinesEnabled = false
+        
     }
 }
 
@@ -101,6 +120,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource, NSF
         } catch {
             fatalError("fetch core data error")
         }
+        
     }
     
     // MARK: - TableView Data Source
@@ -201,5 +221,56 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource, NSF
 // chart view
 
 extension HistoryViewController {
+    
+    private func getChartViewContent() {
+        
+        // get core data
+        let rideInfos = RideInfoModel().fetchDataFromCoreData()
+        
+        // date and distance array
+        var dates: [String] = []
+        var distances: [Double] = []
+        
+        for rideinfo in rideInfos {
+            let date = RideInfoHelper.shared.getDateFormat(rideinfo.Date)
+            let distance = rideinfo.Distance
+            
+            dates.append(date)
+            distances.append(distance)
+        }
+        
+        setChartViewContent(dates, values: distances)
+        
+    }
+    
+    private func setChartViewContent(dataPoints:[String], values:[Double]) {
+        
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(value: values[i], xIndex: i)
+            dataEntries.append(dataEntry)
+        }
+        
+        let lineChartDataSet = LineChartDataSet(yVals: dataEntries, label: "")
+        
+        // line attributes
+        lineChartDataSet.drawFilledEnabled = true
+        lineChartDataSet.drawCirclesEnabled = false
+        lineChartDataSet.drawValuesEnabled = false
+        lineChartDataSet.mode = .CubicBezier
+        lineChartDataSet.lineWidth = 0.0
+        
+        // chart fill attribute
+        let gradientColors = [UIColor.mrLightblueColor().CGColor, UIColor.waterBlueColor().CGColor]
+        let colorLocations:[CGFloat] = [0.0, 0.19]
+        let gradient = CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), gradientColors, colorLocations)
+        lineChartDataSet.fill = ChartFill.fillWithLinearGradient(gradient!, angle: 90.0)
+        
+        let lineChartData = LineChartData(xVals: dataPoints, dataSet: lineChartDataSet)
+        chartView.data = lineChartData
+        
+    }
+
     
 }
