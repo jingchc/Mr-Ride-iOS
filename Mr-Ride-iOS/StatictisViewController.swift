@@ -26,18 +26,23 @@ class StatictisViewController: UIViewController {
     
     var fromController: String? = NewRecordViewController.newRecordPage ?? HistoryViewController.historyPage
     
-   private var rideInfo: RideInfo? = nil
+    private var rideInfo: RideInfo? = nil
+    private var totalLocation: [[LocationWithNumber]] = [] {
+        didSet {
+            for route in totalLocation {
+                drawPolyLine(route)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fromWichController()
-       
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         setUp()
-        loadMap()
     }
     
     deinit {
@@ -45,7 +50,6 @@ class StatictisViewController: UIViewController {
         NewRecordViewController.newRecordPage = nil
         HistoryViewController.historyPage = nil
         mapView = nil
-        print("StatictisViewController deinit")
     }
 }
 
@@ -58,9 +62,7 @@ extension StatictisViewController {
     }
     
     @objc func close() {
-//        rideInfo = nil
         fromController = nil
-//        NewRecordViewController.newRecordPage = nil
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -68,7 +70,6 @@ extension StatictisViewController {
     private func setUp() {
         
         // backgroung
-        
         let gradient = CAGradientLayer()
         self.view.backgroundColor = UIColor.mrLightblueColor()
         let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.60)
@@ -78,7 +79,6 @@ extension StatictisViewController {
         self.view.layer.insertSublayer(gradient, atIndex: 0)
 
         // labels
-        
         distanceLabel.font = UIFont.mrTextStyle12Font()
         distanceLabel.textColor = UIColor.whiteColor()
         distanceLabel.shadowColor = UIColor.mrBlack20Color()
@@ -130,10 +130,10 @@ extension StatictisViewController {
                 return _calorie as String
             }
             calories.text = "\(calorie) kcal"
+            totalLocation = saperateRoutes(_rideInfo.Routes)
         }
         
         // mapView
-        
         mapView.layer.cornerRadius = 10
         mapView.delegate = self
     }
@@ -173,21 +173,26 @@ extension StatictisViewController {
 
                 self.navigationItem.title = navigationDate
                 
-                print("from HistoryPage")
-                
             case "NewRecordPage":
                 rideInfo = NewRecordViewController.rideInfo
                 setCloseItem()
                 self.navigationItem.title = RideInfoHelper.shared.todayDate
-
-                print("from NewRecordPage")
-                
             
             default:
                 print("I don't where I came from")
                 break
             }
         }
+    }
+    
+    // saperate routes
+    private func saperateRoutes(locationWithNumber: [LocationWithNumber]) -> [[LocationWithNumber]] {
+        var routes :[[LocationWithNumber]] = []
+        for number in (0...locationWithNumber.last!.number) {
+            let route = locationWithNumber.filter{(x) -> Bool in x.number == number }
+            routes.append(route)
+        }
+        return routes
     }
 }
 
@@ -207,27 +212,42 @@ extension StatictisViewController: MKMapViewDelegate {
         return renderer
     }
     
-    private func polyline() -> MKPolyline {
-        
-        var coords = [CLLocationCoordinate2D]()
-        guard let locations = rideInfo?.Routes else {
-            print("no Route data")
-            return MKPolyline(coordinates: &coords, count: coords.count)
-        }
-        
-        for locationWithNumber in locations {
+    private func drawPolyLine(route: [LocationWithNumber]) {
+        mapView.addOverlay(polyLine(route))
+        mapView.region = showRouteRegion()
+    }
+    
+    
+    private func polyLine(route: [LocationWithNumber]) -> MKPolyline {
+        var coords =  [CLLocationCoordinate2D]()
+        for locationWithNumber in route {
             let location = locationWithNumber.location
             coords.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
         }
-        return MKPolyline(coordinates: &coords, count: locations.count)
+        return MKPolyline(coordinates: &coords, count: route.count)
     }
     
-    private func loadMap() {
-        if rideInfo?.Routes.count > 0 {
-            mapView.addOverlay(polyline())
-        }
-        mapView.region = showRouteRegion()
-    }
+//    private func polyline() -> MKPolyline {
+//        
+//        var coords = [CLLocationCoordinate2D]()
+//        guard let locations = rideInfo?.Routes else {
+//            print("no Route data")
+//            return MKPolyline(coordinates: &coords, count: coords.count)
+//        }
+//        
+//        for locationWithNumber in locations {
+//            let location = locationWithNumber.location
+//            coords.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+//        }
+//        return MKPolyline(coordinates: &coords, count: locations.count)
+//    }
+//    
+//    private func loadMap() {
+//        if rideInfo?.Routes.count > 0 {
+//            mapView.addOverlay(polyline())
+//        }
+//        mapView.region = showRouteRegion()
+//    }
     
     // show route region
     

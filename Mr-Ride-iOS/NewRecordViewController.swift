@@ -292,16 +292,6 @@ extension NewRecordViewController: CLLocationManagerDelegate {
         }
     }
 
-    // saperate routes  (尚未用到）
-    private func saperateRoutes(locationWithNumber: [LocationWithNumber]) -> [[LocationWithNumber]] {
-        var routes :[[LocationWithNumber]] = []
-        for number in (0...locationWithNumber.last!.number) {
-            let route = locationWithNumber.filter{(x) -> Bool in x.number == number }
-            routes.append(route)
-        }
-        return routes
-    }
-    
     // throwRoutesToDrawPolyLine
     
 //    private func drawMultiplePolyline(routes: [[LocationWithNumber]]) {
@@ -346,7 +336,7 @@ extension NewRecordViewController: CLLocationManagerDelegate {
             let location = locationWithNumber.location
             coords.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
         }
-        return MKPolyline(coordinates: &coords, count: self.locations.count)
+        return MKPolyline(coordinates: &coords, count: coords.count)
     }
     
      func mapView(mapView: MKMapView, didFailToLocateUserWithError error: NSError) {
