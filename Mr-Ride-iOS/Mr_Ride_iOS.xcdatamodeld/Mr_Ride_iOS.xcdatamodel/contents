@@ -21,13 +21,14 @@
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="ride" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Ride" inverseName="route" inverseEntity="Ride" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Ride" positionX="-2135" positionY="18" width="128" height="148"/>
-        <element name="Route" positionX="-1919" positionY="108" width="128" height="133"/>
-        <element name="Restroom" positionX="-2025" positionY="117" width="128" height="135"/>
+        <element name="Restroom" positionX="-2286" positionY="171" width="128" height="135"/>
+        <element name="Ride" positionX="-2288" positionY="-13" width="128" height="148"/>
+        <element name="Route" positionX="-2007" positionY="99" width="128" height="148"/>
     </elements>
 </model>

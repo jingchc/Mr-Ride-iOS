@@ -19,10 +19,50 @@ class NewRecordViewController: UIViewController {
     static var newRecordPage: String? = nil
     
     // coreData
-    let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    private let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     
+    // location Manager
+    private var locationManager = CLLocationManager()
+    private lazy var locations = [LocationWithNumber]()
+    private lazy var totalLocations = [LocationWithNumber]()
+    private lazy var totalLocationsForPolyLine = [[LocationWithNumber]]()
+    private lazy var locationNumber = 0
+    
+    // Status
+    private var currentStatus = RideButtonFunction.Default
+    private var nextStatus = RideButtonFunction.Start
+    
+    // distance
+    private var distance = 0.0
+    private var currentDistance = 0.0
+    private var totalDistance = 0.0
+        { didSet {
+            nowDistance.text = RideInfoHelper.shared.getDistanceFormat(totalDistance)
+            nowSpeed.text = RideInfoHelper.shared.getSpeedFormat(currentSpeed)
+            nowCalories.text = "\(self.getCalorieBurnedData()) kcal"
+        }
+    }
+    
+    // timer
+    private lazy var timer = NSTimer()
+    private var time: NSTimeInterval = 0.00
+        { didSet { nowTime.text = RideInfoHelper.shared.getTimeFormat(time) as String } }
+    private var startTime = NSDate.timeIntervalSinceReferenceDate()
+    private var pausedTime: NSTimeInterval = 0.00
+    private var continuedTime: NSTimeInterval = 0.00
+    private var totalPausedTime: NSTimeInterval = 0.00
+    
+    // current speed
+    private var currentSpeed: Double = 0.0
+    
+    // calorie
+    private let calorieCalculator = CalorieCalculator()
+    private var calorie: Double = 0.0
+
     // items
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapView: MKMapView! { didSet {
+        locationManager.startUpdatingLocation()}
+    }
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var nowDistance: UILabel!
     @IBOutlet weak var averageSpeed: UILabel!
@@ -42,85 +82,29 @@ class NewRecordViewController: UIViewController {
         setLabels()
         setButton()
         setMapView()
-    
+        setLocationManager()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // todo: 確認授權狀態，請使用者授權
-//        self.locationManager.requestWhenInUseAuthorization()
-//        checkLocationAuthority(CLLocationManager.authorizationStatus())
-        
+        locationManager.startUpdatingLocation()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        locationManager.stopUpdatingLocation()
         timer.invalidate()
     }
     
     override func viewDidDisappear(animated: Bool) {
+        locationManager.stopUpdatingLocation()
         mapView = nil
     }
     
-    
-//    deinit {
-//        print("NewRecordViewController deinit")
-//    }
-    
-    // locationManager
-    
-    var distance = 0.0
-    var currentDistance = 0.0
-    var totalDistance = 0.0
-        { didSet
-        {
-            nowDistance.text = RideInfoHelper.shared.getDistanceFormat(totalDistance)
-            nowSpeed.text = RideInfoHelper.shared.getSpeedFormat(currentSpeed)
-            nowCalories.text = "\(self.getCalorieBurnedData()) kcal"
-
-        }
+    deinit {
+        print("NewRecordViewController deinit")
     }
-    lazy var locations = [CLLocation]()
-    lazy var totalLocations = [CLLocation]()
-
     
-    lazy var locationManager: CLLocationManager = {
-        var _locationManager = CLLocationManager()
-        _locationManager.delegate = self
-        _locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        _locationManager.activityType = .Fitness
-        _locationManager.distanceFilter = 0.1
-        return _locationManager
-    }()
-    
-    // check location authorization
-    
-    private func checkLocationAuthority(status: CLAuthorizationStatus) {
-        switch status {
-        case .NotDetermined: locationManager.requestWhenInUseAuthorization()
-        case .Denied: locationManager.requestWhenInUseAuthorization()
-        case .Restricted: print("This area can't update locations")
-        case .AuthorizedAlways, .AuthorizedWhenInUse: break
-        }
-    }
-
-    
-    // set start & pause & continue animation
-    
-    lazy var timer = NSTimer()
-    var currentAnimation = RideButtonFunction.Start
-    var time: NSTimeInterval = 0.00
-        { didSet { nowTime.text = RideInfoHelper.shared.getTimeFormat(time) as String } }
-    var startTime = NSDate.timeIntervalSinceReferenceDate()
-    var pausedTime: NSTimeInterval = 0.00
-    var continuedTime: NSTimeInterval = 0.00
-    var totalPausedTime: NSTimeInterval = 0.00
-    
-    // current speed & calorie
-    let calorieCalculator = CalorieCalculator()
-    var currentSpeed: Double = 0.0
-    var calorie: Double = 0.0
 }
 
 // MARK: - StartButton
@@ -128,19 +112,23 @@ class NewRecordViewController: UIViewController {
 extension NewRecordViewController {
     
     @IBAction private func rideButtonPressed(sender: UIButton) {
-        switch currentAnimation {
-    
+        switch nextStatus {
+            
         case .Start:
+            
+            print("case - start")
+            
+            currentStatus = .Start
+            nextStatus = .Pause
             
             // animation
             UIView.animateWithDuration(0.6, animations: {
                 self.rideButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
                 self.rideButton.layer.cornerRadius = 4
             })
-            self.currentAnimation = .Pause
     
             // timer start
-            self.startTime = NSDate.timeIntervalSinceReferenceDate()
+            startTime = NSDate.timeIntervalSinceReferenceDate()
             timer = NSTimer.scheduledTimerWithTimeInterval(0.01,
                 target: self,
                 selector: #selector(NewRecordViewController.eachMillisecond(_:)),
@@ -150,42 +138,57 @@ extension NewRecordViewController {
             // location update
             distance = 0.0
             locations.removeAll()
-            startLocationUpdates()
 
         case .Pause:
+            
+            print("case - pause")
+
+            currentStatus = .Pause
+            nextStatus = .Continue
+            
             UIView.animateWithDuration(0.6, animations: {
                 self.rideButton.transform = CGAffineTransformMakeScale(1, 1)
                 self.rideButton.layer.cornerRadius = self.rideButton.frame.width / 2
             })
-            currentAnimation = .Continue
             
             // timer pause
             timer.invalidate()
             pausedTime = NSDate.timeIntervalSinceReferenceDate()
             
             // location update pause
-            locationManager.stopUpdatingLocation()
             currentDistance += self.distance
+            
+            
             for location in locations {
                 totalLocations.append(location)
             }
+            totalLocationsForPolyLine.append(locations)
+            drawTotalPolyLine(totalLocationsForPolyLine.last!)
+            
+            locations.removeAll()
             
             // add fixed polyline
-            self.totalLoadMap()
+//            totalLoadMap()
             
             // current speed
-            self.nowSpeed.text = "0 km / h"
+            nowSpeed.text = "0 km / h"
             
         case .Continue:
+            
+            print("case - coutinue")
+            
+            currentStatus = .Continue
+            nextStatus = .Pause
+            locationNumber += 1
+
             UIView.animateWithDuration(0.6, animations: {
                 self.rideButton.transform = CGAffineTransformMakeScale(0.5, 0.5)
                 self.rideButton.layer.cornerRadius = 4
             })
-            self.currentAnimation = .Pause
             
             // timer continue
-            self.continuedTime = NSDate.timeIntervalSinceReferenceDate()
-            self.totalPausedTime += self.continuedTime - self.pausedTime
+            continuedTime = NSDate.timeIntervalSinceReferenceDate()
+            totalPausedTime += continuedTime - pausedTime
          
             timer = NSTimer.scheduledTimerWithTimeInterval(0.01,
                 target: self,
@@ -195,7 +198,9 @@ extension NewRecordViewController {
             
             // distance continue
             distance = 0.0
-            startLocationUpdates()
+            
+        case .Default: break
+            
         }
     }
 }
@@ -208,17 +213,17 @@ extension NewRecordViewController {
         
         time = NSDate.timeIntervalSinceReferenceDate() - startTime - totalPausedTime
         totalDistance = currentDistance + distance
+        
+        let location = locations.last?.location
 
-        if let locationSpeed = locations.last { self.currentSpeed = locationSpeed.speed * 3.6 }
-        else { self.currentSpeed = 0.0 }
+        if let locationSpeed = location { currentSpeed = locationSpeed.speed * 3.6 }
+        else { currentSpeed = 0.0 }
 
     }
     
     
     // calorie
-    
     private func getCalorieBurnedData() -> String {
-        
         let exercise = CalorieCalculator.Exercise.Bike
         let speed = self.totalDistance / self.time * 3.6
         let weight = Double(defaults.stringForKey(NSUserDefaultKey.Weight)!)!
@@ -235,41 +240,85 @@ extension NewRecordViewController {
 
 extension NewRecordViewController: CLLocationManagerDelegate {
     
-    private func startLocationUpdates() {
-        locationManager.startUpdatingLocation()
-    }
-    
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) { checkLocationAuthority(status) }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        // get distance & locations
-                
-        for location in locations {
-            if location.horizontalAccuracy < 35 {
-                if self.locations.count > 0 {
-                    if location.distanceFromLocation(self.locations.last!) > 10 {
-                        distance = 0.0
-                        self.locations.removeAll()
-                    } else {
-                        distance += location.distanceFromLocation(self.locations.last!)
-                    }
-                }
-                self.locations.append(location)
-            }
+        // check currentStatus: locations distance?
+
+        switch currentStatus {
+        case .Default: break
+        case .Start: record(locations)
+        case .Pause: break
+        case .Continue: record(locations)
         }
         
-        self.showUserLocation()
-        self.loadMap()
+        // show user location
+        showUserLocation(locations)
+    }
+    
+    // record route
+    private func record(locations: [CLLocation]) {
+        for location in locations {
+            if location.horizontalAccuracy < 20 {
+                let locationWithNumber = LocationWithNumber(location: location, number: locationNumber)
+                if self.locations.last != nil {
+                    distance += location.distanceFromLocation((self.locations.last?.location)!)
+                }
+                self.locations.append(locationWithNumber)            }
+        }
+        drawCurrentPolyLine(self.locations)
+    }
+    
+    // check location authorization
+    private func checkLocationAuthority(status: CLAuthorizationStatus) {
+        switch status {
+        case .NotDetermined: locationManager.requestWhenInUseAuthorization()
+        case .Denied: locationManager.requestWhenInUseAuthorization()
+        case .Restricted: print("This area can't update locations")
+        case .AuthorizedAlways, .AuthorizedWhenInUse: break
+        }
     }
     
     // show current location on the map
-    private func showUserLocation() {
-        let currentLocation = self.locations.last
+    private func showUserLocation(locations: [CLLocation]) {
+        let currentLocation = locations.last
+        if currentLocation != nil {
         let center = CLLocationCoordinate2D(latitude: (currentLocation?.coordinate.latitude)!, longitude: (currentLocation?.coordinate.longitude)!)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpanMake(0.001, 0.001))
-        self.mapView.setRegion(region, animated: true)
+            if self.mapView != nil {
+            self.mapView.setRegion(region, animated: true)
+            }
+        }
     }
+
+    // saperate routes  (尚未用到）
+    private func saperateRoutes(locationWithNumber: [LocationWithNumber]) -> [[LocationWithNumber]] {
+        var routes :[[LocationWithNumber]] = []
+        for number in (0...locationWithNumber.last!.number) {
+            let route = locationWithNumber.filter{(x) -> Bool in x.number == number }
+            routes.append(route)
+        }
+        return routes
+    }
+    
+    // throwRoutesToDrawPolyLine
+    
+//    private func drawMultiplePolyline(routes: [[LocationWithNumber]]) {
+////        mapView.removeOverlays(mapView.overlays)
+//        
+//        print("drawMultiplePolyline")
+//        print(routes.count)
+//        print(routes.first?.count)
+//        
+////        guard let lastRoute = routes.last else { return }
+////        drawPolyLine(lastRoute)
+//        
+//        for route in routes {
+//            
+//            drawPolyLine(route)
+//        }
+//    }
     
     // poly line
     
@@ -281,42 +330,26 @@ extension NewRecordViewController: CLLocationManagerDelegate {
         return renderer
         }
     
-    // temperate polyline
+    private func drawCurrentPolyLine(route: [LocationWithNumber]) {
+        mapView.removeOverlays(mapView.overlaysInLevel(.AboveRoads))
+        mapView.insertOverlay(polyLine(route), atIndex: 1, level: .AboveRoads)
+    }
     
-    private func polyLine() -> MKPolyline {
+    
+    private func drawTotalPolyLine(route: [LocationWithNumber]) {
+        mapView.addOverlay(polyLine(route))
+    }
+    
+    private func polyLine(route: [LocationWithNumber]) -> MKPolyline {
         var coords =  [CLLocationCoordinate2D]()
-        for locaion in self.locations {
-            coords.append(CLLocationCoordinate2D(latitude: locaion.coordinate.latitude, longitude: locaion.coordinate.longitude))
+        for locationWithNumber in route {
+            let location = locationWithNumber.location
+            coords.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
         }
         return MKPolyline(coordinates: &coords, count: self.locations.count)
     }
     
-    private func loadMap() {
-        if self.locations.count > 0 {
-            mapView.removeOverlays(self.mapView.overlaysInLevel(.AboveRoads))
-            mapView.insertOverlay(polyLine(), atIndex: 1, level: .AboveRoads)
-        }
-    }
-    
-     // total polyline
-    
-    private func totalPolyLine() -> MKPolyline {
-        
-        var coords =  [CLLocationCoordinate2D]()
-        for locaion in self.totalLocations {
-            coords.append(CLLocationCoordinate2D(latitude: locaion.coordinate.latitude, longitude: locaion.coordinate.longitude))
-        }
-        return MKPolyline(coordinates: &coords, count: self.totalLocations.count)
-    }
-    
-    private func totalLoadMap() {
-        if totalLocations.count > 0 {
-            mapView.removeOverlays(mapView.overlays)
-            mapView.addOverlay(totalPolyLine())
-        }
-    }
-    
-    func mapView(mapView: MKMapView, didFailToLocateUserWithError error: NSError) {
+     func mapView(mapView: MKMapView, didFailToLocateUserWithError error: NSError) {
         print("didFailToLocateUserWithError: \(error.localizedDescription)")
     }
     
@@ -391,14 +424,14 @@ extension NewRecordViewController {
         
         // navigation left button
         let leftItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target:self, action: #selector(self.cancel))
-        self.navigationItem.leftBarButtonItem = leftItem
+        navigationItem.leftBarButtonItem = leftItem
         
         // navigation right button
         let rightItem = UIBarButtonItem(title: "Finish", style: UIBarButtonItemStyle.Done, target: self, action: #selector(self.finish))
-        self.navigationItem.rightBarButtonItem = rightItem
+        navigationItem.rightBarButtonItem = rightItem
 
         // navigation title
-        self.navigationItem.title = RideInfoHelper.shared.todayDate
+        navigationItem.title = RideInfoHelper.shared.todayDate
     }
     
     private func setButton() {
@@ -416,6 +449,13 @@ extension NewRecordViewController {
         mapView.layer.cornerRadius = 10
         mapView.showsUserLocation = true
         mapView.delegate = self
+    }
+    
+    private func setLocationManager() {
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        locationManager.activityType = .Fitness
+        locationManager.distanceFilter = 0.1
     }
     
 }
@@ -455,6 +495,7 @@ extension NewRecordViewController {
 // button function change enum
 
 enum RideButtonFunction {
+    case Default
     case Start
     case Pause
     case Continue
@@ -510,7 +551,9 @@ extension NewRecordViewController {
         
         var routes = [Route]()
         
-        for location in (_rideInfo?.Routes)! {
+        for locationWithNumbers in (_rideInfo?.Routes)! {
+            
+            let location = locationWithNumbers.location
             
             let route = NSEntityDescription.insertNewObjectForEntityForName("Route", inManagedObjectContext: self.moc) as! Route
             
@@ -519,6 +562,7 @@ extension NewRecordViewController {
             route.longitude = location.coordinate.longitude
             route.timeStamp = location.timestamp
             route.speed = location.speed
+            route.number = locationWithNumbers.number
             routes.append(route)
         }
         
@@ -578,6 +622,7 @@ extension NewRecordViewController {
                 print(result.distance)
                 print(result.calorie)
                 print(result.route)
+                print(result.route?.firstObject!.number)
                 print("=============")
 
             }

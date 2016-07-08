@@ -145,16 +145,14 @@ extension StatictisViewController {
             switch _fromController {
             
             case "HistoryPage":
-                var route: [CLLocation] = []
+                var routes: [LocationWithNumber] = []
                 let ride = HistoryViewController.ride
                 let routeEntity = ride!.route
                 
                 for item in routeEntity! {
-                    let routes =  item as! Route
-                    let location = CLLocation(
-                        latitude: routes.latitude as! CLLocationDegrees,
-                        longitude: routes.longitude  as! CLLocationDegrees)
-                    route.append(location)
+                    let route =  item as! Route
+                    let location = LocationWithNumber(location: CLLocation(latitude:route.latitude as! CLLocationDegrees,longitude: route.longitude  as! CLLocationDegrees) , number: route.number as! Int)
+                    routes.append(location)
                 }
 
                 rideInfo = RideInfo(
@@ -164,7 +162,7 @@ extension StatictisViewController {
                     Distance: Double((ride?.distance)!),
                     AverageSpeed:  Double((ride?.averageSpeed)!),
                     Calorie:  Double((ride?.calorie)!),
-                    Routes: route)
+                    Routes: routes)
                 
                 var navigationDate: String {
                     let date = NSDateFormatter()
@@ -217,7 +215,8 @@ extension StatictisViewController: MKMapViewDelegate {
             return MKPolyline(coordinates: &coords, count: coords.count)
         }
         
-        for location in locations {
+        for locationWithNumber in locations {
+            let location = locationWithNumber.location
             coords.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
         }
         return MKPolyline(coordinates: &coords, count: locations.count)
@@ -234,7 +233,7 @@ extension StatictisViewController: MKMapViewDelegate {
     
     private func showRouteRegion() -> MKCoordinateRegion{
         
-        let startLocation = rideInfo!.Routes.first!
+        let startLocation = rideInfo!.Routes.first!.location
         
         var minLatitude = startLocation.coordinate.latitude
         var minLongitude = startLocation.coordinate.longitude
@@ -243,7 +242,8 @@ extension StatictisViewController: MKMapViewDelegate {
         
         let locations = rideInfo!.Routes
         
-        for location in locations {
+        for locationWithNumber in locations {
+            let location = locationWithNumber.location
             minLatitude = min(minLatitude, location.coordinate.latitude)
             minLongitude = min(minLongitude, location.coordinate.longitude)
             maxLatitude = max(maxLatitude, location.coordinate.latitude)

@@ -17,8 +17,18 @@ struct RideInfo {
     let Distance: Double
     let AverageSpeed: Double
     let Calorie: Double
-    let Routes: [CLLocation]
+    let Routes: [LocationWithNumber]
     
+}
+
+class LocationWithNumber {
+    var location: CLLocation
+    var number: Int
+    
+    init(location: CLLocation, number: Int){
+        self.location = location
+        self.number = number
+    }
 }
 
 class RideInfoModel {
@@ -29,10 +39,11 @@ class RideInfoModel {
     
     
     func fetchDataFromCoreData() -> [RideInfo]{
+        let request = NSFetchRequest(entityName: "Ride")
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+
         do {
-            let request = NSFetchRequest(entityName: "Ride")
-            let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-            request.sortDescriptors = [sortDescriptor]
             
             let datas = try moc.executeFetchRequest(request)
             rideInfo = []
@@ -45,7 +56,7 @@ class RideInfoModel {
                     Distance: data.valueForKey("distance") as! Double,
                     AverageSpeed: data.valueForKey("averageSpeed") as! Double,
                     Calorie: data.valueForKey("calorie") as! Double,
-                    Routes: data.valueForKey("route")!.array as! [CLLocation])
+                    Routes: data.valueForKey("route")!.array as! [LocationWithNumber])
                 
                 rideInfo.append(ride)
                 

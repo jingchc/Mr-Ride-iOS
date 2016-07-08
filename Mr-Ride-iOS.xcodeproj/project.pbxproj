@@ -18,6 +18,7 @@
 		3F34BE031D0AA3ED00F839CF /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34BE021D0AA3ED00F839CF /* protocols.swift */; };
 		3F34BE051D0AA4FF00F839CF /* UserInfoModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34BE041D0AA4FF00F839CF /* UserInfoModelHelper.swift */; };
 		3F5ED6561D23B22600FE3177 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5ED6551D23B22600FE3177 /* Annotation.swift */; };
+		3F7049FC1D2CD72F006F89EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F7049FB1D2CD72F006F89EE /* Assets.xcassets */; };
 		3F86F3581D128C6F001F2A24 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86F3571D128C6F001F2A24 /* HistoryTableViewCell.swift */; };
 		3F8A50ED1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A50EB1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift */; };
 		3F8A50EE1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A50EC1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift */; };
@@ -37,7 +38,6 @@
 		3F908A021CF2A777008091E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F908A011CF2A777008091E5 /* AppDelegate.swift */; };
 		3F908A071CF2A777008091E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F908A051CF2A777008091E5 /* Main.storyboard */; };
 		3F908A0A1CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F908A081CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodeld */; };
-		3F908A0C1CF2A777008091E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F908A0B1CF2A777008091E5 /* Assets.xcassets */; };
 		3F908A0F1CF2A777008091E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F908A0D1CF2A777008091E5 /* LaunchScreen.storyboard */; };
 		3F9DD1691D13DE3700DE99EF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9DD1681D13DE3700DE99EF /* MapViewController.swift */; };
 		3F9DD16B1D13DECA00DE99EF /* MapNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9DD16A1D13DECA00DE99EF /* MapNavigationController.swift */; };
@@ -78,6 +78,8 @@
 		3F34BE021D0AA3ED00F839CF /* protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = protocols.swift; sourceTree = "<group>"; };
 		3F34BE041D0AA4FF00F839CF /* UserInfoModelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModelHelper.swift; sourceTree = "<group>"; };
 		3F5ED6551D23B22600FE3177 /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
+		3F7049FB1D2CD72F006F89EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F7049FD1D2CF5F8006F89EE /* Mr-Ride-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F86F3571D128C6F001F2A24 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		3F8A50EB1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+MRAdditions.swift"; sourceTree = "<group>"; };
 		3F8A50EC1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+MRAdditions.swift"; sourceTree = "<group>"; };
@@ -94,11 +96,9 @@
 		3F8A50FA1CF2EC5D002D6C21 /* RobotoMono-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-ThinItalic.ttf"; sourceTree = "<group>"; };
 		3F8A51071CF2F990002D6C21 /* NewRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRecordViewController.swift; sourceTree = "<group>"; };
 		3F8A510A1CF2FA79002D6C21 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		3F9089FE1CF2A776008091E5 /* Mr-Ride-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F908A011CF2A777008091E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F908A061CF2A777008091E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F908A091CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mr_Ride_iOS.xcdatamodel; sourceTree = "<group>"; };
-		3F908A0B1CF2A777008091E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F908A0E1CF2A777008091E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F908A101CF2A777008091E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F9DD1681D13DE3700DE99EF /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -219,20 +219,12 @@
 			isa = PBXGroup;
 			children = (
 				3F908A001CF2A777008091E5 /* Mr-Ride-iOS */,
-				3F9089FF1CF2A776008091E5 /* Products */,
 				3FC8093F1D225DFA00B4C982 /* Crashlytics */,
 				3FFD61D01CFBE5200054CBA5 /* SWRevealViewController */,
 				F241636BB789978C167CCDBA /* Pods */,
 				76B475F03F5191C4038C2465 /* Frameworks */,
+				3F7049FD1D2CF5F8006F89EE /* Mr-Ride-iOS.app */,
 			);
-			sourceTree = "<group>";
-		};
-		3F9089FF1CF2A776008091E5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3F9089FE1CF2A776008091E5 /* Mr-Ride-iOS.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		3F908A001CF2A777008091E5 /* Mr-Ride-iOS */ = {
@@ -261,8 +253,8 @@
 		3F908A171CF2AD03008091E5 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				3F7049FB1D2CD72F006F89EE /* Assets.xcassets */,
 				3F908A011CF2A777008091E5 /* AppDelegate.swift */,
-				3F908A0B1CF2A777008091E5 /* Assets.xcassets */,
 				3F908A101CF2A777008091E5 /* Info.plist */,
 			);
 			name = Others;
@@ -394,7 +386,7 @@
 			);
 			name = "Mr-Ride-iOS";
 			productName = "Mr-Ride-iOS";
-			productReference = 3F9089FE1CF2A776008091E5 /* Mr-Ride-iOS.app */;
+			productReference = 3F7049FD1D2CF5F8006F89EE /* Mr-Ride-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -427,7 +419,7 @@
 				Base,
 			);
 			mainGroup = 3F9089F51CF2A776008091E5;
-			productRefGroup = 3F9089FF1CF2A776008091E5 /* Products */;
+			productRefGroup = 3F9089F51CF2A776008091E5;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -445,11 +437,11 @@
 				3F8A51021CF2EC5D002D6C21 /* RobotoMono-MediumItalic.ttf in Resources */,
 				3F8A50FB1CF2EC5D002D6C21 /* LICENSE.txt in Resources */,
 				3F8A50FD1CF2EC5D002D6C21 /* RobotoMono-BoldItalic.ttf in Resources */,
+				3F7049FC1D2CD72F006F89EE /* Assets.xcassets in Resources */,
 				3F8A50FF1CF2EC5D002D6C21 /* RobotoMono-Light.ttf in Resources */,
 				3F8A50FC1CF2EC5D002D6C21 /* RobotoMono-Bold.ttf in Resources */,
 				3F8A51001CF2EC5D002D6C21 /* RobotoMono-LightItalic.ttf in Resources */,
 				3F908A0F1CF2A777008091E5 /* LaunchScreen.storyboard in Resources */,
-				3F908A0C1CF2A777008091E5 /* Assets.xcassets in Resources */,
 				3F908A071CF2A777008091E5 /* Main.storyboard in Resources */,
 				3F8A51011CF2EC5D002D6C21 /* RobotoMono-Medium.ttf in Resources */,
 				3F8A51031CF2EC5D002D6C21 /* RobotoMono-Regular.ttf in Resources */,
