@@ -33,12 +33,12 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        getChartViewContent()
         restroomLoadDataFromServer()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        getChartViewContent()
         setLabelContent()
         
     }

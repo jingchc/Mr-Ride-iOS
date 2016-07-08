@@ -90,6 +90,11 @@ class NewRecordViewController: UIViewController {
         locationManager.startUpdatingLocation()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        locationManager.startUpdatingLocation()
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         locationManager.stopUpdatingLocation()
@@ -291,24 +296,6 @@ extension NewRecordViewController: CLLocationManagerDelegate {
             }
         }
     }
-
-    // throwRoutesToDrawPolyLine
-    
-//    private func drawMultiplePolyline(routes: [[LocationWithNumber]]) {
-////        mapView.removeOverlays(mapView.overlays)
-//        
-//        print("drawMultiplePolyline")
-//        print(routes.count)
-//        print(routes.first?.count)
-//        
-////        guard let lastRoute = routes.last else { return }
-////        drawPolyLine(lastRoute)
-//        
-//        for route in routes {
-//            
-//            drawPolyLine(route)
-//        }
-//    }
     
     // poly line
     
@@ -457,7 +444,19 @@ extension NewRecordViewController {
     
     
     @objc func cancel() {
-        dismissViewControllerAnimated(true, completion: nil)
+        
+        let alertController = UIAlertController(title: "This ride haven't save yet!", message: "Are you sure want to leave without saving?", preferredStyle: .Alert)
+        
+        alertController.addAction(UIAlertAction(title: "Leave", style: .Default, handler: { (action: UIAlertAction!) in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Stay", style: .Cancel, handler: { (action: UIAlertAction!) in
+            return
+        }))
+        
+        self.presentViewController(alertController, animated: true, completion:nil)
+        
     }
     
     @objc func finish() {
@@ -465,8 +464,10 @@ extension NewRecordViewController {
         locationManager.stopUpdatingLocation()
         // check data
         if totalDistance == 0.0 {
-            // todo: alert
-            print("no data")
+            let alertController = UIAlertController(title: "Let's Start Ride !", message: nil, preferredStyle: .Alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+            self.presentViewController(alertController, animated: true, completion:nil)
+            locationManager.startUpdatingLocation()
             return
         }
 
@@ -498,11 +499,9 @@ extension NewRecordViewController {
     
     private func saveThisRideToSingleton() {
         
-        let fakedate = 1.0
-        
         let rideInfo = RideInfo.init(
                         ID: NSUUID.init().UUIDString,
-                        Date: NSDate.init(timeIntervalSinceNow: 86400*fakedate),
+                        Date: NSDate.init(),
                         SpendTime: self.time,
                         Distance: self.totalDistance,
                         AverageSpeed: self.currentSpeed ,
