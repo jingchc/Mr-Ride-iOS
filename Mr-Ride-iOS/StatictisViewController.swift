@@ -188,9 +188,11 @@ extension StatictisViewController {
     // saperate routes
     private func saperateRoutes(locationWithNumber: [LocationWithNumber]) -> [[LocationWithNumber]] {
         var routes :[[LocationWithNumber]] = []
+        if locationWithNumber.last != nil {
         for number in (0...locationWithNumber.last!.number) {
             let route = locationWithNumber.filter{(x) -> Bool in x.number == number }
             routes.append(route)
+            }
         }
         return routes
     }
