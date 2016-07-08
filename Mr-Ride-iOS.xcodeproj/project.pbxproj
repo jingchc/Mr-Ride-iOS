@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		138D97878F737EACE642BB60 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1932BC444B81FFC90CEB757C /* Pods.framework */; };
+		3F118C0C1D112CCE0085EEA8 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F118C0B1D112CCE0085EEA8 /* HistoryViewController.swift */; };
+		3F1879631D1A823C00B798AC /* RestroomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1879621D1A823C00B798AC /* RestroomModel.swift */; };
+		3F1879651D1A838700B798AC /* RestroomModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1879641D1A838700B798AC /* RestroomModelHelper.swift */; };
+		3F25D0181D1CCFD10003DBC6 /* DataRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25D0171D1CCFD10003DBC6 /* DataRouter.swift */; };
+		3F25D01A1D1D0E1D0003DBC6 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F25D0191D1D0E1D0003DBC6 /* DataManager.swift */; };
+		3F34BDFE1D0960FF00F839CF /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34BDFD1D0960FF00F839CF /* UserInfoModel.swift */; };
+		3F34BE001D09630600F839CF /* UserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34BDFF1D09630600F839CF /* UserInfoManager.swift */; };
+		3F34BE031D0AA3ED00F839CF /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34BE021D0AA3ED00F839CF /* protocols.swift */; };
+		3F34BE051D0AA4FF00F839CF /* UserInfoModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F34BE041D0AA4FF00F839CF /* UserInfoModelHelper.swift */; };
+		3F5ED6561D23B22600FE3177 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5ED6551D23B22600FE3177 /* Annotation.swift */; };
+		3F7049FC1D2CD72F006F89EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F7049FB1D2CD72F006F89EE /* Assets.xcassets */; };
+		3F86F3581D128C6F001F2A24 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86F3571D128C6F001F2A24 /* HistoryTableViewCell.swift */; };
 		3F8A50ED1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A50EB1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift */; };
 		3F8A50EE1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8A50EC1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift */; };
 		3F8A50FB1CF2EC5D002D6C21 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F8A50F01CF2EC5D002D6C21 /* LICENSE.txt */; };
@@ -25,20 +38,49 @@
 		3F908A021CF2A777008091E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F908A011CF2A777008091E5 /* AppDelegate.swift */; };
 		3F908A071CF2A777008091E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F908A051CF2A777008091E5 /* Main.storyboard */; };
 		3F908A0A1CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F908A081CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodeld */; };
-		3F908A0C1CF2A777008091E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F908A0B1CF2A777008091E5 /* Assets.xcassets */; };
 		3F908A0F1CF2A777008091E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F908A0D1CF2A777008091E5 /* LaunchScreen.storyboard */; };
+		3F9DD1691D13DE3700DE99EF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9DD1681D13DE3700DE99EF /* MapViewController.swift */; };
+		3F9DD16B1D13DECA00DE99EF /* MapNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9DD16A1D13DECA00DE99EF /* MapNavigationController.swift */; };
 		3F9F7B961CFEBFDF005CDADB /* NewRecordNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F7B951CFEBFDF005CDADB /* NewRecordNavigationViewController.swift */; };
 		3FC185801D058A0F0005C291 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC1857F1D058A0F0005C291 /* LogInViewController.swift */; };
+		3FC3FCF31D0BABB2002FC0E1 /* FBLogInPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC3FCF21D0BABB2002FC0E1 /* FBLogInPermission.swift */; };
+		3FC8093D1D22597D00B4C982 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC8093B1D22597D00B4C982 /* Fabric.framework */; };
+		3FC8093E1D22597D00B4C982 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FC8093C1D22597D00B4C982 /* Crashlytics.framework */; };
+		3FC809411D22A2D100B4C982 /* YoubikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC809401D22A2D100B4C982 /* YoubikeModel.swift */; };
+		3FC809431D22A52B00B4C982 /* YoubikeModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC809421D22A52B00B4C982 /* YoubikeModelHelper.swift */; };
+		3FC9B0E21D10361B004B2AAE /* Ride+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9B0DE1D10361B004B2AAE /* Ride+CoreDataProperties.swift */; };
+		3FC9B0E31D10361B004B2AAE /* Ride.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9B0DF1D10361B004B2AAE /* Ride.swift */; };
+		3FC9B0E41D10361B004B2AAE /* Route+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9B0E01D10361B004B2AAE /* Route+CoreDataProperties.swift */; };
+		3FC9B0E51D10361B004B2AAE /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC9B0E11D10361B004B2AAE /* Route.swift */; };
+		3FD7FE311D0D92CD00CD42E8 /* StatictisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7FE301D0D92CD00CD42E8 /* StatictisViewController.swift */; };
+		3FD7FE331D0E5C4200CD42E8 /* CalorieCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7FE321D0E5C4200CD42E8 /* CalorieCalculator.swift */; };
+		3FD7FE351D0EA95E00CD42E8 /* RideInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD7FE341D0EA95E00CD42E8 /* RideInfoModel.swift */; };
+		3FE1F7C81D27EE590088C247 /* RideInfoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE1F7C71D27EE590088C247 /* RideInfoHelper.swift */; };
+		3FF933061D28FED200BB3FFA /* Restroom+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF933041D28FED200BB3FFA /* Restroom+CoreDataProperties.swift */; };
+		3FF933071D28FED200BB3FFA /* Restroom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF933051D28FED200BB3FFA /* Restroom.swift */; };
 		3FFD61D41CFBE5750054CBA5 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFD61D31CFBE5750054CBA5 /* SWRevealViewController.m */; };
 		3FFD61D61CFBFAF10054CBA5 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFD61D51CFBFAF10054CBA5 /* SideBarTableViewController.swift */; };
-		3FFD61D91CFC04E60054CBA5 /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFD61D81CFC04E60054CBA5 /* HistoryTableViewController.swift */; };
-		3FFD61DB1CFC054C0054CBA5 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFD61DA1CFC054C0054CBA5 /* HistoryTableViewCell.swift */; };
 		3FFD61DE1CFC05800054CBA5 /* SideBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFD61DD1CFC05800054CBA5 /* SideBarTableViewCell.swift */; };
 		3FFD61E01CFC194D0054CBA5 /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFD61DF1CFC194D0054CBA5 /* HomeNavigationController.swift */; };
 		3FFD61E21CFC199E0054CBA5 /* HistoryNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFD61E11CFC199E0054CBA5 /* HistoryNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1932BC444B81FFC90CEB757C /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E8372B0032E0C58D05719C7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		3F118C0B1D112CCE0085EEA8 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		3F1879621D1A823C00B798AC /* RestroomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestroomModel.swift; sourceTree = "<group>"; };
+		3F1879641D1A838700B798AC /* RestroomModelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestroomModelHelper.swift; sourceTree = "<group>"; };
+		3F25D0171D1CCFD10003DBC6 /* DataRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRouter.swift; sourceTree = "<group>"; };
+		3F25D0191D1D0E1D0003DBC6 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		3F34BDFD1D0960FF00F839CF /* UserInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
+		3F34BDFF1D09630600F839CF /* UserInfoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoManager.swift; sourceTree = "<group>"; };
+		3F34BE021D0AA3ED00F839CF /* protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = protocols.swift; sourceTree = "<group>"; };
+		3F34BE041D0AA4FF00F839CF /* UserInfoModelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModelHelper.swift; sourceTree = "<group>"; };
+		3F5ED6551D23B22600FE3177 /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
+		3F7049FB1D2CD72F006F89EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F7049FD1D2CF5F8006F89EE /* Mr-Ride-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F86F3571D128C6F001F2A24 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		3F8A50EB1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+MRAdditions.swift"; sourceTree = "<group>"; };
 		3F8A50EC1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+MRAdditions.swift"; sourceTree = "<group>"; };
 		3F8A50F01CF2EC5D002D6C21 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -54,24 +96,38 @@
 		3F8A50FA1CF2EC5D002D6C21 /* RobotoMono-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoMono-ThinItalic.ttf"; sourceTree = "<group>"; };
 		3F8A51071CF2F990002D6C21 /* NewRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRecordViewController.swift; sourceTree = "<group>"; };
 		3F8A510A1CF2FA79002D6C21 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		3F9089FE1CF2A776008091E5 /* Mr-Ride-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mr-Ride-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F908A011CF2A777008091E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F908A061CF2A777008091E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F908A091CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mr_Ride_iOS.xcdatamodel; sourceTree = "<group>"; };
-		3F908A0B1CF2A777008091E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F908A0E1CF2A777008091E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F908A101CF2A777008091E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F9DD1681D13DE3700DE99EF /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		3F9DD16A1D13DECA00DE99EF /* MapNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapNavigationController.swift; sourceTree = "<group>"; };
 		3F9F7B951CFEBFDF005CDADB /* NewRecordNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRecordNavigationViewController.swift; sourceTree = "<group>"; };
 		3FC1857F1D058A0F0005C291 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		3FC3FCF21D0BABB2002FC0E1 /* FBLogInPermission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLogInPermission.swift; sourceTree = "<group>"; };
+		3FC8093B1D22597D00B4C982 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../Fabric.framework; sourceTree = "<group>"; };
+		3FC8093C1D22597D00B4C982 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../Crashlytics.framework; sourceTree = "<group>"; };
+		3FC809401D22A2D100B4C982 /* YoubikeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoubikeModel.swift; sourceTree = "<group>"; };
+		3FC809421D22A52B00B4C982 /* YoubikeModelHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoubikeModelHelper.swift; sourceTree = "<group>"; };
+		3FC9B0DE1D10361B004B2AAE /* Ride+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ride+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3FC9B0DF1D10361B004B2AAE /* Ride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ride.swift; sourceTree = "<group>"; };
+		3FC9B0E01D10361B004B2AAE /* Route+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Route+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3FC9B0E11D10361B004B2AAE /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		3FD7FE301D0D92CD00CD42E8 /* StatictisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatictisViewController.swift; sourceTree = "<group>"; };
+		3FD7FE321D0E5C4200CD42E8 /* CalorieCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalorieCalculator.swift; sourceTree = "<group>"; };
+		3FD7FE341D0EA95E00CD42E8 /* RideInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideInfoModel.swift; sourceTree = "<group>"; };
+		3FE1F7C71D27EE590088C247 /* RideInfoHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideInfoHelper.swift; sourceTree = "<group>"; };
+		3FF933041D28FED200BB3FFA /* Restroom+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Restroom+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		3FF933051D28FED200BB3FFA /* Restroom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restroom.swift; sourceTree = "<group>"; };
 		3FFD61D11CFBE5740054CBA5 /* Mr-Ride-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mr-Ride-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		3FFD61D21CFBE5750054CBA5 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		3FFD61D31CFBE5750054CBA5 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		3FFD61D51CFBFAF10054CBA5 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewController.swift; sourceTree = "<group>"; };
-		3FFD61D81CFC04E60054CBA5 /* HistoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
-		3FFD61DA1CFC054C0054CBA5 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		3FFD61DD1CFC05800054CBA5 /* SideBarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewCell.swift; sourceTree = "<group>"; };
 		3FFD61DF1CFC194D0054CBA5 /* HomeNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
 		3FFD61E11CFC199E0054CBA5 /* HistoryNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryNavigationController.swift; sourceTree = "<group>"; };
+		CF789EDB6EFF2B6E49AE03CE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,17 +135,45 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				138D97878F737EACE642BB60 /* Pods.framework in Frameworks */,
+				3FC8093E1D22597D00B4C982 /* Crashlytics.framework in Frameworks */,
+				3FC8093D1D22597D00B4C982 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F18795F1D1A7A3900B798AC /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				3F25D0191D1D0E1D0003DBC6 /* DataManager.swift */,
+				3F1879621D1A823C00B798AC /* RestroomModel.swift */,
+				3F1879641D1A838700B798AC /* RestroomModelHelper.swift */,
+				3FC809401D22A2D100B4C982 /* YoubikeModel.swift */,
+				3FC809421D22A52B00B4C982 /* YoubikeModelHelper.swift */,
+				3F25D0171D1CCFD10003DBC6 /* DataRouter.swift */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
 		3F34BDFA1D090AA400F839CF /* FaceBook LogIn */ = {
 			isa = PBXGroup;
 			children = (
+				3F34BDFF1D09630600F839CF /* UserInfoManager.swift */,
+				3F34BE041D0AA4FF00F839CF /* UserInfoModelHelper.swift */,
+				3F34BDFD1D0960FF00F839CF /* UserInfoModel.swift */,
+				3FC3FCF21D0BABB2002FC0E1 /* FBLogInPermission.swift */,
 			);
 			name = "FaceBook LogIn";
+			sourceTree = "<group>";
+		};
+		3F34BE011D0AA3CA00F839CF /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				3F34BE021D0AA3ED00F839CF /* protocols.swift */,
+			);
+			name = Protocol;
 			sourceTree = "<group>";
 		};
 		3F8A50EF1CF2EC14002D6C21 /* Custom Fonts */ = {
@@ -116,6 +200,9 @@
 			isa = PBXGroup;
 			children = (
 				3F8A51071CF2F990002D6C21 /* NewRecordViewController.swift */,
+				3FD7FE341D0EA95E00CD42E8 /* RideInfoModel.swift */,
+				3FE1F7C71D27EE590088C247 /* RideInfoHelper.swift */,
+				3FD7FE321D0E5C4200CD42E8 /* CalorieCalculator.swift */,
 			);
 			name = "New Record";
 			sourceTree = "<group>";
@@ -132,31 +219,31 @@
 			isa = PBXGroup;
 			children = (
 				3F908A001CF2A777008091E5 /* Mr-Ride-iOS */,
-				3F9089FF1CF2A776008091E5 /* Products */,
+				3FC8093F1D225DFA00B4C982 /* Crashlytics */,
 				3FFD61D01CFBE5200054CBA5 /* SWRevealViewController */,
+				F241636BB789978C167CCDBA /* Pods */,
+				76B475F03F5191C4038C2465 /* Frameworks */,
+				3F7049FD1D2CF5F8006F89EE /* Mr-Ride-iOS.app */,
 			);
-			sourceTree = "<group>";
-		};
-		3F9089FF1CF2A776008091E5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3F9089FE1CF2A776008091E5 /* Mr-Ride-iOS.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		3F908A001CF2A777008091E5 /* Mr-Ride-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3F34BDFA1D090AA400F839CF /* FaceBook LogIn */,
 				3F908A051CF2A777008091E5 /* Main.storyboard */,
 				3F908A0D1CF2A777008091E5 /* LaunchScreen.storyboard */,
 				3FC1857E1D0589EB0005C291 /* LogIn Page */,
+				3F34BDFA1D090AA400F839CF /* FaceBook LogIn */,
 				3F8A51091CF2FA5D002D6C21 /* Home */,
 				3FFD61DC1CFC05640054CBA5 /* SideBar */,
 				3F8A51061CF2F8CD002D6C21 /* New Record */,
+				3FD7FE2F1D0D928C00CD42E8 /* Statistic Page */,
 				3FFD61D71CFC04C80054CBA5 /* History */,
+				3F9DD1671D13DE0B00DE99EF /* Map */,
+				3F18795F1D1A7A3900B798AC /* DataModel */,
+				3FC9B0E61D10363E004B2AAE /* Core Data */,
 				3F908A181CF2AE7E008091E5 /* Navigation */,
+				3F34BE011D0AA3CA00F839CF /* Protocol */,
 				3F8A50EF1CF2EC14002D6C21 /* Custom Fonts */,
 				3F908A171CF2AD03008091E5 /* Others */,
 			);
@@ -166,10 +253,9 @@
 		3F908A171CF2AD03008091E5 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				3F7049FB1D2CD72F006F89EE /* Assets.xcassets */,
 				3F908A011CF2A777008091E5 /* AppDelegate.swift */,
-				3F908A0B1CF2A777008091E5 /* Assets.xcassets */,
 				3F908A101CF2A777008091E5 /* Info.plist */,
-				3F908A081CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodeld */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -180,8 +266,18 @@
 				3FFD61DF1CFC194D0054CBA5 /* HomeNavigationController.swift */,
 				3F9F7B951CFEBFDF005CDADB /* NewRecordNavigationViewController.swift */,
 				3FFD61E11CFC199E0054CBA5 /* HistoryNavigationController.swift */,
+				3F9DD16A1D13DECA00DE99EF /* MapNavigationController.swift */,
 			);
 			name = Navigation;
+			sourceTree = "<group>";
+		};
+		3F9DD1671D13DE0B00DE99EF /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				3F9DD1681D13DE3700DE99EF /* MapViewController.swift */,
+				3F5ED6551D23B22600FE3177 /* Annotation.swift */,
+			);
+			name = Map;
 			sourceTree = "<group>";
 		};
 		3FC1857E1D0589EB0005C291 /* LogIn Page */ = {
@@ -190,6 +286,38 @@
 				3FC1857F1D058A0F0005C291 /* LogInViewController.swift */,
 			);
 			name = "LogIn Page";
+			sourceTree = "<group>";
+		};
+		3FC8093F1D225DFA00B4C982 /* Crashlytics */ = {
+			isa = PBXGroup;
+			children = (
+				3FC8093B1D22597D00B4C982 /* Fabric.framework */,
+				3FC8093C1D22597D00B4C982 /* Crashlytics.framework */,
+			);
+			name = Crashlytics;
+			path = "Mr-Ride-iOS";
+			sourceTree = "<group>";
+		};
+		3FC9B0E61D10363E004B2AAE /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				3FF933041D28FED200BB3FFA /* Restroom+CoreDataProperties.swift */,
+				3FF933051D28FED200BB3FFA /* Restroom.swift */,
+				3FC9B0DE1D10361B004B2AAE /* Ride+CoreDataProperties.swift */,
+				3FC9B0DF1D10361B004B2AAE /* Ride.swift */,
+				3FC9B0E01D10361B004B2AAE /* Route+CoreDataProperties.swift */,
+				3FC9B0E11D10361B004B2AAE /* Route.swift */,
+				3F908A081CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodeld */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		3FD7FE2F1D0D928C00CD42E8 /* Statistic Page */ = {
+			isa = PBXGroup;
+			children = (
+				3FD7FE301D0D92CD00CD42E8 /* StatictisViewController.swift */,
+			);
+			name = "Statistic Page";
 			sourceTree = "<group>";
 		};
 		3FFD61D01CFBE5200054CBA5 /* SWRevealViewController */ = {
@@ -205,8 +333,8 @@
 		3FFD61D71CFC04C80054CBA5 /* History */ = {
 			isa = PBXGroup;
 			children = (
-				3FFD61D81CFC04E60054CBA5 /* HistoryTableViewController.swift */,
-				3FFD61DA1CFC054C0054CBA5 /* HistoryTableViewCell.swift */,
+				3F118C0B1D112CCE0085EEA8 /* HistoryViewController.swift */,
+				3F86F3571D128C6F001F2A24 /* HistoryTableViewCell.swift */,
 			);
 			name = History;
 			sourceTree = "<group>";
@@ -220,6 +348,23 @@
 			name = SideBar;
 			sourceTree = "<group>";
 		};
+		76B475F03F5191C4038C2465 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1932BC444B81FFC90CEB757C /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F241636BB789978C167CCDBA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3E8372B0032E0C58D05719C7 /* Pods.debug.xcconfig */,
+				CF789EDB6EFF2B6E49AE03CE /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -227,9 +372,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F908A131CF2A777008091E5 /* Build configuration list for PBXNativeTarget "Mr-Ride-iOS" */;
 			buildPhases = (
+				935574FF5351C6B9B8CD69AF /* Check Pods Manifest.lock */,
 				3F9089FA1CF2A776008091E5 /* Sources */,
 				3F9089FB1CF2A776008091E5 /* Frameworks */,
 				3F9089FC1CF2A776008091E5 /* Resources */,
+				E4C68C27139E8919216DC94F /* Embed Pods Frameworks */,
+				EE60B978FE1D067BEA2F9936 /* Copy Pods Resources */,
+				3FC8093A1D22589C00B4C982 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -237,7 +386,7 @@
 			);
 			name = "Mr-Ride-iOS";
 			productName = "Mr-Ride-iOS";
-			productReference = 3F9089FE1CF2A776008091E5 /* Mr-Ride-iOS.app */;
+			productReference = 3F7049FD1D2CF5F8006F89EE /* Mr-Ride-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -270,7 +419,7 @@
 				Base,
 			);
 			mainGroup = 3F9089F51CF2A776008091E5;
-			productRefGroup = 3F9089FF1CF2A776008091E5 /* Products */;
+			productRefGroup = 3F9089F51CF2A776008091E5;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -288,11 +437,11 @@
 				3F8A51021CF2EC5D002D6C21 /* RobotoMono-MediumItalic.ttf in Resources */,
 				3F8A50FB1CF2EC5D002D6C21 /* LICENSE.txt in Resources */,
 				3F8A50FD1CF2EC5D002D6C21 /* RobotoMono-BoldItalic.ttf in Resources */,
+				3F7049FC1D2CD72F006F89EE /* Assets.xcassets in Resources */,
 				3F8A50FF1CF2EC5D002D6C21 /* RobotoMono-Light.ttf in Resources */,
 				3F8A50FC1CF2EC5D002D6C21 /* RobotoMono-Bold.ttf in Resources */,
 				3F8A51001CF2EC5D002D6C21 /* RobotoMono-LightItalic.ttf in Resources */,
 				3F908A0F1CF2A777008091E5 /* LaunchScreen.storyboard in Resources */,
-				3F908A0C1CF2A777008091E5 /* Assets.xcassets in Resources */,
 				3F908A071CF2A777008091E5 /* Main.storyboard in Resources */,
 				3F8A51011CF2EC5D002D6C21 /* RobotoMono-Medium.ttf in Resources */,
 				3F8A51031CF2EC5D002D6C21 /* RobotoMono-Regular.ttf in Resources */,
@@ -303,26 +452,111 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3FC8093A1D22589C00B4C982 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 697594ef448e326a86bfdfee87e7956051435fcc bb140b0fec09fa517d6a1ffdb6565fc556f23e270dd419d74229563e5adbb909";
+		};
+		935574FF5351C6B9B8CD69AF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E4C68C27139E8919216DC94F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE60B978FE1D067BEA2F9936 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3F9089FA1CF2A776008091E5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FC809431D22A52B00B4C982 /* YoubikeModelHelper.swift in Sources */,
 				3F9F7B961CFEBFDF005CDADB /* NewRecordNavigationViewController.swift in Sources */,
+				3FD7FE331D0E5C4200CD42E8 /* CalorieCalculator.swift in Sources */,
+				3F1879631D1A823C00B798AC /* RestroomModel.swift in Sources */,
 				3F8A51081CF2F990002D6C21 /* NewRecordViewController.swift in Sources */,
+				3F9DD16B1D13DECA00DE99EF /* MapNavigationController.swift in Sources */,
+				3F1879651D1A838700B798AC /* RestroomModelHelper.swift in Sources */,
 				3FFD61D61CFBFAF10054CBA5 /* SideBarTableViewController.swift in Sources */,
+				3FF933071D28FED200BB3FFA /* Restroom.swift in Sources */,
 				3F908A021CF2A777008091E5 /* AppDelegate.swift in Sources */,
+				3F34BDFE1D0960FF00F839CF /* UserInfoModel.swift in Sources */,
 				3FFD61E01CFC194D0054CBA5 /* HomeNavigationController.swift in Sources */,
+				3FC9B0E41D10361B004B2AAE /* Route+CoreDataProperties.swift in Sources */,
+				3FC9B0E21D10361B004B2AAE /* Ride+CoreDataProperties.swift in Sources */,
+				3FC9B0E31D10361B004B2AAE /* Ride.swift in Sources */,
 				3FFD61E21CFC199E0054CBA5 /* HistoryNavigationController.swift in Sources */,
-				3FFD61D91CFC04E60054CBA5 /* HistoryTableViewController.swift in Sources */,
 				3FFD61D41CFBE5750054CBA5 /* SWRevealViewController.m in Sources */,
 				3FC185801D058A0F0005C291 /* LogInViewController.swift in Sources */,
+				3FC809411D22A2D100B4C982 /* YoubikeModel.swift in Sources */,
+				3FF933061D28FED200BB3FFA /* Restroom+CoreDataProperties.swift in Sources */,
+				3F34BE001D09630600F839CF /* UserInfoManager.swift in Sources */,
 				3FFD61DE1CFC05800054CBA5 /* SideBarTableViewCell.swift in Sources */,
+				3FC3FCF31D0BABB2002FC0E1 /* FBLogInPermission.swift in Sources */,
+				3F25D01A1D1D0E1D0003DBC6 /* DataManager.swift in Sources */,
 				3F8A50ED1CF2EAD0002D6C21 /* UIColor+MRAdditions.swift in Sources */,
+				3FC9B0E51D10361B004B2AAE /* Route.swift in Sources */,
+				3F86F3581D128C6F001F2A24 /* HistoryTableViewCell.swift in Sources */,
+				3F118C0C1D112CCE0085EEA8 /* HistoryViewController.swift in Sources */,
+				3F25D0181D1CCFD10003DBC6 /* DataRouter.swift in Sources */,
+				3FD7FE311D0D92CD00CD42E8 /* StatictisViewController.swift in Sources */,
 				3F908A0A1CF2A777008091E5 /* Mr_Ride_iOS.xcdatamodeld in Sources */,
-				3FFD61DB1CFC054C0054CBA5 /* HistoryTableViewCell.swift in Sources */,
+				3FD7FE351D0EA95E00CD42E8 /* RideInfoModel.swift in Sources */,
+				3F34BE031D0AA3ED00F839CF /* protocols.swift in Sources */,
 				3F8A510B1CF2FA79002D6C21 /* HomeViewController.swift in Sources */,
 				3F8A50EE1CF2EAD0002D6C21 /* UIFont+MRAdditions.swift in Sources */,
+				3F34BE051D0AA4FF00F839CF /* UserInfoModelHelper.swift in Sources */,
+				3FE1F7C81D27EE590088C247 /* RideInfoHelper.swift in Sources */,
+				3F5ED6561D23B22600FE3177 /* Annotation.swift in Sources */,
+				3F9DD1691D13DE3700DE99EF /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +603,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -415,6 +650,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -435,9 +671,15 @@
 		};
 		3F908A141CF2A777008091E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E8372B0032E0C58D05719C7 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Mr-Ride-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-Jing.Mr-Ride-iOS";
@@ -449,9 +691,15 @@
 		};
 		3F908A151CF2A777008091E5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF789EDB6EFF2B6E49AE03CE /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Mr-Ride-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appworks-school-Jing.Mr-Ride-iOS";

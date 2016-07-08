@@ -23,11 +23,6 @@ class NewRecordNavigationViewController: UINavigationController {
         self.navigationBar.barStyle = UIBarStyle.Black
         self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.mrWhiteColor(), NSFontAttributeName: UIFont.mrTextStyle13Font()]
         
-//        // left button & right text
-//        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.mrWhiteColor(), NSFontAttributeName: UIFont.asiTextStyle18Font()], forState: .Normal)
-//        
-//        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.mrWhiteColor(), NSFontAttributeName: UIFont.mrTextStyle13Font()], forState: .Normal)
-        
      }
 
 }

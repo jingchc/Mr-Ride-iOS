@@ -31,30 +31,65 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         setUp()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        checkHaveLogInOrNot()
+    }
+    
+    // check have logged in or not
+    
+    private func checkHaveLogInOrNot() {
+        
+        if UserInfoManager.sharedManager.isLoggedIn {
+        
+            let swRevealViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.window?.rootViewController = swRevealViewController
+            self.presentViewController(swRevealViewController, animated: true, completion: nil)
+        }
+                
+    }
+    
     @IBAction func logInFB(sender: UIButton) {
         
-        // check input has value and correct type
-        guard let userHeight = userHeight.text else {
+        // check height& weight: value, correct type, save to userdefault
+        if userHeight.text != nil {
+            guard let userHeight = getDoubleType(userHeight.text!) else { return }
+            NSUserDefaults.standardUserDefaults().setDouble(userHeight, forKey: NSUserDefaultKey.Height)
+            
+        }else {
             print("no height data")
             // todo: alarm
             return
         }
         
-        guard let userWeight = userWeight.text else {
+        if userWeight.text != nil {
+            guard let userWeight = getDoubleType(userWeight.text!) else { return }
+            NSUserDefaults.standardUserDefaults().setDouble(userWeight, forKey: NSUserDefaultKey.Weight)
+        }else {
             print("no weight data")
             // todo: alarm - can't be empty
             return
         }
-        getDoubleType(userHeight)
-        getDoubleType(userWeight)
+                
+        // log in facebook
         
-        // save to coredata
-        
-        print(getDoubleType(userHeight))
-        print(getDoubleType(userWeight))
-        
-        // todo: log in facebook
-        
+        UserInfoManager.sharedManager.LogInWithFacebook(
+            fromViewController: self,
+            success: { user in
+                
+                if let swRevealViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SWRevealViewController") as? SWRevealViewController {
+                    
+                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    appDelegate.window?.rootViewController = swRevealViewController
+                    self.presentViewController(swRevealViewController, animated: true, completion: nil)
+                }
+                
+            },
+            failure: { error in
+                // todo: alert
+            }
+        )
     }
     
     private func getDoubleType(text: String) -> Double? {

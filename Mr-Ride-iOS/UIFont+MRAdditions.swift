@@ -79,7 +79,11 @@ extension UIFont {
         return UIFont.systemFontOfSize(17.0, weight: UIFontWeightRegular)
     }
     
-    // 19 20
+    // 19
+    
+    class func textStyle20Font() -> UIFont {
+        return UIFont.systemFontOfSize(12.0, weight: UIFontWeightRegular)
+    }
     
     class func textStyle21Font() -> UIFont {
         return UIFont.systemFontOfSize(60.0, weight: UIFontWeightBold)
@@ -96,4 +100,15 @@ extension UIFont {
     class func textStyle24Font() -> UIFont {
         return UIFont.systemFontOfSize(20.0, weight: UIFontWeightRegular)
     }
+    
+    // 25
+    
+    class func textStyle26Font() -> UIFont {
+        return UIFont.systemFontOfSize(10.0, weight: UIFontWeightLight)
+    }
+    
+    class func textStyle27Font() -> UIFont {
+        return UIFont.systemFontOfSize(24.0, weight: UIFontWeightRegular)
+    }
+    
 }
