@@ -22,10 +22,6 @@ protocol UserDefaultParsable {
 
 }
 
-enum FacebookPermission: String {
-    case PublicProfile = "public_profile"
-    case Email = "email"
-}
 
 protocol Facebook {
     

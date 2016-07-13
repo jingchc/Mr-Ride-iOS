@@ -12,13 +12,19 @@ struct MRFacebook: Facebook {
     var requiredReadPermossion: [FacebookPermission] { return [ .PublicProfile, .Email ] }
 }
 
+enum FacebookPermission: String {
+    case PublicProfile = "public_profile"
+    case Email = "email"
+}
+
 extension MRFacebook {
     
     enum CheckPermissionError: ErrorType {
         case PermissionRequired(permission: FacebookPermission)
     }
     
-    func checkRequiredReadPermission(grantedPermission grantedPermission: Set<NSObject>) -> [ErrorType] { return checkPermission(requiredReadPermossion, grantedPermission: grantedPermission) }
+    func checkRequiredReadPermission(grantedPermission grantedPermission: Set<NSObject>) -> [ErrorType] {
+        return checkPermission(requiredReadPermossion, grantedPermission: grantedPermission) }
     
     func checkPermission(permission:[FacebookPermission], grantedPermission: Set<NSObject> ) -> [ErrorType] {
         

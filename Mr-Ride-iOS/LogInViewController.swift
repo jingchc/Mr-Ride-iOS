@@ -25,6 +25,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var logInButton: UIButton!
 
+    let alert = AlertHelper()
+
+    
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,45 +37,51 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        checkHaveLogInOrNot()
+        checkHaveLoggedIn()
     }
     
     // check have logged in or not
     
-    private func checkHaveLogInOrNot() {
-        
+    private func checkHaveLoggedIn() {
         if UserInfoManager.sharedManager.isLoggedIn {
-        
             let swRevealViewController = self.storyboard?.instantiateViewControllerWithIdentifier("SWRevealViewController") as! SWRevealViewController
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             appDelegate.window?.rootViewController = swRevealViewController
             self.presentViewController(swRevealViewController, animated: true, completion: nil)
         }
-                
     }
+    
     
     @IBAction func logInFB(sender: UIButton) {
         
-        // check height& weight: value, correct type, save to userdefault
-        if userHeight.text != nil {
-            guard let userHeight = getDoubleType(userHeight.text!) else { return }
-            NSUserDefaults.standardUserDefaults().setDouble(userHeight, forKey: NSUserDefaultKey.Height)
-            
-        }else {
-            print("no height data")
-            // todo: alarm
+        // check user height & weight
+        
+        guard let userHeightText = userHeight.text where !userHeightText.isEmpty else {
+            alert.showPleaseTypeAlert(type: alert.enterHeight, on: self)
             return
         }
         
-        if userWeight.text != nil {
-            guard let userWeight = getDoubleType(userWeight.text!) else { return }
-            NSUserDefaults.standardUserDefaults().setDouble(userWeight, forKey: NSUserDefaultKey.Weight)
-        }else {
-            print("no weight data")
-            // todo: alarm - can't be empty
+        guard let userHeightDouble = Double(userHeightText) else {
+            userHeight.text = nil
+            alert.showWrongTypeAlert(on: self)
             return
         }
-                
+        
+        guard let userWeightText = userWeight.text where !userWeightText.isEmpty else {
+            alert.showPleaseTypeAlert(type: alert.enterWeight, on: self)
+            return
+        }
+        
+        guard let userWeightDouble = Double(userWeightText) else {
+            userWeight.text = nil
+            alert.showWrongTypeAlert(on: self)
+            return
+        }
+
+        
+        NSUserDefaults.standardUserDefaults().setDouble(userHeightDouble, forKey: NSUserDefaultKey.Height)
+        NSUserDefaults.standardUserDefaults().setDouble(userWeightDouble, forKey: NSUserDefaultKey.Weight)
+        
         // log in facebook
         
         UserInfoManager.sharedManager.LogInWithFacebook(
@@ -84,74 +94,69 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     appDelegate.window?.rootViewController = swRevealViewController
                     self.presentViewController(swRevealViewController, animated: true, completion: nil)
                 }
-                
             },
-            failure: { error in
-                // todo: alert
+            failure: { [weak self] error in
+                guard let weakSelf = self else { return }
+                weakSelf.alert.showFaceBookError(on: weakSelf, error: error)
+                print("error - logInViewcontroller - FBLogIng - \(error)")
+
             }
         )
     }
     
-    private func getDoubleType(text: String) -> Double? {
-        guard let doubleTypeText = Double(text) else {
-            // todo: alarm - type double
-            userHeight.text = nil
-            userWeight.text = nil
-            return nil
-        }
-        return doubleTypeText
-    }
+    
+    // MARK: - SetUp
     
     private func setUp() {
         
         // back ground
-        self.view.backgroundColor = UIColor.mrLightblueColor()
+        view.backgroundColor = UIColor.mrLightblueColor()
         let backgroundGradientlayer = CAGradientLayer()
         backgroundGradientlayer.frame.size = backgroundImage.frame.size
         backgroundGradientlayer.colors = [UIColor.mrLightblueColor().CGColor, UIColor.pineGreen50Color().CGColor]
         backgroundImage.layer.addSublayer(backgroundGradientlayer)
         
         // App name
-        self.appName.textColor = UIColor.mrWhiteColor()
-        self.appName.font = UIFont.textStyle21Font()
-        self.appName.shadowOffset.height = 2
-        self.appName.shadowColor = UIColor.mrBlack25Color()
-        self.appName.text = "Mr. Ride"
+        appName.textColor = UIColor.mrWhiteColor()
+        appName.font = UIFont.textStyle21Font()
+        appName.shadowOffset.height = 2
+        appName.shadowColor = UIColor.mrBlack25Color()
+        appName.text = "Mr. Ride"
         
         // height & weight
-        self.heightView.layer.cornerRadius = 4
-        self.heightView.clipsToBounds = true
-        self.heightTitle.textColor = UIColor.mrDarkSlateBlueColor()
-        self.heightTitle.font = UIFont.textStyle22Font()
-        self.heightTitle.text = "Height"
-        self.heightScale.textColor = UIColor.mrDarkSlateBlueColor()
-        self.heightScale.font = UIFont.textStyle23Font()
-        self.heightScale.text = "cm"
+        heightView.layer.cornerRadius = 4
+        heightView.clipsToBounds = true
+        heightTitle.textColor = UIColor.mrDarkSlateBlueColor()
+        heightTitle.font = UIFont.textStyle22Font()
+        heightTitle.text = "Height"
+        heightScale.textColor = UIColor.mrDarkSlateBlueColor()
+        heightScale.font = UIFont.textStyle23Font()
+        heightScale.text = "cm"
         
-        self.weightView.layer.cornerRadius = 4
-        self.weightView.clipsToBounds = true
-        self.weightTitle.textColor = UIColor.mrDarkSlateBlueColor()
-        self.weightTitle.font = UIFont.textStyle22Font()
-        self.weightTitle.text = "Weight"
-        self.weightScale.textColor = UIColor.mrDarkSlateBlueColor()
-        self.weightScale.font = UIFont.textStyle23Font()
-        self.weightScale.text = "kg"
+        weightView.layer.cornerRadius = 4
+        weightView.clipsToBounds = true
+        weightTitle.textColor = UIColor.mrDarkSlateBlueColor()
+        weightTitle.font = UIFont.textStyle22Font()
+        weightTitle.text = "Weight"
+        weightScale.textColor = UIColor.mrDarkSlateBlueColor()
+        weightScale.font = UIFont.textStyle23Font()
+        weightScale.text = "kg"
         
         // user info
-        self.userHeight.delegate = self
-        self.userHeight.textColor = UIColor.mrDarkSlateBlueColor()
-        self.userHeight.font = UIFont.textStyle24Font()
-        self.userWeight.delegate = self
-        self.userWeight.textColor = UIColor.mrDarkSlateBlueColor()
-        self.userWeight.font = UIFont.textStyle24Font()
+        userHeight.delegate = self
+        userHeight.textColor = UIColor.mrDarkSlateBlueColor()
+        userHeight.font = UIFont.textStyle24Font()
+        userWeight.delegate = self
+        userWeight.textColor = UIColor.mrDarkSlateBlueColor()
+        userWeight.font = UIFont.textStyle24Font()
         
         // logIn Button appearence
-        self.logInButton.layer.cornerRadius = 30
-        self.logInButton.setTitle("     Log In", forState: .Normal)
-        self.logInButton.setTitleShadowColor(UIColor.mrBlack25Color(), forState: .Normal)
-        self.logInButton.setTitleColor(UIColor.mrLightblueColor(), forState: .Normal)
-        self.logInButton.titleLabel?.font = UIFont.asiTextStyle16Font()
-        self.logInButton.titleLabel?.shadowOffset.height = -1
+        logInButton.layer.cornerRadius = 30
+        logInButton.setTitle("     Log In", forState: .Normal)
+        logInButton.setTitleShadowColor(UIColor.mrBlack25Color(), forState: .Normal)
+        logInButton.setTitleColor(UIColor.mrLightblueColor(), forState: .Normal)
+        logInButton.titleLabel?.font = UIFont.asiTextStyle16Font()
+        logInButton.titleLabel?.shadowOffset.height = -1
     }
     
     // set status bar color
@@ -159,16 +164,14 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return UIStatusBarStyle.LightContent
     }
     
-    // hide keyboard
-    
+    //MARK: - HideKeyboard
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        
         return true
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.view.endEditing(true)
+        view.endEditing(true)
     }
     
 }

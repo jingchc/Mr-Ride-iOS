@@ -9,7 +9,6 @@
 import Foundation
 import FBSDKCoreKit
 import FBSDKLoginKit
-import FBSDKShareKit
 import SwiftyJSON
 
 class UserInfoManager {
@@ -57,49 +56,51 @@ extension UserInfoManager {
         
         // 取得權限
         FBSDKLoginManager().logInWithReadPermissions(
-            facebook.requiredReadPermossion.map{ return $0.rawValue },
+            facebook.requiredReadPermossion.map { return $0.rawValue },
             fromViewController: fromViewController,
             handler: { result, error in
-        
-                // 如果有error
                 
+                // #1 - got error
                 if error != nil {
                     let _error: LogInWithFacebookError = .FacebookError(error: error)
+                    failure(error: _error)
+                    // it's a closure，把error丟進去執行這個closure，執行內容寫在呼叫這個method的viewController裡
                     print(_error)
-                    
-                    failure(error: _error) // 這是一個cosure，把error丟進去執行這個closure，至於要執行什麼，寫在viewController裡面
-                    
+
                     return
                 }
-                // 如果沒有結果
+                
+                // #2 - no result
                 
                 if result == nil {
                     let _error: LogInWithFacebookError = .NoResults
-                    print(_error)
-                    
                     failure(error: _error)
-                    
+
+                    print(_error)
+
                     return
                 }
                 
-                // 如果結果是isCancelled
+                // #3 - result - cancelled
                 
                 if result.isCancelled {
                     let _error: LogInWithFacebookError = .Cancelled
-                    print(_error)
-                    
                     failure(error: _error)
+                    
+                    print(_error)
+
                     return
                 }
                 
-                // 檢查 permissionError
+                // #4 - result - permissionError
                 
                 let permissionError = facebook.checkRequiredReadPermission(grantedPermission: result.grantedPermissions)
                 if let _error = permissionError.first {
                     FBSDKLoginManager().logOut()
-                    print(_error)
-                    
                     failure(error: _error)
+                    
+                    print(_error)
+
                     return
                 }
                 
@@ -109,16 +110,13 @@ extension UserInfoManager {
                     success: { json in
                         do {
                              let user = try UserInfoModelHelper().parse(json: json)
-                            self.user = user
-                            
+                            self.user = user  // save to userDefault
                             success(user: user)
                         }
                         catch(let error) {
-                            
                             FBSDKLoginManager().logOut()
                             failure(error: error)
                         }
-                        
                     }
                     , failure: { error in
                         
@@ -148,9 +146,10 @@ extension UserInfoManager {
             
             FBSDKLoginManager().logOut()
             let _error = GetFacebookProfileError.NoAccessToken
-            print(_error)
-            
             failure(error: _error)
+            
+            print(_error)
+
             return
         }
         
@@ -160,10 +159,10 @@ extension UserInfoManager {
             ).startWithCompletionHandler { _, result, error in
                 
                 if error != nil {
-                    
                     let _error = GetFacebookProfileError.FacebookError(error: error)
-                    print(_error)
                     failure(error: _error)
+                    
+                    print(_error)
                     
                     return
                     
@@ -223,7 +222,7 @@ extension UserInfoManager {
             
         }
         
-//        NSUserDefaults.standardUserDefaults().synchronize()
+        NSUserDefaults.standardUserDefaults().synchronize()
         
     }
 }
@@ -232,7 +231,12 @@ extension UserInfoManager {
 
 extension UserInfoManager {
     private func restoreUserInfo() {
-        do { user = try UserInfoModelHelper().parse(defaults: NSUserDefaults.standardUserDefaults()) } catch { FBSDKLoginManager().logOut() }
+        do { user = try UserInfoModelHelper().parse(defaults: NSUserDefaults.standardUserDefaults())
+        }
+        catch {
+            FBSDKLoginManager().logOut()
+            fatalError("FBLogIn-init-restoreUserInfo")
+        }
     }
 }
 

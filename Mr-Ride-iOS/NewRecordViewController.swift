@@ -72,8 +72,9 @@ class NewRecordViewController: UIViewController {
     @IBOutlet weak var nowTime: UILabel!
     @IBOutlet weak var buttonBorder: UIView!
     @IBOutlet weak var rideButton: UIButton!
-    let gradient = CAGradientLayer()
-    let defaults = NSUserDefaults.standardUserDefaults()
+    private let gradient = CAGradientLayer()
+    private let defaults = NSUserDefaults.standardUserDefaults()
+    private let alert = AlertHelper()
     
     // life cycle
     override func viewDidLoad() {
@@ -120,9 +121,7 @@ extension NewRecordViewController {
         switch nextStatus {
             
         case .Start:
-            
-            print("case - start")
-            
+    
             currentStatus = .Start
             nextStatus = .Pause
             
@@ -146,8 +145,6 @@ extension NewRecordViewController {
 
         case .Pause:
             
-            print("case - pause")
-
             currentStatus = .Pause
             nextStatus = .Continue
             
@@ -163,7 +160,6 @@ extension NewRecordViewController {
             // location update pause
             currentDistance += self.distance
             
-            
             for location in locations {
                 totalLocations.append(location)
             }
@@ -172,16 +168,11 @@ extension NewRecordViewController {
             
             locations.removeAll()
             
-            // add fixed polyline
-//            totalLoadMap()
-            
             // current speed
             nowSpeed.text = "0 km / h"
             
         case .Continue:
-            
-            print("case - coutinue")
-            
+
             currentStatus = .Continue
             nextStatus = .Pause
             locationNumber += 1
@@ -243,14 +234,14 @@ extension NewRecordViewController {
 
 // MARK: - CLLocationManager
 
-extension NewRecordViewController: CLLocationManagerDelegate {
+extension NewRecordViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) { checkLocationAuthority(status) }
+    
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         // check currentStatus: locations distance?
-
         switch currentStatus {
         case .Default: break
         case .Start: record(locations)
@@ -262,7 +253,23 @@ extension NewRecordViewController: CLLocationManagerDelegate {
         showUserLocation(locations)
     }
     
+    
+    
+    // check location authorization
+    
+    private func checkLocationAuthority(status: CLAuthorizationStatus) {
+        switch status {
+        case .NotDetermined: locationManager.requestWhenInUseAuthorization()
+        case .Denied: locationManager.requestWhenInUseAuthorization()
+        case .Restricted: print("This area can't update locations")
+        case .AuthorizedAlways, .AuthorizedWhenInUse: break
+        }
+    }
+    
+
+    
     // record route
+    
     private func record(locations: [CLLocation]) {
         for location in locations {
             if location.horizontalAccuracy < 20 {
@@ -275,17 +282,10 @@ extension NewRecordViewController: CLLocationManagerDelegate {
         drawCurrentPolyLine(self.locations)
     }
     
-    // check location authorization
-    private func checkLocationAuthority(status: CLAuthorizationStatus) {
-        switch status {
-        case .NotDetermined: locationManager.requestWhenInUseAuthorization()
-        case .Denied: locationManager.requestWhenInUseAuthorization()
-        case .Restricted: print("This area can't update locations")
-        case .AuthorizedAlways, .AuthorizedWhenInUse: break
-        }
-    }
+    
     
     // show current location on the map
+    
     private func showUserLocation(locations: [CLLocation]) {
         let currentLocation = locations.last
         if currentLocation != nil {
@@ -296,6 +296,8 @@ extension NewRecordViewController: CLLocationManagerDelegate {
             }
         }
     }
+    
+    
     
     // poly line
     
@@ -332,11 +334,6 @@ extension NewRecordViewController: CLLocationManagerDelegate {
     
 }
 
-// MARK: - MKMapViewDelegate
-extension NewRecordViewController: MKMapViewDelegate {
-    
-}
-
 
 // MARK: - SetUp
 
@@ -348,18 +345,18 @@ extension NewRecordViewController {
         let color2 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.40)
         gradient.frame = self.view.frame
         gradient.colors = [color1.CGColor, color2.CGColor]
-        self.view.layer.insertSublayer(gradient, atIndex: 0)
+        view.layer.insertSublayer(gradient, atIndex: 0)
         
     }
     
     private func setBackground() {
         
-        self.view.backgroundColor = UIColor.mrLightblueColor()
+        view.backgroundColor = UIColor.mrLightblueColor()
         let color1 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.60)
         let color2 = UIColor(red: 0, green: 0, blue: 0, alpha: 0.40)
         gradient.frame = self.view.frame
         gradient.colors = [color1.CGColor, color2.CGColor]
-        self.view.layer.insertSublayer(gradient, atIndex: 0)
+        view.layer.insertSublayer(gradient, atIndex: 0)
         
     }
     
@@ -444,40 +441,28 @@ extension NewRecordViewController {
     
     
     @objc func cancel() {
-        
-        let alertController = UIAlertController(title: "This ride haven't save yet!", message: "Are you sure want to leave without saving?", preferredStyle: .Alert)
-        
-        alertController.addAction(UIAlertAction(title: "Leave", style: .Default, handler: { (action: UIAlertAction!) in
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }))
-        
-        alertController.addAction(UIAlertAction(title: "Stay", style: .Cancel, handler: { (action: UIAlertAction!) in
-            return
-        }))
-        
-        self.presentViewController(alertController, animated: true, completion:nil)
-        
+     alert.showCancelAlert(on: self)
     }
     
     @objc func finish() {
         
         locationManager.stopUpdatingLocation()
-        // check data
+        
         if totalDistance == 0.0 {
-            let alertController = UIAlertController(title: "Let's Start Ride !", message: nil, preferredStyle: .Alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            self.presentViewController(alertController, animated: true, completion:nil)
+            alert.showStartAlert(on: self)
             locationManager.startUpdatingLocation()
             return
         }
 
         getAverageSpeed()
         saveThisRideToSingleton()
-//        cleanUpCoreData()
         saveThisRideToCoreData()
         saveHomepageInfoToUserDefault()
-//        checkCoreDate()
         pushToStatisticPage()
+        
+        /* only use for develope testing
+        cleanUpCoreData()
+        checkCoreDate() */
     }
 
 }
@@ -594,6 +579,13 @@ extension NewRecordViewController {
         
     }
     
+}
+
+
+
+// Mark: - method for develope testing
+
+extension NewRecordViewController {
     
     // help func - check data
     private func checkCoreDate() {
@@ -613,7 +605,6 @@ extension NewRecordViewController {
                 print(result.route)
                 print(result.route?.firstObject!.number)
                 print("=============")
-
             }
         } catch {
             fatalError("fail to fetch core data")
@@ -636,8 +627,4 @@ extension NewRecordViewController {
             fatalError("clean up core data error")
         }
     }
-    
-    
 }
-
-

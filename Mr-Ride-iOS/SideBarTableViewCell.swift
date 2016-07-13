@@ -22,13 +22,12 @@ class SideBarTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: false)
         
         if selected {
-            self.pageName.textColor = UIColor.mrWhiteColor()
-            self.dot.backgroundColor = UIColor.mrWhiteColor()
+            pageName.textColor = UIColor.mrWhiteColor()
+            dot.backgroundColor = UIColor.mrWhiteColor()
         } else {
-            self.pageName.textColor = UIColor.mrWhite50Color()
-            self.dot.backgroundColor = UIColor.mrDarkSlateBlueColor()
+            pageName.textColor = UIColor.mrWhite50Color()
+            dot.backgroundColor = UIColor.mrDarkSlateBlueColor()
         }
     }
-
-
+    
 }
